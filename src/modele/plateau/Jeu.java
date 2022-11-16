@@ -48,15 +48,15 @@ public class Jeu {
     public void start(long _pause) {
         ordonnanceur.start(_pause);
     }
-    
+
     public Entite[][] getGrille() {
         return grilleEntites;
     }
-    
+
     public Heros getHector() {
         return hector;
     }
-    
+
     private void initialisationDesEntites() {
         hector = new Heros(this);
         addEntite(hector, 2, 1);
@@ -140,8 +140,8 @@ public class Jeu {
             }
         }
 
-        if (contenuDansGrille(pCible) && objetALaPosition(pCible) instanceof Corde) {
-            System.out.println("lol");
+        if (contenuDansGrille(pCible) && e.est_face_a(objetALaPosition(pCible).getClass())){
+            // ne fonctionne pas
         }
 
         if (retour) {
@@ -150,8 +150,8 @@ public class Jeu {
 
         return retour;
     }
-    
-    
+
+
     private Point calculerPointCible(Point pCourant, Direction d) {
         Point pCible = null;
         

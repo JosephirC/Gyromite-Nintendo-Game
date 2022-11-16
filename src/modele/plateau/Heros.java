@@ -10,7 +10,7 @@ import modele.deplacements.Direction;
 /**
  * Héros du jeu
  */
-public class Heros extends EntiteDynamique {
+public abstract class Heros extends EntiteDynamique {
     public Heros(Jeu _jeu) {
         super(_jeu);
     }
@@ -19,6 +19,18 @@ public class Heros extends EntiteDynamique {
     public boolean peutServirDeSupport() { return true; }
     public boolean peutPermettreDeMonterDescendre() { return false; };
 
+
+    public void est_face_a(modele.plateau.Bot bot){
+        System.out.println("Mort");
+    }
+
+    public void est_face_a(modele.plateau.Corde corde){
+        System.out.println("Monte");
+    }
+
+    public void est_face_a(){
+        System.out.println("Monte");
+    }
    /* @Override
     public void collisionAvec(Entite e){
         if(e instanceof Corde){
