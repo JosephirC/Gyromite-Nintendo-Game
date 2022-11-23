@@ -73,7 +73,10 @@ public class Jeu {
         ia.addEntiteDynamique(smick);
 
         corde = new Corde(this);
-        addEntite(corde, 12, 8);
+        for(int x = 0; x < 20; x++){
+            addEntite(corde, 12, 8);
+        }
+
 
         ordonnanceur.add(g);
         ordonnanceur.add(ia);
@@ -145,11 +148,11 @@ public class Jeu {
         }
 
         if (contenuDansGrille(pCible) && objetALaPosition(pCible) instanceof Corde) { // a adapter (collisions murs, etc.)
-            System.out.print("Corde" + '\n' + "pCible is " + pCible + '\n');
-            hector.jeu.deplacerEntite(pCourant, pCible, hector);
-
-
-
+            hector.jeu.deplacerDansCorde(pCourant, pCible, hector);
+            addEntite(corde, 12, 8);
+            if(pCourant.x == 12 && pCourant.y == 8 && map.get(e) == null ){
+                addEntite(corde, 12, 8);
+            }
 
 
 
@@ -183,6 +186,12 @@ public class Jeu {
     
     private void deplacerEntite(Point pCourant, Point pCible, Entite e) {
         grilleEntites[pCourant.x][pCourant.y] = null;
+        grilleEntites[pCible.x][pCible.y] = e;
+        map.put(e, pCible);
+    }
+
+    private void deplacerDansCorde(Point pCourant, Point pCible, Entite e){
+        grilleEntites[pCourant.x][pCourant.y] = corde;
         grilleEntites[pCible.x][pCible.y] = e;
         map.put(e, pCible);
     }
