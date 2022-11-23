@@ -66,17 +66,21 @@ public class Jeu {
         g.addEntiteDynamique(hector);
 
         smick = new Bot(this);
-        addEntite(smick, 6, 1);
+        addEntite(smick, 6, 8);
 
         IA ia = new IA();
         g.addEntiteDynamique(smick);
         ia.addEntiteDynamique(smick);
 
         corde = new Corde(this);
+
         addEntite(corde, 12, 7);
         addEntite(corde, 12, 8);
 
-
+        for (int y = 6; y < 8; y++) {
+            addEntite(corde, 12, y);
+            addEntite(corde, 12, y);
+        }
 
         ordonnanceur.add(g);
         ordonnanceur.add(ia);
@@ -99,8 +103,11 @@ public class Jeu {
             addEntite(new Mur(this), 19, y);
         }
 
-        addEntite(new Mur(this), 2, 6);
-        addEntite(new Mur(this), 3, 6);
+        for (int x = 1; x < 12; x++) {
+            addEntite(new Mur(this), x, 6);
+            addEntite(new Mur(this), x, 6);
+        }
+
     }
 
     private void addEntite(Entite e, int x, int y) {
