@@ -159,6 +159,11 @@ public class Jeu {
             addEntite(corde, pCible.x, pCible.y);
         }*/
 
+        /*if (contenuDansGrille(pCible) && objetALaPosition(pCible).peutEtreTraverse() ) { // a adapter (collisions murs, etc.)
+            hector.jeu.deplacerEntite(pCourant, pCible, hector);
+            addEntite(corde, pCible.x, pCible.y);
+        }*/
+
         if (retour) {
             deplacerEntite(pCourant, pCible, e);
         }
@@ -182,9 +187,9 @@ public class Jeu {
     }
     
     private void deplacerEntite(Point pCourant, Point pCible, Entite e) {
-        grilleEntites[pCourant.x][pCourant.y] = null;
+        grilleEntites[pCourant.x][pCourant.y] = e.estSur;
+        map.put(e.estSur, pCourant);
         e.estSur = grilleEntites[pCible.x][pCible.y];
-        map.put(e.estSur, pCible);
         grilleEntites[pCible.x][pCible.y] = e;
         map.put(e, pCible);
 
