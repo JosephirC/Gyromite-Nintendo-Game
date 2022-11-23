@@ -140,9 +140,9 @@ public class Jeu {
             }
         }
 
-        if (contenuDansGrille(pCible) && e.est_face_a(objetALaPosition(pCible).getClass())){
+        /*if (contenuDansGrille(pCible) && e.est_face_a(objetALaPosition(pCible).getClass())){
             // ne fonctionne pas
-        }
+        }*/
 
         if (retour) {
             deplacerEntite(pCourant, pCible, e);

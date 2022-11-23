@@ -14,5 +14,5 @@ public abstract class EntiteDynamique extends Entite {
     public Entite regarderDansLaDirection(Direction d) {return jeu.regarderDansLaDirection(this, d);}
     
     //public abstract void collisionAvec(Entite e);
-    public abstract void est_face_a(Entite e);
+    //public abstract void est_face_a(Entite e);
 }
