@@ -70,9 +70,9 @@ public class VueControleurGyromite extends JFrame implements Observer {
         icoHero = chargerIcone("Images/player_ca.png", 0, 0, 32, 44);
         icoBot = chargerIcone("Images/smick_ca.png", 0, 0, 35, 40);//chargerIcone("Images/Pacman.png");
 
-        icoVide = chargerIcone("Images/Vide.png");
+        icoVide = chargerIcone("Images/bg.png");
         icoColonne = chargerIcone("Images/Colonne.png");
-        icoMur = chargerIcone("Images/Mur.png");
+        icoMur = chargerIcone("Images/tileset.png", 0, 0, 16, 16);
 
         icoCorde = chargerIcone("Images/tileset.png", 16, 0, 16, 16);
     }
@@ -165,7 +165,7 @@ public class VueControleurGyromite extends JFrame implements Observer {
         // charger une sous partie de l'image à partir de ses coordonnées dans urlIcone
         BufferedImage bi = getSubImage(urlIcone, x, y, w, h);
         // adapter la taille de l'image a la taille du composant (ici : 20x20)
-        return new ImageIcon(bi.getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH));
+        return new ImageIcon(bi.getScaledInstance(21, 21, java.awt.Image.SCALE_SMOOTH));
     }
 
     private BufferedImage getSubImage(String urlIcone, int x, int y, int w, int h) {
