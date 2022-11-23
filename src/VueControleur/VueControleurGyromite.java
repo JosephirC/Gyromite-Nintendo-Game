@@ -181,4 +181,22 @@ public class VueControleurGyromite extends JFrame implements Observer {
         return bi;
     }
 
+   /* private ImageIcon chargerHeros(Direction d){
+        switch (d){
+            case haut :
+                icoHero = chargerIcone("Images/player_ca.png", 0, 0, 35, 40);//chargerIcone("Images/Pacman.png");
+                break;
+            case bas :
+                icoHero = chargerIcone("Images/player_ca.png", 0, 0, 35, 40);//chargerIcone("Images/Pacman.png");
+                break;
+            case droite:
+                icoHero = chargerIcone("Images/player_ca.png", 0, 0, 35, 40);//chargerIcone("Images/Pacman.png");
+                break;
+            case gauche :
+                icoHero = chargerIcone("Images/player_ca.png", 0, 0, 35, 40);//chargerIcone("Images/Pacman.png");
+                break;
+        }
+        return icoHero;
+    }*/
+
 }
