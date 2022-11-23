@@ -67,7 +67,7 @@ public class VueControleurGyromite extends JFrame implements Observer {
 
 
     private void chargerLesIcones() {
-        icoHero = chargerIcone("Images/player_ca.png", 0, 0, 35, 40);//chargerIcone("Images/Pacman.png");
+        icoHero = chargerIcone("Images/player_ca.png", 0, 0, 32, 44);
         icoBot = chargerIcone("Images/smick_ca.png", 0, 0, 35, 40);//chargerIcone("Images/Pacman.png");
 
         icoVide = chargerIcone("Images/Vide.png");
@@ -181,19 +181,16 @@ public class VueControleurGyromite extends JFrame implements Observer {
         return bi;
     }
 
-   /* private ImageIcon chargerHeros(Direction d){
+    /*private ImageIcon chargerHeros(Direction d){
         switch (d){
-            case haut :
-                icoHero = chargerIcone("Images/player_ca.png", 0, 0, 35, 40);//chargerIcone("Images/Pacman.png");
-                break;
             case bas :
-                icoHero = chargerIcone("Images/player_ca.png", 0, 0, 35, 40);//chargerIcone("Images/Pacman.png");
+                icoHero = chargerIcone("Images/player_ca.png", 160, 0, 32, 44);
                 break;
             case droite:
-                icoHero = chargerIcone("Images/player_ca.png", 0, 0, 35, 40);//chargerIcone("Images/Pacman.png");
+                icoHero = chargerIcone("Images/player_ca.png", 0, 0, 32, 44);
                 break;
             case gauche :
-                icoHero = chargerIcone("Images/player_ca.png", 0, 0, 35, 40);//chargerIcone("Images/Pacman.png");
+                icoHero = chargerIcone("Images/player_ca.png", 32, -32, 32, 44);
                 break;
         }
         return icoHero;

@@ -73,9 +73,9 @@ public class Jeu {
         ia.addEntiteDynamique(smick);
 
         corde = new Corde(this);
-        for(int x = 0; x < 20; x++){
-            addEntite(corde, 12, 8);
-        }
+        addEntite(corde, 12, 7);
+        addEntite(corde, 12, 8);
+
 
 
         ordonnanceur.add(g);
@@ -149,12 +149,11 @@ public class Jeu {
 
         if (contenuDansGrille(pCible) && objetALaPosition(pCible) instanceof Corde) { // a adapter (collisions murs, etc.)
             hector.jeu.deplacerEntite(pCourant, pCible, hector);
-            addEntite(corde, 12, 8);
-        }
+            //Point pi = new Point(5, 5);
+            //hector.jeu.deplacerEntite(pCourant, pi, hector);
 
-        /*if (contenuDansGrille(pCible) && e.est_face_a(objetALaPosition(pCible).getClass())){
-            // ne fonctionne pas
-        }*/
+            addEntite(corde, pCible.x, pCible.y);
+        }
 
         if (retour) {
             deplacerEntite(pCourant, pCible, e);
@@ -179,7 +178,7 @@ public class Jeu {
     }
     
     private void deplacerEntite(Point pCourant, Point pCible, Entite e) {
-        if(contenuDansGrille(pCible) && objetALaPosition(pCible) == null && contenuDansGrille(pCourant) && objetALaPosition(pCourant) instanceof Corde){
+        if(((contenuDansGrille(pCible) && objetALaPosition(pCible) == null) || contenuDansGrille(pCible) && objetALaPosition(pCible) instanceof Corde ) && contenuDansGrille(pCourant) && objetALaPosition(pCourant) instanceof Corde){
             grilleEntites[pCourant.x][pCourant.y] = corde;
         } else {
             grilleEntites[pCourant.x][pCourant.y] = null;
