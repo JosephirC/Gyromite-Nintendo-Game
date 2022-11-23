@@ -74,10 +74,8 @@ public class Jeu {
 
         corde = new Corde(this);
 
-        addEntite(corde, 12, 7);
-        addEntite(corde, 12, 8);
 
-        for (int y = 6; y < 8; y++) {
+        for (int y = 6; y < 9; y++) {
             addEntite(corde, 12, y);
             addEntite(corde, 12, y);
         }
@@ -192,7 +190,6 @@ public class Jeu {
         e.estSur = grilleEntites[pCible.x][pCible.y];
         grilleEntites[pCible.x][pCible.y] = e;
         map.put(e, pCible);
-
 
 
         /*if(((contenuDansGrille(pCible) && objetALaPosition(pCible) == null) || contenuDansGrille(pCible) && objetALaPosition(pCible) instanceof Corde ) && contenuDansGrille(pCourant) && objetALaPosition(pCourant) instanceof Corde){
