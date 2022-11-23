@@ -5,10 +5,7 @@
  */
 package modele.plateau;
 
-import modele.deplacements.Controle4Directions;
-import modele.deplacements.Direction;
-import modele.deplacements.Gravite;
-import modele.deplacements.Ordonnanceur;
+import modele.deplacements.*;
 
 import java.awt.Point;
 import java.util.HashMap;
@@ -27,7 +24,7 @@ public class Jeu {
 
     private Heros hector;
 
-    private Bot canards;
+    private Bot smick;
 
     private Corde corde;
 
@@ -57,28 +54,35 @@ public class Jeu {
         return hector;
     }
 
+    public Bot getSmick() {
+        return smick;
+    }
+
     private void initialisationDesEntites() {
         hector = new Heros(this);
         addEntite(hector, 2, 1);
 
         Gravite g = new Gravite();
         g.addEntiteDynamique(hector);
-        ordonnanceur.add(g);
 
-        Controle4Directions.getInstance().addEntiteDynamique(hector);
-        ordonnanceur.add(Controle4Directions.getInstance());
+        smick = new Bot(this);
+        addEntite(smick, 6, 1);
 
-        /*canards = new Bot(this);
-        addEntite(canards, 10, 8);
-        Gravite gSmick = new Gravite();
-        gSmick.addEntiteDynamique(canards);
-        ordonnanceur.add(gSmick);
-        Controle4Directions.getInstance().addEntiteDynamique(canards);
-        ordonnanceur.add(Controle4Directions.getInstance());*/
+        IA ia = new IA();
+        g.addEntiteDynamique(smick);
+        ia.addEntiteDynamique(smick);
 
         corde = new Corde(this);
         addEntite(corde, 12, 8);
 
+        ordonnanceur.add(g);
+        ordonnanceur.add(ia);
+
+
+
+
+        Controle4Directions.getInstance().addEntiteDynamique(hector);
+        ordonnanceur.add(Controle4Directions.getInstance());
 
         // murs extérieurs horizontaux
         for (int x = 0; x < 20; x++) {
