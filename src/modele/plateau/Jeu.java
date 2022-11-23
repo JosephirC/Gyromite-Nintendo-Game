@@ -140,6 +140,17 @@ public class Jeu {
             }
         }
 
+        if (contenuDansGrille(pCible) && objetALaPosition(pCible) instanceof Corde) { // a adapter (collisions murs, etc.)
+            System.out.print("Corde" + '\n' + "pCible is " + pCible + '\n');
+            hector.jeu.deplacerEntite(pCourant, pCible, hector);
+
+
+
+
+
+
+        }
+
         /*if (contenuDansGrille(pCible) && e.est_face_a(objetALaPosition(pCible).getClass())){
             // ne fonctionne pas
         }*/
