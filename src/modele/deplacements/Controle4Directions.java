@@ -26,7 +26,7 @@ public class Controle4Directions extends RealisateurDeDeplacement {
     public boolean realiserDeplacement() {
         boolean ret = false;
         for (EntiteDynamique e : lstEntitesDynamiques) {
-            if (directionCourante != null)
+            if (directionCourante != null || e.peutEtreTraverse())
                 switch (directionCourante) {
                     case gauche:
                     case droite:

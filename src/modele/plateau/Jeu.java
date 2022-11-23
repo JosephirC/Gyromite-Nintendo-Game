@@ -147,13 +147,10 @@ public class Jeu {
             }
         }
 
-        if (contenuDansGrille(pCible) && objetALaPosition(pCible) instanceof Corde) { // a adapter (collisions murs, etc.)
+        /*if (contenuDansGrille(pCible) && objetALaPosition(pCible) instanceof Corde) { // a adapter (collisions murs, etc.)
             hector.jeu.deplacerEntite(pCourant, pCible, hector);
-            //Point pi = new Point(5, 5);
-            //hector.jeu.deplacerEntite(pCourant, pi, hector);
-
             addEntite(corde, pCible.x, pCible.y);
-        }
+        }*/
 
         if (retour) {
             deplacerEntite(pCourant, pCible, e);
@@ -178,13 +175,21 @@ public class Jeu {
     }
     
     private void deplacerEntite(Point pCourant, Point pCible, Entite e) {
-        if(((contenuDansGrille(pCible) && objetALaPosition(pCible) == null) || contenuDansGrille(pCible) && objetALaPosition(pCible) instanceof Corde ) && contenuDansGrille(pCourant) && objetALaPosition(pCourant) instanceof Corde){
+        grilleEntites[pCourant.x][pCourant.y] = null;
+        e.estSur = grilleEntites[pCible.x][pCible.y];
+        map.put(e.estSur, pCible);
+        grilleEntites[pCible.x][pCible.y] = e;
+        map.put(e, pCible);
+
+
+
+        /*if(((contenuDansGrille(pCible) && objetALaPosition(pCible) == null) || contenuDansGrille(pCible) && objetALaPosition(pCible) instanceof Corde ) && contenuDansGrille(pCourant) && objetALaPosition(pCourant) instanceof Corde){
             grilleEntites[pCourant.x][pCourant.y] = corde;
         } else {
             grilleEntites[pCourant.x][pCourant.y] = null;
         }
         grilleEntites[pCible.x][pCible.y] = e;
-        map.put(e, pCible);
+        map.put(e, pCible);*/
     }
     
     /** Indique si p est contenu dans la grille

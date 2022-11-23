@@ -19,7 +19,6 @@ public class Heros extends EntiteDynamique {
     public boolean peutServirDeSupport() { return true; }
     public boolean peutPermettreDeMonterDescendre() { return false; };
 
-
    /* public void est_face_a(modele.plateau.Bot bot){
         System.out.println("Mort");
     }
