@@ -74,10 +74,8 @@ public class Jeu {
 
         corde = new Corde(this);
 
-        addEntite(corde, 12, 7);
-        addEntite(corde, 12, 8);
 
-        for (int y = 6; y < 8; y++) {
+        for (int y = 6; y < 9; y++) {
             addEntite(corde, 12, y);
             addEntite(corde, 12, y);
         }
@@ -182,12 +180,11 @@ public class Jeu {
     }
     
     private void deplacerEntite(Point pCourant, Point pCible, Entite e) {
-        grilleEntites[pCourant.x][pCourant.y] = null;
+        grilleEntites[pCourant.x][pCourant.y] = e.estSur;
+        map.put(e.estSur, pCourant);
         e.estSur = grilleEntites[pCible.x][pCible.y];
-        map.put(e.estSur, pCible);
         grilleEntites[pCible.x][pCible.y] = e;
         map.put(e, pCible);
-
 
 
         /*if(((contenuDansGrille(pCible) && objetALaPosition(pCible) == null) || contenuDansGrille(pCible) && objetALaPosition(pCible) instanceof Corde ) && contenuDansGrille(pCourant) && objetALaPosition(pCourant) instanceof Corde){
