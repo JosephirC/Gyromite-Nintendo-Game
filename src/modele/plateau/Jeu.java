@@ -130,8 +130,9 @@ public class Jeu {
         Point pCourant = map.get(e);
         
         Point pCible = calculerPointCible(pCourant, d);
-        
-        if (contenuDansGrille(pCible) && objetALaPosition(pCible) == null) { // a adapter (collisions murs, etc.)
+        System.out.println(e.peutEtreTraverse());
+        if (contenuDansGrille(pCible)&& ( objetALaPosition(pCible) == null || e.peutEtreTraverse())) {
+            // a adapter (collisions murs, etc.)
             // compter le déplacement : 1 deplacement horizontal et vertical max par pas de temps par entité
             switch (d) {
                 case bas:
@@ -197,6 +198,10 @@ public class Jeu {
         } else {
             grilleEntites[pCourant.x][pCourant.y] = null;
         }
+        grilleEntites[pCible.x][pCible.y] = e;
+        map.put(e, pCible);*/
+
+        /*grilleEntites[pCourant.x][pCourant.y] = null;
         grilleEntites[pCible.x][pCible.y] = e;
         map.put(e, pCible);*/
     }

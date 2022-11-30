@@ -6,5 +6,6 @@ public class Corde extends EntiteStatique {
         super(_jeu);
     }
 
+    @Override
     public boolean peutEtreTraverse(){ return true; }
 }
