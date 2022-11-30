@@ -130,8 +130,8 @@ public class Jeu {
         Point pCourant = map.get(e);
         
         Point pCible = calculerPointCible(pCourant, d);
-        System.out.println(e.peutEtreTraverse());
-        if (contenuDansGrille(pCible)&& ( objetALaPosition(pCible) == null || e.peutEtreTraverse())) {
+
+        if (contenuDansGrille(pCible)&& ( objetALaPosition(pCible) == null)) {
             // a adapter (collisions murs, etc.)
             // compter le déplacement : 1 deplacement horizontal et vertical max par pas de temps par entité
             switch (d) {
@@ -153,10 +153,10 @@ public class Jeu {
             }
         }
 
-        /*if (contenuDansGrille(pCible) && objetALaPosition(pCible) instanceof Corde) { // a adapter (collisions murs, etc.)
+        else if (contenuDansGrille(pCible) && objetALaPosition(pCible).peutEtreTraverse()) {
             hector.jeu.deplacerEntite(pCourant, pCible, hector);
             addEntite(corde, pCible.x, pCible.y);
-        }*/
+        }
 
         /*if (contenuDansGrille(pCible) && objetALaPosition(pCible).peutEtreTraverse() ) { // a adapter (collisions murs, etc.)
             hector.jeu.deplacerEntite(pCourant, pCible, hector);
