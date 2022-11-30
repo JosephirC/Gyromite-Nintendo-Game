@@ -156,16 +156,9 @@ public class Jeu {
         else if (contenuDansGrille(pCible) && objetALaPosition(pCible).peutEtreTraverse()) {
             hector.estSur = objetALaPosition(pCible);
             hector.alapos = pCible;
-            System.out.println("es sur "  + hector.estSur);
-            System.out.println("es sur a la pos "  + hector.alapos);
             hector.jeu.deplacerEntite(pCourant, pCible, hector);
             addEntite(hector.estSur, hector.alapos.x, hector.alapos.y);
         }
-
-        /*if (contenuDansGrille(pCible) && objetALaPosition(pCible).peutEtreTraverse() ) { // a adapter (collisions murs, etc.)
-            hector.jeu.deplacerEntite(pCourant, pCible, hector);
-            addEntite(corde, pCible.x, pCible.y);
-        }*/
 
         if (retour) {
             deplacerEntite(pCourant, pCible, e);
