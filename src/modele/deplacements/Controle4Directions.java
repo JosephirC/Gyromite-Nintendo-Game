@@ -30,29 +30,22 @@ public class Controle4Directions extends RealisateurDeDeplacement {
                 if (directionCourante != null)
                     switch (directionCourante) {
                         case gauche:
-                            Entite gauche = e.regarderDansLaDirection(Direction.gauche);
-                            if (gauche != null){
-                                System.out.println(gauche);
-                                System.out.println(gauche.peutEtreTraverse());
+                            Entite eGauche = e.regarderDansLaDirection(Direction.gauche);
+                            if ((eGauche == null) || (eGauche.peutEtreTraverse())) {
+                                if (e.avancerDirectionChoisie(Direction.gauche))
+                                    ret = true;
                             }
-                            if (e.avancerDirectionChoisie(directionCourante)|| gauche != null && gauche.peutEtreTraverse())
-                                ret = true;
                             break;
                         case droite:
-
-                            Entite drt = e.regarderDansLaDirection(Direction.droite);
-                            if (drt != null){
-                                System.out.println(drt);
-                                System.out.println(drt.peutEtreTraverse());
+                            Entite eDroite = e.regarderDansLaDirection(Direction.droite);
+                            if ((eDroite == null) || (eDroite.peutEtreTraverse())) {
+                                if (e.avancerDirectionChoisie(Direction.droite))
+                                    ret = true;
                             }
-                            if (e.avancerDirectionChoisie(directionCourante)|| drt != null && drt.peutEtreTraverse())
-
-                                ret = true;
                             break;
-
                         case bas:
-                            Entite eBas1 = e.regarderDansLaDirection(Direction.bas);
-                            if (eBas1 != null && eBas1.peutServirDeSupport() || eBas1 != null && eBas1.peutEtreTraverse()) {
+                            Entite eBas = e.regarderDansLaDirection(Direction.bas);
+                            if (eBas != null && (eBas.peutServirDeSupport() || eBas.peutEtreTraverse())) {
                                 if (e.avancerDirectionChoisie(Direction.bas))
                                     ret = true;
                             }
@@ -61,8 +54,8 @@ public class Controle4Directions extends RealisateurDeDeplacement {
                         case haut:
                             // on ne peut pas sauter sans prendre appui
                             // (attention, test d'appui réalisé à partir de la position courante, si la gravité à été appliquée, il ne s'agit pas de la position affichée, amélioration possible)
-                            Entite eBas = e.regarderDansLaDirection(Direction.bas);
-                            if (eBas != null && eBas.peutServirDeSupport() || eBas != null && eBas.peutEtreTraverse()) {
+                            Entite eHaut = e.regarderDansLaDirection(Direction.bas);
+                            if (eHaut != null && eHaut.peutServirDeSupport() || eHaut != null && eHaut.peutEtreTraverse()) {
                                 if (e.avancerDirectionChoisie(Direction.haut))
                                     ret = true;
                             }
