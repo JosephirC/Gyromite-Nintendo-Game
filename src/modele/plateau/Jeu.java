@@ -154,8 +154,12 @@ public class Jeu {
         }
 
         else if (contenuDansGrille(pCible) && objetALaPosition(pCible).peutEtreTraverse()) {
+            hector.estSur = objetALaPosition(pCible);
+            hector.alapos = pCible;
+            System.out.println("es sur "  + hector.estSur);
+            System.out.println("es sur a la pos "  + hector.alapos);
             hector.jeu.deplacerEntite(pCourant, pCible, hector);
-            addEntite(corde, pCible.x, pCible.y);
+            addEntite(hector.estSur, hector.alapos.x, hector.alapos.y);
         }
 
         /*if (contenuDansGrille(pCible) && objetALaPosition(pCible).peutEtreTraverse() ) { // a adapter (collisions murs, etc.)
@@ -186,24 +190,21 @@ public class Jeu {
     }
     
     private void deplacerEntite(Point pCourant, Point pCible, Entite e) {
-        grilleEntites[pCourant.x][pCourant.y] = e.estSur;
+        /*grilleEntites[pCourant.x][pCourant.y] = e.estSur;
         map.put(e.estSur, pCourant);
         e.estSur = grilleEntites[pCible.x][pCible.y];
         grilleEntites[pCible.x][pCible.y] = e;
-        map.put(e, pCible);
+        map.put(e, pCible);*/
 
 
-        /*if(((contenuDansGrille(pCible) && objetALaPosition(pCible) == null) || contenuDansGrille(pCible) && objetALaPosition(pCible) instanceof Corde ) && contenuDansGrille(pCourant) && objetALaPosition(pCourant) instanceof Corde){
-            grilleEntites[pCourant.x][pCourant.y] = corde;
+        if(((contenuDansGrille(pCible) && objetALaPosition(pCible) == null) || contenuDansGrille(pCible) && objetALaPosition(pCible).peutEtreTraverse() ) && contenuDansGrille(pCourant) && objetALaPosition(pCourant).peutEtreTraverse()){
+            grilleEntites[pCourant.x][pCourant.y] = hector.estSur;
         } else {
             grilleEntites[pCourant.x][pCourant.y] = null;
         }
         grilleEntites[pCible.x][pCible.y] = e;
-        map.put(e, pCible);*/
+        map.put(e, pCible);
 
-        /*grilleEntites[pCourant.x][pCourant.y] = null;
-        grilleEntites[pCible.x][pCible.y] = e;
-        map.put(e, pCible);*/
     }
     
     /** Indique si p est contenu dans la grille

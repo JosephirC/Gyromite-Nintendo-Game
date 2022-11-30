@@ -52,8 +52,6 @@ public class Controle4Directions extends RealisateurDeDeplacement {
 
                         case bas:
                             Entite eBas1 = e.regarderDansLaDirection(Direction.bas);
-                            System.out.println(eBas1);
-                            System.out.println(eBas1.peutEtreTraverse());
                             if (eBas1 != null && eBas1.peutServirDeSupport() || eBas1 != null && eBas1.peutEtreTraverse()) {
                                 if (e.avancerDirectionChoisie(Direction.bas))
                                     ret = true;

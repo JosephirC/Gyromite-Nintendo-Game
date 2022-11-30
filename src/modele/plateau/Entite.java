@@ -7,6 +7,7 @@ package modele.plateau;
 
 import modele.deplacements.Direction;
 
+
 public abstract class Entite {
     protected Jeu jeu;
 

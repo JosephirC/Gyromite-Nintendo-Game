@@ -7,6 +7,9 @@ package modele.plateau;
 
 import modele.deplacements.Direction;
 
+import java.awt.*;
+
+
 /**
  * Héros du jeu
  */
@@ -14,7 +17,7 @@ public class Heros extends EntiteDynamique {
     public Heros(Jeu _jeu) {
         super(_jeu);
     }
-
+    public Point alapos;
     public boolean peutEtreEcrase() { return true; }
     public boolean peutServirDeSupport() { return true; }
     public boolean peutPermettreDeMonterDescendre() { return false; };
