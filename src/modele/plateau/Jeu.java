@@ -6,6 +6,7 @@
 package modele.plateau;
 
 import modele.deplacements.*;
+import modele.deplacements.ControleColonne;
 
 import java.awt.Point;
 import java.util.HashMap;
@@ -27,6 +28,8 @@ public class Jeu {
     private Bot smick;
 
     private Corde corde;
+
+    private Colonne colonne;
 
     private HashMap<Entite, Point> map = new  HashMap<Entite, Point>(); // permet de récupérer la position d'une entité à partir de sa référence
     private Entite[][] grilleEntites = new Entite[SIZE_X][SIZE_Y]; // permet de récupérer une entité à partir de ses coordonnées
@@ -75,15 +78,20 @@ public class Jeu {
         corde = new Corde(this);
 
 
-        for (int y = 6; y < 9; y++) {
-            addEntite(corde, 12, y);
+        for (int y = 4; y < 9; y++) {
             addEntite(corde, 12, y);
         }
 
+        colonne = new Colonne(this);
+        for(int i = 4; i < 7; i++){
+            addEntite(colonne, 13, i);
+        }
+
+
+
+
         ordonnanceur.add(g);
         ordonnanceur.add(ia);
-
-
 
 
         Controle4Directions.getInstance().addEntiteDynamique(hector);
@@ -156,16 +164,11 @@ public class Jeu {
         else if (contenuDansGrille(pCible) && objetALaPosition(pCible).peutEtreTraverse()) {
             hector.estSur = objetALaPosition(pCible);
             hector.alapos = pCible;
-            System.out.println("es sur "  + hector.estSur);
-            System.out.println("es sur a la pos "  + hector.alapos);
             hector.jeu.deplacerEntite(pCourant, pCible, hector);
             addEntite(hector.estSur, hector.alapos.x, hector.alapos.y);
+            //System.out.println(hector.estSur);
+            //System.out.println(hector.alapos);
         }
-
-        /*if (contenuDansGrille(pCible) && objetALaPosition(pCible).peutEtreTraverse() ) { // a adapter (collisions murs, etc.)
-            hector.jeu.deplacerEntite(pCourant, pCible, hector);
-            addEntite(corde, pCible.x, pCible.y);
-        }*/
 
         if (retour) {
             deplacerEntite(pCourant, pCible, e);
@@ -173,7 +176,6 @@ public class Jeu {
 
         return retour;
     }
-
 
     private Point calculerPointCible(Point pCourant, Direction d) {
         Point pCible = null;
@@ -196,15 +198,16 @@ public class Jeu {
         grilleEntites[pCible.x][pCible.y] = e;
         map.put(e, pCible);*/
 
-
+        // On verifie si la case cible est (null ou est traversable) et que la case courante est aussi traversable alors on affecte ce qui est traversable a la position courante
+        // SINON on affecte null
         if(((contenuDansGrille(pCible) && objetALaPosition(pCible) == null) || contenuDansGrille(pCible) && objetALaPosition(pCible).peutEtreTraverse() ) && contenuDansGrille(pCourant) && objetALaPosition(pCourant).peutEtreTraverse()){
             grilleEntites[pCourant.x][pCourant.y] = hector.estSur;
+            System.out.println("aaa   "+hector.estSur);
         } else {
             grilleEntites[pCourant.x][pCourant.y] = null;
         }
         grilleEntites[pCible.x][pCible.y] = e;
         map.put(e, pCible);
-
     }
     
     /** Indique si p est contenu dans la grille

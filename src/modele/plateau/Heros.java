@@ -20,7 +20,9 @@ public class Heros extends EntiteDynamique {
     public Point alapos;
     public boolean peutEtreEcrase() { return true; }
     public boolean peutServirDeSupport() { return true; }
-    public boolean peutPermettreDeMonterDescendre() { return false; };
+    public boolean peutPermettreDeMonterDescendre() { return false; }
+
+    public boolean peutSeDeplacer() { return false; }
 
    /* public void est_face_a(modele.plateau.Bot bot){
         System.out.println("Mort");

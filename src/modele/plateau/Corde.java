@@ -8,4 +8,5 @@ public class Corde extends EntiteStatique {
 
     @Override
     public boolean peutEtreTraverse(){ return true; }
+    public boolean peutSeDeplacer() { return false; }
 }

@@ -61,6 +61,7 @@ public class VueControleurGyromite extends JFrame implements Observer {
                     case KeyEvent.VK_RIGHT : Controle4Directions.getInstance().setDirectionCourante(Direction.droite); break;
                     case KeyEvent.VK_DOWN : Controle4Directions.getInstance().setDirectionCourante(Direction.bas); break;
                     case KeyEvent.VK_UP : Controle4Directions.getInstance().setDirectionCourante(Direction.haut); break;
+                    case KeyEvent.VK_SPACE : System.out.println("ayo"); break;
                 }
             }
         });
@@ -72,7 +73,7 @@ public class VueControleurGyromite extends JFrame implements Observer {
         icoBot = chargerIcone("Images/smick_ca.png", 0, 0, 35, 40);//chargerIcone("Images/Pacman.png");
 
         icoVide = chargerIcone("Images/bg.png");
-        icoColonne = chargerIcone("Images/Colonne.png");
+        icoColonne = chargerIcone("Images/tileset.png", 64, 48, 16, 16);
         icoMur = chargerIcone("Images/tileset.png", 0, 0, 16, 16);
 
         icoCorde = chargerIcone("Images/tileset.png", 16, 0, 16, 16);
