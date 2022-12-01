@@ -158,7 +158,7 @@ public class Jeu {
         
         Point pCible = calculerPointCible(pCourant, d);
 
-        if (contenuDansGrille(pCible)&& ( objetALaPosition(pCible) == null)) {
+        if (contenuDansGrille(pCible)&& ( objetALaPosition(pCible) == null) ||objetALaPosition(pCible).peutEtreTraverse()) {
             // a adapter (collisions murs, etc.)
             // compter le déplacement : 1 deplacement horizontal et vertical max par pas de temps par entité
             switch (d) {
@@ -179,14 +179,14 @@ public class Jeu {
                     break;
             }
         }
-
+/*
         else if (contenuDansGrille(pCible) && objetALaPosition(pCible).peutEtreTraverse()) {
             hector.estSur = objetALaPosition(pCible);
             hector.alapos = pCible;
             hector.jeu.deplacerEntite(pCourant, pCible, hector);
             addEntite(hector.estSur, hector.alapos.x, hector.alapos.y);
         }
-
+*/
         if (retour) {
             deplacerEntite(pCourant, pCible, e);
         }
@@ -209,23 +209,23 @@ public class Jeu {
     }
     
     private void deplacerEntite(Point pCourant, Point pCible, Entite e) {
-        /*grilleEntites[pCourant.x][pCourant.y] = e.estSur;
+        grilleEntites[pCourant.x][pCourant.y] = e.estSur;
         map.put(e.estSur, pCourant);
         e.estSur = grilleEntites[pCible.x][pCible.y];
         grilleEntites[pCible.x][pCible.y] = e;
-        map.put(e, pCible);*/
-
+        map.put(e, pCible);
+    }
         // On verifie si la case cible est (null ou est traversable) et que la case courante est aussi traversable alors on affecte ce qui est traversable a la position courante
         // SINON on affecte null
-        if(((contenuDansGrille(pCible) && objetALaPosition(pCible) == null) || contenuDansGrille(pCible) && objetALaPosition(pCible).peutEtreTraverse() ) && contenuDansGrille(pCourant) && objetALaPosition(pCourant).peutEtreTraverse()){
-            grilleEntites[pCourant.x][pCourant.y] = hector.estSur;
-            System.out.println("aaa   "+hector.estSur);
+        /*if(((contenuDansGrille(pCible) && objetALaPosition(pCible) == null) || contenuDansGrille(pCible) && objetALaPosition(pCible).peutEtreTraverse() ) && contenuDansGrille(pCourant) && objetALaPosition(pCourant).peutEtreTraverse()){
+            grilleEntites[pCourant.x][pCourant.y] = e.estSur;
+            System.out.println("aaa   "+e.estSur);
         } else {
             grilleEntites[pCourant.x][pCourant.y] = null;
         }
         grilleEntites[pCible.x][pCible.y] = e;
         map.put(e, pCible);
-    }
+    }*/
     
     /** Indique si p est contenu dans la grille
      */
