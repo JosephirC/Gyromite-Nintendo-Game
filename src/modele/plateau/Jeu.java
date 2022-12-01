@@ -202,7 +202,6 @@ public class Jeu {
         // SINON on affecte null
         if(((contenuDansGrille(pCible) && objetALaPosition(pCible) == null) || contenuDansGrille(pCible) && objetALaPosition(pCible).peutEtreTraverse() ) && contenuDansGrille(pCourant) && objetALaPosition(pCourant).peutEtreTraverse()){
             grilleEntites[pCourant.x][pCourant.y] = hector.estSur;
-            System.out.println("aaa   "+hector.estSur);
         } else {
             grilleEntites[pCourant.x][pCourant.y] = null;
         }
