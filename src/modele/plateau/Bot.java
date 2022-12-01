@@ -10,7 +10,7 @@ import java.util.Random;
 /**
  * Ennemis (Smicks)
  */
-public class Bot extends EntiteDynamique {
+public class Bot extends EntiteVivante {
     private Random r = new Random();
 
     public Bot(Jeu _jeu) {
