@@ -9,6 +9,8 @@ import modele.plateau.EntiteDynamique;
  */
 public class ControleColonne extends RealisateurDeDeplacement {
 
+    private Direction directionCourante;
+
     private static ControleColonne c3d;
     protected boolean realiserDeplacement() {
         for(EntiteDynamique ed : lstEntitesDynamiques){
@@ -24,4 +26,10 @@ public class ControleColonne extends RealisateurDeDeplacement {
         }
         return c3d;
     }
+
+    public void setDirectionCourante(Direction _directionCourante) {
+        directionCourante = _directionCourante;
+    }
+
+
 }
