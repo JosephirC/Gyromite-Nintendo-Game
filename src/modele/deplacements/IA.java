@@ -37,6 +37,10 @@ public class IA extends RealisateurDeDeplacement {
                     directionCourante = Direction.gauche;
                 else if (directionCourante == Direction.gauche)
                     directionCourante = Direction.droite;
+                else if (directionCourante == Direction.bas)
+                    directionCourante = Direction.haut;
+                else if (directionCourante == Direction.haut)
+                    directionCourante = Direction.bas;
             }
         }
 
