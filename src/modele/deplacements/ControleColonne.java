@@ -8,11 +8,20 @@ import modele.plateau.EntiteDynamique;
  * (vérifier "collisions" avec le héros)
  */
 public class ControleColonne extends RealisateurDeDeplacement {
+
+    private static ControleColonne c3d;
     protected boolean realiserDeplacement() {
         for(EntiteDynamique ed : lstEntitesDynamiques){
-            System.out.println("ED IS " + ed);
+            //System.out.println("ED IS " + ed);
         }
 
         return false;
+    }
+
+    public static ControleColonne getInstance() {
+        if (c3d == null) {
+            c3d = new ControleColonne();
+        }
+        return c3d;
     }
 }

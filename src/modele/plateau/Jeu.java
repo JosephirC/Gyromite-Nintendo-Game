@@ -81,13 +81,14 @@ public class Jeu {
         for (int y = 4; y < 9; y++) {
             addEntite(corde, 12, y);
         }
-
+/*
         colonne = new Colonne(this);
         for(int i = 4; i < 7; i++){
             addEntite(colonne, 13, i);
         }
-
-
+*/
+        initialisationdunecolone(8,1);
+        initialisationdunecolone(1,1);
 
 
         ordonnanceur.add(g);
@@ -99,23 +100,40 @@ public class Jeu {
 
         // murs extérieurs horizontaux
         for (int x = 0; x < 20; x++) {
-            addEntite(new Mur(this), x, 0);
-            addEntite(new Mur(this), x, 9);
+            addEntite(new Mur(this, true), x, 0);
+            addEntite(new Mur(this, true), x, 9);
         }
 
         // murs extérieurs verticaux
         for (int y = 1; y < 9; y++) {
-            addEntite(new Mur(this), 0, y);
-            addEntite(new Mur(this), 19, y);
+            addEntite(new Mur(this, true), 0, y);
+            addEntite(new Mur(this, true), 19, y);
         }
 
         for (int x = 1; x < 12; x++) {
-            addEntite(new Mur(this), x, 6);
-            addEntite(new Mur(this), x, 6);
+            addEntite(new Mur(this, false), x, 6);
+            addEntite(new Mur(this, false), x, 6);
         }
 
     }
 
+    private void initialisationdunecolone(int x,int y){
+
+        Colonne col1 = new Colonne(this,y+1,1);
+        Colonne col2 = new Colonne(this,y+1,2);
+        Colonne col3 = new Colonne(this,y+1,3);
+
+        addEntite(col1,x,y+1);
+        addEntite(col2,x,y+2);
+        addEntite(col3,x,y+3);
+
+        ControleColonne.getInstance().addEntiteDynamique(col1);
+        ControleColonne.getInstance().addEntiteDynamique(col2);
+        ControleColonne.getInstance().addEntiteDynamique(col3);
+
+        ordonnanceur.add(ControleColonne.getInstance());
+
+    }
     private void addEntite(Entite e, int x, int y) {
         grilleEntites[x][y] = e;
         map.put(e, new Point(x, y));

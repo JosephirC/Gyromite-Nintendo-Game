@@ -26,7 +26,7 @@ import modele.plateau.*;
 public class VueControleurGyromite extends JFrame implements Observer {
     private Jeu jeu; // référence sur une classe de modèle : permet d'accéder aux données du modèle pour le rafraichissement, permet de communiquer les actions clavier (ou souris)
 
-    private int titlesize = 32;
+    private int titlesize = 16;
     private int sizeX; // taille de la grille affichée
     private int sizeY;
 
@@ -35,8 +35,15 @@ public class VueControleurGyromite extends JFrame implements Observer {
     private ImageIcon icoBot;
     private ImageIcon icoVide;
     private ImageIcon icoMur;
-    private ImageIcon icoColonne;
+    private ImageIcon icoColonne1;
+    private ImageIcon icoColonne2;
+    private ImageIcon icoColonne3;
 
+    private ImageIcon icoColonne1M;
+    private ImageIcon icoColonne2M;
+    private ImageIcon icoColonne3M;
+
+    private ImageIcon icoBrique;
     private ImageIcon icoCorde;
 
     private JLabel[][] tabJLabel; // cases graphique (au moment du rafraichissement, chaque case va être associée à une icône, suivant ce qui est présent dans le modèle)
@@ -73,15 +80,24 @@ public class VueControleurGyromite extends JFrame implements Observer {
         icoBot = chargerIcone("Images/smick_ca.png", 0, 0, 35, 40);//chargerIcone("Images/Pacman.png");
 
         icoVide = chargerIcone("Images/bg.png");
-        icoColonne = chargerIcone("Images/tileset.png", 64, 48, 16, 16);
-        icoMur = chargerIcone("Images/tileset.png", 0, 0, 16, 16);
+        icoColonne1 = chargerIcone("Images/tileset.png", 0, 48, 16, 16);
+        icoColonne2 = chargerIcone("Images/tileset.png", 16, 48, 16, 16);
+        icoColonne3 = chargerIcone("Images/tileset.png", 32, 48, 16, 16);
 
+        icoColonne1M = chargerIcone("Images/tileset.png", 0, 32, 16, 16);
+        icoColonne2M = chargerIcone("Images/tileset.png", 16, 32, 16, 16);
+        icoColonne3M = chargerIcone("Images/tileset.png", 32, 32, 16, 16);
+
+
+        icoMur = chargerIcone("Images/tileset.png", 0, 0, 16, 16);
+        icoBrique = chargerIcone("Images/tileset.png", 32,0,16,16);
         icoCorde = chargerIcone("Images/tileset.png", 16, 0, 16, 16);
     }
 
     private void placerLesComposantsGraphiques() {
         setTitle("Gyromite");
-        setSize(sizeX*titlesize, sizeY*titlesize);
+        //setSize(sizeX*titlesize, sizeY*titlesize);
+        setSize(380, 230);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // permet de terminer l'application à la fermeture de la fenêtre
 
         JComponent grilleJLabels = new JPanel(new GridLayout(sizeY, sizeX)); // grilleJLabels va contenir les cases graphiques et les positionner sous la forme d'une grille
@@ -119,9 +135,26 @@ public class VueControleurGyromite extends JFrame implements Observer {
                     tabJLabel[x][y].setIcon(icoBot);
 
                 } else if (jeu.getGrille()[x][y] instanceof Mur) {
-                    tabJLabel[x][y].setIcon(icoMur);
+                    if(((Mur) jeu.getGrille()[x][y]).brique)
+                        tabJLabel[x][y].setIcon(icoBrique);
+                    else
+                        tabJLabel[x][y].setIcon(icoMur);
                 } else if (jeu.getGrille()[x][y] instanceof Colonne) {
-                    tabJLabel[x][y].setIcon(icoColonne);
+                    if (((Colonne) jeu.getGrille()[x][y]).pos == 1)
+                        if (((Colonne) jeu.getGrille()[x][y]).posM == y)
+                            tabJLabel[x][y].setIcon(icoColonne1M);
+                        else
+                            tabJLabel[x][y].setIcon(icoColonne1);
+                    if (((Colonne) jeu.getGrille()[x][y]).pos == 2)
+                        if (((Colonne) jeu.getGrille()[x][y]).posM == y)
+                            tabJLabel[x][y].setIcon(icoColonne2M);
+                        else
+                            tabJLabel[x][y].setIcon(icoColonne2);
+                    if (((Colonne) jeu.getGrille()[x][y]).pos == 3)
+                        if (((Colonne) jeu.getGrille()[x][y]).posM == y)
+                            tabJLabel[x][y].setIcon(icoColonne3M);
+                        else
+                            tabJLabel[x][y].setIcon(icoColonne3);
                 }else if (jeu.getGrille()[x][y] instanceof Corde){
                     tabJLabel[x][y].setIcon(icoCorde);
                 } else {
