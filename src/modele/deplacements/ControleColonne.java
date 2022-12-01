@@ -53,7 +53,7 @@ public class ControleColonne extends RealisateurDeDeplacement {
                                         if (ehauthaut != null) {
 
                                             ((EntiteVivante) ehaut).vivant = false;
-                                            System.out.println("je suis " + ehaut + "et je suis " + ((EntiteVivante) ehaut).vivant);
+                                            //System.out.println("je suis " + ehaut + "et je suis " + ((EntiteVivante) ehaut).vivant);
                                         } else {
                                             ((EntiteVivante) ehaut).avancerDirectionChoisie(Direction.haut);
                                             if (e.avancerDirectionChoisie(Direction.haut))
