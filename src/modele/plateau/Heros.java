@@ -13,7 +13,7 @@ import java.awt.*;
 /**
  * Héros du jeu
  */
-public class Heros extends EntiteDynamique {
+public class Heros extends EntiteVivante {
     public Heros(Jeu _jeu) {
         super(_jeu);
     }
