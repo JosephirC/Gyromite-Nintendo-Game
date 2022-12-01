@@ -34,7 +34,7 @@ public class ControleColonne extends RealisateurDeDeplacement {
     public boolean realiserDeplacement() {
         boolean ret = false;
         for (EntiteDynamique e : lstEntitesDynamiques) {
-            if (e instanceof Colonne)
+            if (e.peutSeDeplacer())
                 if (directionCourante != null && ((Colonne) e).get_move() != 0) {
                     switch (directionCourante) {
                         case haut:
