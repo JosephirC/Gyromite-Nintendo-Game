@@ -184,8 +184,6 @@ public class Jeu {
             hector.alapos = pCible;
             hector.jeu.deplacerEntite(pCourant, pCible, hector);
             addEntite(hector.estSur, hector.alapos.x, hector.alapos.y);
-            //System.out.println(hector.estSur);
-            //System.out.println(hector.alapos);
         }
 
         if (retour) {
