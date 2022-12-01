@@ -1,7 +1,6 @@
 package modele.deplacements;
 
-import modele.plateau.Entite;
-import modele.plateau.EntiteDynamique;
+import modele.plateau.*;
 
 public class IA extends RealisateurDeDeplacement {
     private Direction directionCourante = Direction.gauche;
@@ -28,7 +27,9 @@ public class IA extends RealisateurDeDeplacement {
                 }
             }
 
-            if (edirection == null || edirection.peutEtreTraverse()) {
+            if (edirection == null || edirection.peutEtreTraverse() || edirection.peutMourir()) {
+                System.out.println(edirection);
+                if (edirection instanceof Heros) ((EntiteVivante) edirection).vivant = false;
                 if (e.avancerDirectionChoisie(directionCourante))
                     ret = true;
             } else {
