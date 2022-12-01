@@ -22,4 +22,7 @@ public abstract class Entite {
     public boolean peutEtreTraverse() { return false; } // permet de traverser une entite
     public abstract boolean peutPermettreDeMonterDescendre(); // si utilisation de corde (attention, l'environnement ne peut pour l'instant sotker qu'une entité par case (si corde : 2 nécessaires), améliorations à prévoir)
     public abstract boolean peutSeDeplacer(); // permet de deplacer une colonne
+
+    public boolean peutMourir() { return false; };
+
 }
