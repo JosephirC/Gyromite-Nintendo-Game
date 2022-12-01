@@ -23,6 +23,8 @@ public class Jeu {
     public static final int SIZE_X = 20;
     public static final int SIZE_Y = 10;
 
+    public int lvl;
+
     // compteur de déplacements horizontal et vertical (1 max par défaut, à chaque pas de temps)
     private HashMap<Entite, Integer> cmptDeplH = new HashMap<Entite, Integer>();
     private HashMap<Entite, Integer> cmptDeplV = new HashMap<Entite, Integer>();
@@ -40,7 +42,8 @@ public class Jeu {
 
     private Ordonnanceur ordonnanceur = new Ordonnanceur(this);
 
-    public Jeu() {
+    public Jeu(int level) {
+        lvl = level;
         initialisationDesEntites();
     }
 
@@ -69,9 +72,8 @@ public class Jeu {
         try{
             Gravite g = new Gravite();
             IA ia = new IA();
-            File f = new File("src/levels/test.txt");
+            File f = new File("src/levels/test_"+ lvl + ".txt");
             FileInputStream fIS = new FileInputStream(f);
-            System.out.println("fichier lu ");
             int r = 0;
             int x = 0;
             int y = 0;
