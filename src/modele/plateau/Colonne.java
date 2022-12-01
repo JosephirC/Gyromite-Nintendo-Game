@@ -9,6 +9,12 @@ public class Colonne extends EntiteDynamique {
 
     private int nbmove;
 
+    public int get_move(){
+        return nbmove ;
+    }
+    public void move(){
+        nbmove--;
+    }
     public void init_move(){
         nbmove = 6;
     }
