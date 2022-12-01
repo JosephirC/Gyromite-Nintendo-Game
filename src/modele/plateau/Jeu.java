@@ -89,6 +89,7 @@ public class Jeu {
 */
         initialisationdunecolone(8,1);
         initialisationdunecolone(1,1);
+        initialisationdunecolone(13,5);
 
 
         ordonnanceur.add(g);

@@ -47,7 +47,11 @@ public class Ordonnanceur extends Observable implements Runnable {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+            if (jeu.getHector() != null && !jeu.getHector().vivant)
+                break;
         }
+        if (!jeu.getHector().vivant)
+        System.out.println("t'es mort");
 
     }
 }

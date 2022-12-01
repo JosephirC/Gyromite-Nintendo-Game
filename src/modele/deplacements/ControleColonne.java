@@ -26,10 +26,11 @@ public class ControleColonne extends RealisateurDeDeplacement {
         return c3d;
     }
 
-
     public void setDirectionCourante(Direction _directionCourante) {
         directionCourante = _directionCourante;
     }
+
+
 
     public boolean realiserDeplacement() {
         boolean ret = false;
@@ -40,15 +41,19 @@ public class ControleColonne extends RealisateurDeDeplacement {
                         case haut:
                             Entite ehaut = e.regarderDansLaDirection(Direction.haut);
                             if (ehaut == null) {
+                                //System.out.println("je suis ehaut null ");
                                 if (e.avancerDirectionChoisie(Direction.haut))
                                     ret = true;
-                                System.out.println("coucou je monte ");
                             } else {
                                 if (ehaut.peutEtreEcrase()) {
-                                    if (ehaut instanceof EntiteVivante) {
+                                    //System.out.println("je suis ehaut peutEtreEcrase ");
+                                    //System.out.println(ehaut.peutMourir());
+                                    if (ehaut.peutMourir()) {
                                         Entite ehauthaut = ((EntiteDynamique) ehaut).regarderDansLaDirection(Direction.haut);
                                         if (ehauthaut != null) {
+
                                             ((EntiteVivante) ehaut).vivant = false;
+                                            //System.out.println("je suis " + ehaut + "et je suis " + ((EntiteVivante) ehaut).vivant);
                                         } else {
                                             ((EntiteVivante) ehaut).avancerDirectionChoisie(Direction.haut);
                                             if (e.avancerDirectionChoisie(Direction.haut))
@@ -61,19 +66,26 @@ public class ControleColonne extends RealisateurDeDeplacement {
                             break;
                         case bas:
                             Entite ebas = e.regarderDansLaDirection(Direction.bas);
-                            if (ebas == null || ebas.peutEtreEcrase()) {
+                            if (ebas == null) {
+                                //System.out.println("je suis null");
                                 if (e.avancerDirectionChoisie(Direction.bas))
                                     ret = true;
-                                System.out.println("coucou je descend ");
                             } else {
                                 if (ebas.peutEtreEcrase()) {
-                                    if (ebas instanceof EntiteVivante) {
-                                        Entite ebasbas = ((EntiteDynamique) ebas).regarderDansLaDirection(Direction.bas);
-                                        if (ebasbas != null)
+                                    //System.out.println("je suis ehaut peutEtreEcrase ");
+                                    //System.out.println(ebas.peutMourir());
+                                    if (ebas.peutMourir()) {
+                                        Entite ehauthaut = ((EntiteDynamique) ebas).regarderDansLaDirection(Direction.haut);
+                                        if (ehauthaut != null) {
+
                                             ((EntiteVivante) ebas).vivant = false;
-
+                                            //System.out.println("je suis " + ebas + "et je suis " + ((EntiteVivante) ebas).vivant);
+                                        } else {
+                                            ((EntiteVivante) ebas).avancerDirectionChoisie(Direction.haut);
+                                            if (e.avancerDirectionChoisie(Direction.haut))
+                                                ret = true;
+                                        }
                                     }
-
                                 }
                             }
                             break;
@@ -87,64 +99,6 @@ public class ControleColonne extends RealisateurDeDeplacement {
         }
         return ret;
     }
-        /* ex
-        public boolean realiserDeplacement() {
-        boolean ret = false;
-        for (EntiteDynamique e : lstEntitesDynamiques) {
-            if (e instanceof Colonne)
-                if (directionCourante != null && ((Colonne) e).get_move() != 0) {
-                    System.out.println("coucou normalement je bouge");
-                    switch (directionCourante) {
-                        case haut:
-                            Entite ehaut = e.regarderDansLaDirection(Direction.haut);
-                            if (ehaut == null) {
-                                if (e.avancerDirectionChoisie(Direction.haut))
-                                    ret = true;
-                                System.out.println("coucou je monte pas enffet lol");
-                            } else {
-                                if (ehaut.peutEtreEcrase()) {
-                                    if (ehaut instanceof EntiteVivante) {
-                                        Entite ehauthaut = ((EntiteDynamique) ehaut).regarderDansLaDirection(Direction.haut);
-                                        if (ehauthaut != null) {
-                                            ((EntiteVivante) ehaut).vivant = false;
-                                        } else {
-                                            ((EntiteVivante) ehaut).avancerDirectionChoisie(Direction.haut);
-                                            if (e.avancerDirectionChoisie(Direction.haut))
-                                                ret = true;
-                                        }
-                                    }
-
-                                }
-                            }
-                            break;
-                        case bas:
-                            Entite ebas = e.regarderDansLaDirection(Direction.bas);
-                            if (ebas == null || ebas.peutEtreEcrase()) {
-                                if (e.avancerDirectionChoisie(Direction.bas))
-                                    ret = true;
-                            } else {
-                                if (ebas.peutEtreEcrase()) {
-                                    if (ebas instanceof EntiteVivante) {
-                                        Entite ebasbas = ((EntiteDynamique) ebas).regarderDansLaDirection(Direction.bas);
-                                        if (ebasbas != null)
-                                            ((EntiteVivante) ebas).vivant = false;
-
-                                    }
-
-                                }
-                            }
-                            break;
-                    }
-                    ((Colonne) e).move();
-                } else
-                if (((Colonne) e).get_move() ==0){
-                    ((Colonne) e).init_move();
-                    this.resetDirection();
-                }
-        }
-        return ret;
-    }
-         */
 }
 /*
 boolean ret = false;
