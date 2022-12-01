@@ -9,6 +9,10 @@ import modele.deplacements.*;
 import modele.deplacements.ControleColonne;
 
 import java.awt.Point;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.HashMap;
 
 /** Actuellement, cette classe gère les postions
@@ -18,6 +22,8 @@ public class Jeu {
 
     public static final int SIZE_X = 20;
     public static final int SIZE_Y = 10;
+
+    public int lvl;
 
     // compteur de déplacements horizontal et vertical (1 max par défaut, à chaque pas de temps)
     private HashMap<Entite, Integer> cmptDeplH = new HashMap<Entite, Integer>();
@@ -36,7 +42,8 @@ public class Jeu {
 
     private Ordonnanceur ordonnanceur = new Ordonnanceur(this);
 
-    public Jeu() {
+    public Jeu(int level) {
+        lvl = level;
         initialisationDesEntites();
     }
 
@@ -62,60 +69,119 @@ public class Jeu {
     }
 
     private void initialisationDesEntites() {
-        hector = new Heros(this);
-        addEntite(hector, 2, 1);
+        try{
+            Gravite g = new Gravite();
+            IA ia = new IA();
+            File f = new File("src/levels/level_"+ lvl + ".txt");
+            FileInputStream fIS = new FileInputStream(f);
+            int r = 0;
+            int x = 0;
+            int y = 0;
 
-        Gravite g = new Gravite();
-        g.addEntiteDynamique(hector);
+            while((r = fIS.read())!=-1)
+            {
+                switch ((char)r){
+                    case 'b':
+                        addEntite(new Mur(this, true), x, y);
+                        x++;
+                        break;
+                    case 'm':
+                        addEntite(new Mur(this, false), x, y);
+                        x++;
+                        break;
+                    case 'c' :
+                        addEntite(new Corde(this), x, y);
+                        x++;
+                        break;
+                    case '_':
+                        x++;
+                        break;
+                    case '/':
+                        y++;
+                        x = 0;
+                        break;
+                    case 'h':
+                        hector = new Heros(this);
+                        addEntite(hector, x, y);
+                        g.addEntiteDynamique(hector);
+                        Controle4Directions.getInstance().addEntiteDynamique(hector);
+                        ordonnanceur.add(Controle4Directions.getInstance());
+                        x++;
+                        break;
+                    case 'i' :
+                        smick = new Bot(this);
+                        addEntite(smick, x, y);
+                        g.addEntiteDynamique(smick);
+                        ia.addEntiteDynamique(smick);
+                        x++;
+                        break;
+                    case 'l' :
+                        initialisationdunecolone(x,y);
+                        x++;
+                        break;
+                }
 
-        smick = new Bot(this);
-        addEntite(smick, 6, 8);
-
-        IA ia = new IA();
-        g.addEntiteDynamique(smick);
-        ia.addEntiteDynamique(smick);
-
-        corde = new Corde(this);
-
-
-        for (int y = 4; y < 9; y++) {
-            addEntite(corde, 12, y);
+            }
+            ordonnanceur.add(g);
+            ordonnanceur.add(ia);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
-/*
-        colonne = new Colonne(this);
-        for(int i = 4; i < 7; i++){
-            addEntite(colonne, 13, i);
-        }
+
+        /*hector = new Heros(this);
+                addEntite(hector, 2, 1);
+
+                Gravite g = new Gravite();
+                g.addEntiteDynamique(hector);
+
+                smick = new Bot(this);
+                addEntite(smick, 6, 8);
+
+                IA ia = new IA();
+                g.addEntiteDynamique(smick);
+                ia.addEntiteDynamique(smick);
+
+                corde = new Corde(this);
+
+
+                for (int y = 4; y < 9; y++) {
+                    addEntite(corde, 12, y);
+                }
+
+                colonne = new Colonne(this);
+                for(int i = 4; i < 7; i++){
+                    addEntite(colonne, 13, i);
+                }
+
+                initialisationdunecolone(8,1);
+                initialisationdunecolone(1,1);
+                initialisationdunecolone(13,5);
+
+
+                ordonnanceur.add(g);
+                ordonnanceur.add(ia);
+
+
+                Controle4Directions.getInstance().addEntiteDynamique(hector);
+                ordonnanceur.add(Controle4Directions.getInstance());
+
+                // murs extérieurs horizontaux
+                for (int x = 0; x < 20; x++) {
+                    addEntite(new Mur(this, true), x, 0);
+                    addEntite(new Mur(this, true), x, 9);
+                }
+
+                // murs extérieurs verticaux
+                for (int y = 1; y < 9; y++) {
+                    addEntite(new Mur(this, true), 0, y);
+                    addEntite(new Mur(this, true), 19, y);
+                }
+
+                for (int x = 1; x < 12; x++) {
+                    addEntite(new Mur(this, false), x, 6);
+                    addEntite(new Mur(this, false), x, 6);
+                }
 */
-        initialisationdunecolone(8,1);
-        initialisationdunecolone(1,1);
-        initialisationdunecolone(13,5);
-
-
-        ordonnanceur.add(g);
-        ordonnanceur.add(ia);
-
-
-        Controle4Directions.getInstance().addEntiteDynamique(hector);
-        ordonnanceur.add(Controle4Directions.getInstance());
-
-        // murs extérieurs horizontaux
-        for (int x = 0; x < 20; x++) {
-            addEntite(new Mur(this, true), x, 0);
-            addEntite(new Mur(this, true), x, 9);
-        }
-
-        // murs extérieurs verticaux
-        for (int y = 1; y < 9; y++) {
-            addEntite(new Mur(this, true), 0, y);
-            addEntite(new Mur(this, true), 19, y);
-        }
-
-        for (int x = 1; x < 12; x++) {
-            addEntite(new Mur(this, false), x, 6);
-            addEntite(new Mur(this, false), x, 6);
-        }
-
     }
 
     private void initialisationdunecolone(int x,int y){
