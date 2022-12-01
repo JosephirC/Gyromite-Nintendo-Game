@@ -28,7 +28,7 @@ public class IA extends RealisateurDeDeplacement {
             }
 
             if (edirection == null || edirection.peutEtreTraverse() || edirection.peutMourir()) {
-                System.out.println(edirection);
+                //System.out.println(edirection);
                 if (edirection instanceof Heros) ((EntiteVivante) edirection).vivant = false;
                 if (e.avancerDirectionChoisie(directionCourante))
                     ret = true;
