@@ -72,7 +72,7 @@ public class Jeu {
         try{
             Gravite g = new Gravite();
             IA ia = new IA();
-            File f = new File("src/levels/test_"+ lvl + ".txt");
+            File f = new File("src/levels/level_"+ lvl + ".txt");
             FileInputStream fIS = new FileInputStream(f);
             int r = 0;
             int x = 0;
