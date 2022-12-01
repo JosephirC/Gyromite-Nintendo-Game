@@ -6,5 +6,4 @@ public class Bombe extends EntiteStatique{
         super(_jeu);
     }
 
-
 }
