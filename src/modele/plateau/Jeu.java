@@ -25,8 +25,8 @@ public class Jeu {
 
     public int lvl;
 
-    public int score = 0;
-    public String scoreAffiche = "Score : " + score;
+    private int score = 0;
+    private int vie = 3;
 
     // compteur de déplacements horizontal et vertical (1 max par défaut, à chaque pas de temps)
     private HashMap<Entite, Integer> cmptDeplH = new HashMap<Entite, Integer>();
@@ -71,6 +71,10 @@ public class Jeu {
 
     public Bot getSmick() {
         return smick;
+    }
+
+    public int getScore(){
+        return score;
     }
 
     private void initialisationDesEntites() {
@@ -233,6 +237,7 @@ public class Jeu {
      * Sinon, rien n'est fait.
      */
     public boolean deplacerEntite(Entite e, Direction d) {
+        System.out.println(score);
         boolean retour = false;
         
         Point pCourant = map.get(e);
@@ -259,11 +264,8 @@ public class Jeu {
                     }
                     break;
             }
-
-        }
-        else if(objetALaPosition(pCible).peutEtreRamasse()){
+        } else if(objetALaPosition(pCible).peutEtreRamasse()){
             score = score + 100;
-            scoreAffiche = "Score : " + score;
             System.out.println("bomb");
             Entite entiteBombe = objetALaPosition(pCible);
             supprimerEntite(entiteBombe, pCible.x, pCible.y);
@@ -298,7 +300,7 @@ public class Jeu {
         
         return pCible;
     }
-    
+
     private void deplacerEntite(Point pCourant, Point pCible, Entite e) {
         grilleEntites[pCourant.x][pCourant.y] = e.estSur;
         map.put(e.estSur, pCourant);

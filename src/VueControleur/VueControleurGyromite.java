@@ -33,6 +33,8 @@ public class VueControleurGyromite extends JFrame implements Observer {
     private int sizeX; // taille de la grille affichée
     private int sizeY;
 
+    JMenuItem score;
+
     // icones affichées dans la grille
     private ImageIcon icoHero;
     private ImageIcon icoBot;
@@ -104,6 +106,16 @@ public class VueControleurGyromite extends JFrame implements Observer {
     }
 
     private void placerLesComposantsGraphiques() {
+        JMenuBar menuBar = new JMenuBar();
+        Font font = new Font("Monospaced", Font.BOLD, 15);
+        score = new JMenuItem("Score : "+ jeu.getScore());
+        score.setFont(font);
+        score.setForeground(Color.WHITE);
+        score.setBackground(Color.BLACK);
+        menuBar.add(score);
+
+        setJMenuBar(menuBar);
+
         setTitle("Gyromite");
         //setSize(sizeX*titlesize, sizeY*titlesize);
         setSize(380, 230);
@@ -135,7 +147,7 @@ public class VueControleurGyromite extends JFrame implements Observer {
                 if (jeu.getGrille()[x][y] instanceof Heros) { // si la grille du modèle contient un Pacman, on associe l'icône Pacman du côté de la vue
 
                     tabJLabel[x][y].setIcon(icoHero);
-
+                    updateScore(jeu);
                     // si transparence : images avec canal alpha + dessins manuels (voir ci-dessous + créer composant qui redéfinie paint(Graphics g)), se documenter
                     //BufferedImage bi = getImage("Images/smick.png", 0, 0, 20, 20);
                     //tabJLabel[x][y].getGraphics().drawImage(bi, 0, 0, null);
@@ -201,6 +213,9 @@ public class VueControleurGyromite extends JFrame implements Observer {
 
     }
 
+    private void updateScore(Jeu jeu){
+        score.setText("Score : "+ jeu.getScore());
+    }
 
     // chargement de l'image entière comme icone
     private ImageIcon chargerIcone(String urlIcone) {
