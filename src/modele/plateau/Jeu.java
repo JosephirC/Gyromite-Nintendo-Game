@@ -237,14 +237,14 @@ public class Jeu {
      * Sinon, rien n'est fait.
      */
     public boolean deplacerEntite(Entite e, Direction d) {
-        System.out.println(score);
+        //System.out.println(score);
         boolean retour = false;
         
         Point pCourant = map.get(e);
         
         Point pCible = calculerPointCible(pCourant, d);
 
-        if (contenuDansGrille(pCible)&& ( objetALaPosition(pCible) == null) ||objetALaPosition(pCible).peutEtreTraverse()) {
+        if (contenuDansGrille(pCible)&& ( objetALaPosition(pCible) == null) || (objetALaPosition(pCible).peutEtreTraverse() && (!objetALaPosition(pCible).peutEtreRamasse() || !e.peutRamasser()))) {
             // a adapter (collisions murs, etc.)
             // compter le déplacement : 1 deplacement horizontal et vertical max par pas de temps par entité
             switch (d) {
@@ -264,7 +264,7 @@ public class Jeu {
                     }
                     break;
             }
-        } else if(objetALaPosition(pCible).peutEtreRamasse()){
+        } else if(objetALaPosition(pCible).peutEtreRamasse() && e.peutRamasser()){
             score = score + 100;
             System.out.println("bomb");
             Entite entiteBombe = objetALaPosition(pCible);
@@ -307,6 +307,7 @@ public class Jeu {
         e.estSur = grilleEntites[pCible.x][pCible.y];
         grilleEntites[pCible.x][pCible.y] = e;
         map.put(e, pCible);
+
     }
         // On verifie si la case cible est (null ou est traversable) et que la case courante est aussi traversable alors on affecte ce qui est traversable a la position courante
         // SINON on affecte null

@@ -27,4 +27,6 @@ public abstract class Entite {
 
     public abstract boolean peutEtreRamasse();
 
+    public boolean peutRamasser(){ return false; };
+
 }
