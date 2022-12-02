@@ -5,4 +5,3 @@ public class Bombe extends EntiteRamassable{
         super(_jeu);
     }
 }
-s
