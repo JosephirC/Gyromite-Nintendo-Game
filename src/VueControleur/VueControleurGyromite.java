@@ -13,9 +13,7 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
-import modele.deplacements.Controle4Directions;
-import modele.deplacements.ControleColonne;
-import modele.deplacements.Direction;
+import modele.deplacements.*;
 import modele.plateau.*;
 
 
@@ -77,12 +75,13 @@ public class VueControleurGyromite extends JFrame implements Observer {
                     case KeyEvent.VK_UP : Controle4Directions.getInstance().setDirectionCourante(Direction.haut); break;
                     case KeyEvent.VK_K: ControleColonne.getInstance().setDirectionCourante(Direction.haut); break;
                     case KeyEvent.VK_N: ControleColonne.getInstance().setDirectionCourante(Direction.bas); break;
-                    case KeyEvent.VK_SPACE : System.out.println("ayo"); break;
+                    case KeyEvent.VK_ESCAPE :
+                        InteractionRamassage.getInstance().setRamassage(Ramassage.espace, Controle4Directions.getInstance().getDirection());
+                        break;
                 }
             }
         });
     }
-
 
     private void chargerLesIcones() {
         icoHero = chargerIcone("Images/player_ca.png", 0, 0, 32, 44);

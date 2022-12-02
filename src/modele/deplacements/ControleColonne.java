@@ -49,6 +49,8 @@ public class ControleColonne extends RealisateurDeDeplacement {
 
 
         boolean ret = false;
+        
+
         for (EntiteDynamique e : lstEntitesDynamiques) {
             if (e.peutSeDeplacer())
                 if (directionCourante != null /*&& ((Colonne) e).get_move() != 0*/) {
@@ -114,20 +116,6 @@ public class ControleColonne extends RealisateurDeDeplacement {
         }
         return ret;
     }
-
-
-    public boolean realiserDeplacementTWO() {
-        boolean ret = false;
-
-        for (int i = 0; i < lstEntitesDynamiques.size(); i++) {
-            EntiteDynamique e = lstEntitesDynamiques.get(i);
-            if (directionCourante != null){
-                if(e.avancerDirectionChoisie(directionCourante)) { ret = true; }
-            }
-        }
-        return ret;
-    }
-
 
 }
 /*
