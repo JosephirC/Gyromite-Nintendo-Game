@@ -33,10 +33,25 @@ public class ControleColonne extends RealisateurDeDeplacement {
 
 
     public boolean realiserDeplacement() {
+
+
+        /*boolean ret = false;
+
+        for (int i = 0; i < lstEntitesDynamiques.size(); i++) {
+            EntiteDynamique e = lstEntitesDynamiques.get(i);
+            if (directionCourante != null){
+                if(e.avancerDirectionChoisie(directionCourante)) { ret = true; }
+            }
+        }
+        return ret;*/
+
+
+
+
         boolean ret = false;
         for (EntiteDynamique e : lstEntitesDynamiques) {
             if (e.peutSeDeplacer())
-                if (directionCourante != null && ((Colonne) e).get_move() != 0) {
+                if (directionCourante != null /*&& ((Colonne) e).get_move() != 0*/) {
                     switch (directionCourante) {
                         case haut:
                             Entite ehaut = e.regarderDansLaDirection(Direction.haut);
@@ -90,15 +105,30 @@ public class ControleColonne extends RealisateurDeDeplacement {
                             }
                             break;
                     }
-                    ((Colonne) e).move();
-                } else
-                if (((Colonne) e).get_move() ==0){
-                    ((Colonne) e).init_move();
-                    this.resetDirection();
-                }
+                    //((Colonne) e).move();
+                } //else
+                //if (((Colonne) e).get_move() ==0){
+                    //((Colonne) e).init_move();
+                    //this.resetDirection();
+                //}
         }
         return ret;
     }
+
+
+    public boolean realiserDeplacementTWO() {
+        boolean ret = false;
+
+        for (int i = 0; i < lstEntitesDynamiques.size(); i++) {
+            EntiteDynamique e = lstEntitesDynamiques.get(i);
+            if (directionCourante != null){
+                if(e.avancerDirectionChoisie(directionCourante)) { ret = true; }
+            }
+        }
+        return ret;
+    }
+
+
 }
 /*
 boolean ret = false;
@@ -145,3 +175,5 @@ boolean ret = false;
     }
 
  */
+
+

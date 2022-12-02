@@ -28,14 +28,14 @@ public class Controle4Directions extends RealisateurDeDeplacement {
                     switch (directionCourante) {
                         case gauche:
                             Entite eGauche = e.regarderDansLaDirection(Direction.gauche);
-                            if ((eGauche == null) || (eGauche.peutEtreTraverse())) {
+                            if ((eGauche == null) || (eGauche.peutEtreTraverse()) || (eGauche.peutEtreRamasse())) {
                                 if (e.avancerDirectionChoisie(Direction.gauche))
                                     ret = true;
                             }
                             break;
                         case droite:
                             Entite eDroite = e.regarderDansLaDirection(Direction.droite);
-                            if ((eDroite == null) || (eDroite.peutEtreTraverse())) {
+                            if ((eDroite == null) || (eDroite.peutEtreTraverse()) || (eDroite.peutEtreRamasse())) {
                                 if (e.avancerDirectionChoisie(Direction.droite))
                                     ret = true;
                             }

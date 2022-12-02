@@ -25,6 +25,9 @@ public class Jeu {
 
     public int lvl;
 
+    public int score = 0;
+    public String scoreAffiche = "Score : " + score;
+
     // compteur de déplacements horizontal et vertical (1 max par défaut, à chaque pas de temps)
     private HashMap<Entite, Integer> cmptDeplH = new HashMap<Entite, Integer>();
     private HashMap<Entite, Integer> cmptDeplV = new HashMap<Entite, Integer>();
@@ -36,6 +39,8 @@ public class Jeu {
     private Corde corde;
 
     private Colonne colonne;
+
+    private Bombe bombe;
 
     private HashMap<Entite, Point> map = new  HashMap<Entite, Point>(); // permet de récupérer la position d'une entité à partir de sa référence
     private Entite[][] grilleEntites = new Entite[SIZE_X][SIZE_Y]; // permet de récupérer une entité à partir de ses coordonnées
@@ -69,6 +74,8 @@ public class Jeu {
     }
 
     private void initialisationDesEntites() {
+        //addEntite(bombe, 5, 4);
+
         try{
             Gravite g = new Gravite();
             IA ia = new IA();
@@ -77,10 +84,13 @@ public class Jeu {
             int r = 0;
             int x = 0;
             int y = 0;
-
             while((r = fIS.read())!=-1)
             {
                 switch ((char)r){
+                    case 'p':
+                        addEntite(new Bombe(this), x, y);
+                        x++;
+                        break;
                     case 'b':
                         addEntite(new Mur(this, true), x, y);
                         x++;
@@ -205,6 +215,11 @@ public class Jeu {
         grilleEntites[x][y] = e;
         map.put(e, new Point(x, y));
     }
+
+    private void supprimerEntite(Entite e, int x, int y){
+        grilleEntites[x][y] = null;
+        map.remove(e);
+    }
     
     /** Permet par exemple a une entité  de percevoir sont environnement proche et de définir sa stratégie de déplacement
      *
@@ -244,7 +259,17 @@ public class Jeu {
                     }
                     break;
             }
+
         }
+        else if(objetALaPosition(pCible).peutEtreRamasse()){
+            score = score + 100;
+            scoreAffiche = "Score : " + score;
+            System.out.println("bomb");
+            Entite entiteBombe = objetALaPosition(pCible);
+            supprimerEntite(entiteBombe, pCible.x, pCible.y);
+            deplacerEntite(pCourant, pCible, e);
+        }
+
 /*
         else if (contenuDansGrille(pCible) && objetALaPosition(pCible).peutEtreTraverse()) {
             hector.estSur = objetALaPosition(pCible);

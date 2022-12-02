@@ -6,4 +6,14 @@ public class Bombe extends EntiteStatique{
         super(_jeu);
     }
 
+    public boolean peutEtreRamasse(){return true;}
+    public boolean peutEtreEcrase() { return false; }
+    public boolean peutServirDeSupport() { return false; }
+    public boolean peutPermettreDeMonterDescendre() { return false; }
+    public boolean peutSeDeplacer() { return false; }
+    public boolean peutEtreTraverse(){ return false; }
+
+
+
+
 }

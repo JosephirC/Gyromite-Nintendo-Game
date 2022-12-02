@@ -19,6 +19,8 @@ import modele.deplacements.Direction;
 import modele.plateau.*;
 
 
+
+
 /** Cette classe a deux fonctions :
  *  (1) Vue : proposer une représentation graphique de l'application (cases graphiques, etc.)
  *  (2) Controleur : écouter les évènements clavier et déclencher le traitement adapté sur le modèle (flèches direction Pacman, etc.))
@@ -46,6 +48,8 @@ public class VueControleurGyromite extends JFrame implements Observer {
 
     private ImageIcon icoBrique;
     private ImageIcon icoCorde;
+
+    private ImageIcon icoBombe;
 
     private JLabel[][] tabJLabel; // cases graphique (au moment du rafraichissement, chaque case va être associée à une icône, suivant ce qui est présent dans le modèle)
 
@@ -95,6 +99,8 @@ public class VueControleurGyromite extends JFrame implements Observer {
         icoMur = chargerIcone("Images/tileset.png", 0, 0, 16, 16);
         icoBrique = chargerIcone("Images/tileset.png", 32,0,16,16);
         icoCorde = chargerIcone("Images/tileset.png", 16, 0, 16, 16);
+
+        icoBombe = chargerIcone("Images/bomb_ca.png", 64, 0, 64, 64);
     }
 
     private void placerLesComposantsGraphiques() {
@@ -137,11 +143,24 @@ public class VueControleurGyromite extends JFrame implements Observer {
                 } else if (jeu.getGrille()[x][y] instanceof Bot) {
                     tabJLabel[x][y].setIcon(icoBot);
 
+                    /* ImageIcon imageIcon = new ImageIcon(imageAbsolutePath);
+                    Image tmpImage = imageIcon.getImage();
+
+                    BufferedImage image = new BufferedImage(imageIcon.getIconWidth(), imageIcon.getIconHeight(), BufferedImage.TYPE_INT_ARGB);
+                    image.getGraphics().drawImage(tmpImage, 0, 0, null);
+                    tmpImage.flush();
+
+                    return image;*/
+
                 } else if (jeu.getGrille()[x][y] instanceof Mur) {
                     if(((Mur) jeu.getGrille()[x][y]).brique)
                         tabJLabel[x][y].setIcon(icoBrique);
                     else
                         tabJLabel[x][y].setIcon(icoMur);
+
+                } else if(jeu.getGrille()[x][y] instanceof Bombe){
+                    tabJLabel[x][y].setIcon(icoBombe);
+
                 } else if (jeu.getGrille()[x][y] instanceof Colonne) {
                     if (((Colonne) jeu.getGrille()[x][y]).pos == 1)
                         if (((Colonne) jeu.getGrille()[x][y]).posM == y)

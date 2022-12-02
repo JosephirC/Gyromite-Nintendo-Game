@@ -10,4 +10,5 @@ public class Corde extends EntiteStatique {
     public boolean peutSeDeplacer() { return false; }
 
     public boolean peutPermettreDeMonterDescendre() { return true; };
+    public boolean peutEtreRamasse() { return false; }
 }

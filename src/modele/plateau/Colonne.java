@@ -22,4 +22,6 @@ public class Colonne extends EntiteDynamique {
     public boolean peutServirDeSupport() { return true; }
     public boolean peutPermettreDeMonterDescendre() { return false; };
     public boolean peutSeDeplacer() { return true; }
+    public boolean peutEtreTraverse(){ return false; }
+    public boolean peutEtreRamasse(){return false;}
 }
