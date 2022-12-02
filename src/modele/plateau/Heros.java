@@ -25,6 +25,7 @@ public class Heros extends EntiteVivante {
     public boolean peutEtreTraverse(){ return false; }
     public boolean peutEtreRamasse() { return false; }
 
+    public  boolean peutRamasser(){ return true; }
 
    /* public void est_face_a(modele.plateau.Bot bot){
         System.out.println("Mort");
