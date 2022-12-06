@@ -37,12 +37,21 @@ public class ControleColonne extends RealisateurDeDeplacement {
         return colonneB;
     }
 
+    public static ControleColonne resetb() {
+        colonneB = new ControleColonne();
+        return colonneB;
+    }
+    public static ControleColonne resetr() {
+        colonneR = new ControleColonne();
+        return colonneR;
+    }
+
     public void setDirectionCourante(Direction _directionCourante) {
 
         for (EntiteDynamique e : lstEntitesDynamiques) {
             if (_directionCourante == Direction.haut)
                 directionCourante = _directionCourante;
-            else
+
         }
 
     }

@@ -6,5 +6,5 @@ b______________c___b/
 b_____c________c___b/
 b_____cmmmmmmmmmmmmb/
 b_____c____________b/
-b___p_c____p_____i_b/
+bp__p_c__________i_b/
 bbbbbbbbbbbbbbbbbbbb/

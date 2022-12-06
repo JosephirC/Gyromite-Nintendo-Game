@@ -10,6 +10,10 @@ public class Controle4Directions extends RealisateurDeDeplacement {
     // Design pattern singleton
     private static Controle4Directions c3d;
 
+    public static Controle4Directions reset() {
+        c3d = new Controle4Directions();
+        return c3d;
+    }
     public static Controle4Directions getInstance() {
         if (c3d == null) {
             c3d = new Controle4Directions();

@@ -9,10 +9,7 @@ import modele.deplacements.*;
 import modele.deplacements.ControleColonne;
 
 import java.awt.Point;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.util.HashMap;
 
 /** Actuellement, cette classe gère les postions
@@ -25,6 +22,8 @@ public class Jeu {
 
     public int lvl;
 
+    public int nb_bombes;
+    private  int max_score;
     private int score = 0;
     private int vie = 3;
 
@@ -84,16 +83,16 @@ public class Jeu {
             Gravite g = new Gravite();
             IA ia = new IA();
             File f = new File("src/levels/level_"+ lvl + ".txt");
-
             FileInputStream fIS = new FileInputStream(f);
             int r = 0;
             int x = 0;
             int y = 0;
             while((r = fIS.read())!=-1)
             {
-                switch ((char)r){
+                switch ((char)r) {
                     case 'p':
                         addEntite(new Bombe(this), x, y);
+                        nb_bombes++;
                         x++;
                         break;
                     case 'b':
@@ -104,7 +103,7 @@ public class Jeu {
                         addEntite(new Mur(this, false), x, y);
                         x++;
                         break;
-                    case 'c' :
+                    case 'c':
                         addEntite(new Corde(this), x, y);
                         x++;
                         break;
@@ -123,84 +122,95 @@ public class Jeu {
                         ordonnanceur.add(Controle4Directions.getInstance());
                         x++;
                         break;
-                    case 'i' :
+                    case 'i':
                         smick = new Bot(this);
                         addEntite(smick, x, y);
                         g.addEntiteDynamique(smick);
                         ia.addEntiteDynamique(smick);
                         x++;
                         break;
-                    case 'l' :
-                        initialisationdunecolone(x,y,0);
+                    case 'l':
+                        initialisationdunecolone(x, y, 0);
                         x++;
                         break;
-                    case 'L' :
-                        initialisationdunecolone(x,y,1);
+                    case 'L':
+                        initialisationdunecolone(x, y, 1);
                         x++;
                         break;
                 }
-
             }
             ordonnanceur.add(g);
             ordonnanceur.add(ia);
+            read_maxscore();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
 
-        /*hector = new Heros(this);
-                addEntite(hector, 2, 1);
+    public boolean fini(){
+        if(nb_bombes == 0){
+            write_maxscore();
+            return true;
+        }
+        return false;
+    }
 
-                Gravite g = new Gravite();
-                g.addEntiteDynamique(hector);
+    public void lvlfini(){
+        ordonnanceur.clear();
+        map.clear();
+        ControleColonne.resetb();
+        ControleColonne.resetr();
+        Controle4Directions.reset();
+        cmptDeplH.clear();
+        cmptDeplV.clear();
+        for(int i = 0 ; i < SIZE_X; i++){
+            for(int j = 0; j < SIZE_Y; j++){
+                grilleEntites[i][j] = null;
+            }
+        }
+        lvl = lvl+1;
 
-                smick = new Bot(this);
-                addEntite(smick, 6, 8);
+        initialisationDesEntites();
+        start(300);
+    }
+    /*
+    public void LevelFinished() {
+        if (niveau_courant <= NOMBRE_NIVEAU) {
+            nb_carotte = 3;
+            ordonnanceur.clear();
+            map.clear();
+            Controle4Directions.reset();
+            ControleColonne.reset();
+            ControleInteraction.reset();
+            initialisationDesEntites();
+        }
+    }*/
+    public void write_maxscore() {
+        if (score > max_score) {
+            max_score = score;
+            String smax_score = Integer.toString(max_score);
+            try {
+                FileWriter myWriter = new FileWriter("src/levels/max_score.txt");
+                myWriter.write(smax_score);
+                myWriter.close();
+                System.out.println("Successfully wrote to the file.");
+            } catch (IOException e) {
+                System.out.println("An error occurred.");
+                e.printStackTrace();
+            }
+        }
+    }
 
-                IA ia = new IA();
-                g.addEntiteDynamique(smick);
-                ia.addEntiteDynamique(smick);
+    public void read_maxscore() throws IOException {
+        BufferedReader reader =new BufferedReader(new FileReader("src/levels/max_score.txt"));
 
-                corde = new Corde(this);
+        String Int_line;
 
-
-                for (int y = 4; y < 9; y++) {
-                    addEntite(corde, 12, y);
-                }
-
-                colonne = new Colonne(this);
-                for(int i = 4; i < 7; i++){
-                    addEntite(colonne, 13, i);
-                }
-
-                initialisationdunecolone(8,1);
-                initialisationdunecolone(1,1);
-                initialisationdunecolone(13,5);
-
-
-                ordonnanceur.add(g);
-                ordonnanceur.add(ia);
-
-
-                Controle4Directions.getInstance().addEntiteDynamique(hector);
-                ordonnanceur.add(Controle4Directions.getInstance());
-
-                // murs extérieurs horizontaux
-                for (int x = 0; x < 20; x++) {
-                    addEntite(new Mur(this, true), x, 0);
-                    addEntite(new Mur(this, true), x, 9);
-                }
-
-                // murs extérieurs verticaux
-                for (int y = 1; y < 9; y++) {
-                    addEntite(new Mur(this, true), 0, y);
-                    addEntite(new Mur(this, true), 19, y);
-                }
-
-                for (int x = 1; x < 12; x++) {
-                    addEntite(new Mur(this, false), x, 6);
-                    addEntite(new Mur(this, false), x, 6);
-                }
-*/
+        while ((Int_line = reader.readLine()) != null) {
+            int In_Value = Integer.parseInt(Int_line);
+            max_score = In_Value;// Print the Integer
+        }
+        System.out.println("Max score : " + max_score);
     }
 
     private void initialisationdunecolone(int x,int y, int col){
@@ -288,7 +298,8 @@ public class Jeu {
             }
         }else if(objetALaPosition(pCible).peutEtreRamasse() && e.peutRamasser()){
             score = score + 100;
-            System.out.println("bomb");
+            nb_bombes--;
+            fini();
             Entite entiteBombe = objetALaPosition(pCible);
             supprimerEntite(entiteBombe, pCible.x, pCible.y);
             deplacerEntite(pCourant, pCible, e);
