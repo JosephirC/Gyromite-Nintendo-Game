@@ -205,21 +205,36 @@ public class Jeu {
 
     private void initialisationdunecolone(int x,int y, int col){
 
-        Colonne col1 = new Colonne(this,y+1,1, col);
-        Colonne col2 = new Colonne(this,y+1,2, col);
-        Colonne col3 = new Colonne(this,y+1,3, col);
+        if(col == 1){
+            Colonne col1 = new Colonne(this,y+1,1, col);
+            Colonne col2 = new Colonne(this,y+1,2, col);
+            Colonne col3 = new Colonne(this,y+1,3, col);
 
-        addEntite(col1,x,y+1);
-        addEntite(col2,x,y+2);
-        addEntite(col3,x,y+3);
+            addEntite(col1,x,y+1);
+            addEntite(col2,x,y+2);
+            addEntite(col3,x,y+3);
 
-        ControleColonne.getInstance().addEntiteDynamique(col1);
-        ControleColonne.getInstance().addEntiteDynamique(col2);
-        ControleColonne.getInstance().addEntiteDynamique(col3);
+            ControleColonne.getInstanceBleu().addEntiteDynamique(col1);
+            ControleColonne.getInstanceBleu().addEntiteDynamique(col2);
+            ControleColonne.getInstanceBleu().addEntiteDynamique(col3);
+            ordonnanceur.add(ControleColonne.getInstanceBleu());
+        } else {
 
-        ordonnanceur.add(ControleColonne.getInstance());
+            Colonne col1 = new Colonne(this,y+1,1, col);
+            Colonne col2 = new Colonne(this,y+1,2, col);
+            Colonne col3 = new Colonne(this,y+1,3, col);
 
+            addEntite(col1,x,y+1);
+            addEntite(col2,x,y+2);
+            addEntite(col3,x,y+3);
+
+            ControleColonne.getInstanceRouge().addEntiteDynamique(col1);
+            ControleColonne.getInstanceRouge().addEntiteDynamique(col2);
+            ControleColonne.getInstanceRouge().addEntiteDynamique(col3);
+            ordonnanceur.add(ControleColonne.getInstanceRouge());
+        }
     }
+
     private void addEntite(Entite e, int x, int y) {
         grilleEntites[x][y] = e;
         map.put(e, new Point(x, y));
