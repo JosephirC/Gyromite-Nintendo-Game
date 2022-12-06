@@ -76,6 +76,10 @@ public class Jeu {
         return score;
     }
 
+    public int getMax_score(){
+        return max_score;
+    }
+
     private void initialisationDesEntites() {
         //addEntite(bombe, 5, 4);
 

@@ -133,7 +133,7 @@ public class VueControleurGyromite extends JFrame implements Observer {
         score.setBackground(Color.BLACK);
         menuBar.add(score);
 
-        max_score = new JMenuItem("Max Score " + score);
+        max_score = new JMenuItem("Max Score " + jeu.getMax_score());
         max_score.setFont(font);
         max_score.setForeground(Color.WHITE);
         max_score.setBackground(Color.BLACK);
