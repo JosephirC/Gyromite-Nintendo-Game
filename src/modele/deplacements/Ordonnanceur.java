@@ -1,5 +1,6 @@
 package modele.deplacements;
 
+import VueControleur.VueControleurGyromite;
 import modele.plateau.Jeu;
 
 import java.util.ArrayList;
@@ -17,6 +18,9 @@ public class Ordonnanceur extends Observable implements Runnable {
 
     public Ordonnanceur(Jeu _jeu) {
         jeu = _jeu;
+    }
+    public void clear() {
+        lstDeplacements.clear();
     }
 
     public void start(long _pause) {
@@ -50,9 +54,16 @@ public class Ordonnanceur extends Observable implements Runnable {
             }
             if (jeu.getHector() != null && !jeu.getHector().vivant)
                 break;
+            if (jeu.fini()){
+                System.out.println(jeu.lvl);
+                break;
+            }
         }
         if (!jeu.getHector().vivant)
         System.out.println("t'es mort");
-
+        if (jeu.fini()){
+            System.out.println("t'as win");
+            jeu.lvlfini();
+        }
     }
 }

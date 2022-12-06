@@ -26,6 +26,11 @@ public class ControleColonne extends RealisateurDeDeplacement {
         return c3d;
     }
 
+    public static ControleColonne reset() {
+        c3d = new ControleColonne();
+        return c3d;
+    }
+
     public void setDirectionCourante(Direction _directionCourante) {
         directionCourante = _directionCourante;
     }
@@ -34,11 +39,20 @@ public class ControleColonne extends RealisateurDeDeplacement {
 
     public boolean realiserDeplacement() {
         boolean ret = false;
-        
 
+        for (int i = 0; i < lstEntitesDynamiques.size(); i++) {
+            EntiteDynamique e = lstEntitesDynamiques.get(i);
+            if (directionCourante != null){
+                if(e.avancerDirectionChoisie(directionCourante)) { ret = true; }
+
+            }
+        }
+        return ret;
+
+/*
         for (EntiteDynamique e : lstEntitesDynamiques) {
             if (e.peutSeDeplacer())
-                if (directionCourante != null /*&& ((Colonne) e).get_move() != 0*/) {
+                if (directionCourante != null ) {//&& ((Colonne) e).get_move() != 0
                     switch (directionCourante) {
                         case haut:
                             Entite ehaut = e.regarderDansLaDirection(Direction.haut);
@@ -92,14 +106,9 @@ public class ControleColonne extends RealisateurDeDeplacement {
                             }
                             break;
                     }
-                    //((Colonne) e).move();
-                } //else
-                //if (((Colonne) e).get_move() ==0){
-                    //((Colonne) e).init_move();
-                    //this.resetDirection();
-                //}
+                }
         }
-        return ret;
+        return ret;*/
     }
 
 }
