@@ -130,7 +130,11 @@ public class Jeu {
                         x++;
                         break;
                     case 'l' :
-                        initialisationdunecolone(x,y);
+                        initialisationdunecolone(x,y,0);
+                        x++;
+                        break;
+                    case 'L' :
+                        initialisationdunecolone(x,y,1);
                         x++;
                         break;
                 }
@@ -198,11 +202,11 @@ public class Jeu {
 */
     }
 
-    private void initialisationdunecolone(int x,int y){
+    private void initialisationdunecolone(int x,int y, int col){
 
-        Colonne col1 = new Colonne(this,y+1,1);
-        Colonne col2 = new Colonne(this,y+1,2);
-        Colonne col3 = new Colonne(this,y+1,3);
+        Colonne col1 = new Colonne(this,y+1,1, col);
+        Colonne col2 = new Colonne(this,y+1,2, col);
+        Colonne col3 = new Colonne(this,y+1,3, col);
 
         addEntite(col1,x,y+1);
         addEntite(col2,x,y+2);

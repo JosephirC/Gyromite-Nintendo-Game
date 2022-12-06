@@ -3,10 +3,11 @@ package modele.plateau;
 public class Colonne extends EntiteDynamique {
     public Colonne(Jeu _jeu) { super(_jeu); }
 
-    public Colonne(Jeu _jeu,int hm,int _pos) { super(_jeu);posM = hm;pos = _pos;init_move();}
+    public Colonne(Jeu _jeu,int hm,int _pos, int c) { super(_jeu);posM = hm;pos = _pos;init_move();couleur = c;}
     public int pos;
     public int posM;
 
+    public int couleur; // Choisi int pour possible ajout de plusieurs couleurs
     private int nbmove;
 
     public int get_move(){

@@ -38,14 +38,21 @@ public class VueControleurGyromite extends JFrame implements Observer {
     private ImageIcon icoBot;
     private ImageIcon icoVide;
     private ImageIcon icoMur;
-    private ImageIcon icoColonne1;
-    private ImageIcon icoColonne2;
-    private ImageIcon icoColonne3;
+    private ImageIcon icoColonne1b;
+    private ImageIcon icoColonne2b;
+    private ImageIcon icoColonne3b;
 
-    private ImageIcon icoColonne1M;
-    private ImageIcon icoColonne2M;
-    private ImageIcon icoColonne3M;
+    private ImageIcon icoColonne1Mb;
+    private ImageIcon icoColonne2Mb;
+    private ImageIcon icoColonne3Mb;
 
+
+    private ImageIcon icoColonne1r;
+    private ImageIcon icoColonne2r;
+    private ImageIcon icoColonne3r;
+    private ImageIcon icoColonne1Mr;
+    private ImageIcon icoColonne2Mr;
+    private ImageIcon icoColonne3Mr;
     private ImageIcon icoBrique;
     private ImageIcon icoCorde;
 
@@ -88,13 +95,21 @@ public class VueControleurGyromite extends JFrame implements Observer {
         icoBot = chargerIcone("Images/smick_ca.png", 0, 0, 35, 40);//chargerIcone("Images/Pacman.png");
 
         icoVide = chargerIcone("Images/bg.png");
-        icoColonne1 = chargerIcone("Images/tileset.png", 0, 48, 16, 16);
-        icoColonne2 = chargerIcone("Images/tileset.png", 16, 48, 16, 16);
-        icoColonne3 = chargerIcone("Images/tileset.png", 32, 48, 16, 16);
 
-        icoColonne1M = chargerIcone("Images/tileset.png", 0, 32, 16, 16);
-        icoColonne2M = chargerIcone("Images/tileset.png", 16, 32, 16, 16);
-        icoColonne3M = chargerIcone("Images/tileset.png", 32, 32, 16, 16);
+        icoColonne1b = chargerIcone("Images/tileset.png", 0, 48, 16, 16);
+        icoColonne2b = chargerIcone("Images/tileset.png", 16, 48, 16, 16);
+        icoColonne3b = chargerIcone("Images/tileset.png", 32, 48, 16, 16);
+        icoColonne1Mb = chargerIcone("Images/tileset.png", 0, 32, 16, 16);
+        icoColonne2Mb = chargerIcone("Images/tileset.png", 16, 32, 16, 16);
+        icoColonne3Mb = chargerIcone("Images/tileset.png", 32, 32, 16, 16);
+
+
+        icoColonne1r = chargerIcone("Images/tileset.png", 0, 48+32, 16, 16);
+        icoColonne2r = chargerIcone("Images/tileset.png", 16, 48+32, 16, 16);
+        icoColonne3r = chargerIcone("Images/tileset.png", 32, 48+32, 16, 16);
+        icoColonne1Mr = chargerIcone("Images/tileset.png", 0, 32+32, 16, 16);
+        icoColonne2Mr = chargerIcone("Images/tileset.png", 16, 32+32, 16, 16);
+        icoColonne3Mr = chargerIcone("Images/tileset.png", 32, 32+32, 16, 16);
 
 
         icoMur = chargerIcone("Images/tileset.png", 0, 0, 16, 16);
@@ -173,20 +188,38 @@ public class VueControleurGyromite extends JFrame implements Observer {
 
                 } else if (jeu.getGrille()[x][y] instanceof Colonne) {
                     if (((Colonne) jeu.getGrille()[x][y]).pos == 1)
-                        if (((Colonne) jeu.getGrille()[x][y]).posM == y)
-                            tabJLabel[x][y].setIcon(icoColonne1M);
+                        if ((((Colonne) jeu.getGrille()[x][y]).posM == y))
+                            if (((Colonne) jeu.getGrille()[x][y]).couleur == 0 ) // if couleur
+                                tabJLabel[x][y].setIcon(icoColonne1Mr);
+                            else                                                 // else couleur
+                                tabJLabel[x][y].setIcon(icoColonne1Mb);
                         else
-                            tabJLabel[x][y].setIcon(icoColonne1);
-                    if (((Colonne) jeu.getGrille()[x][y]).pos == 2)
+                            if (((Colonne) jeu.getGrille()[x][y]).couleur == 0 ) // if couleur
+                                tabJLabel[x][y].setIcon(icoColonne1r);
+                            else                                                 // else couleur
+                                tabJLabel[x][y].setIcon(icoColonne1b);
+                    if ((((Colonne) jeu.getGrille()[x][y]).pos == 2))
                         if (((Colonne) jeu.getGrille()[x][y]).posM == y)
-                            tabJLabel[x][y].setIcon(icoColonne2M);
+                            if (((Colonne) jeu.getGrille()[x][y]).couleur == 0 ) // if couleur
+                                tabJLabel[x][y].setIcon(icoColonne2Mr);
+                            else                                                 // else couleur
+                                tabJLabel[x][y].setIcon(icoColonne2Mb);
                         else
-                            tabJLabel[x][y].setIcon(icoColonne2);
-                    if (((Colonne) jeu.getGrille()[x][y]).pos == 3)
+                            if (((Colonne) jeu.getGrille()[x][y]).couleur == 0 ) // if couleur
+                                tabJLabel[x][y].setIcon(icoColonne2r);
+                            else                                                 // else couleur
+                                tabJLabel[x][y].setIcon(icoColonne2b);
+                    if ((((Colonne) jeu.getGrille()[x][y]).pos == 3))
                         if (((Colonne) jeu.getGrille()[x][y]).posM == y)
-                            tabJLabel[x][y].setIcon(icoColonne3M);
+                            if (((Colonne) jeu.getGrille()[x][y]).couleur == 0 ) // if couleur
+                                tabJLabel[x][y].setIcon(icoColonne3Mr);
+                            else                                                 // else couleur
+                                tabJLabel[x][y].setIcon(icoColonne3Mb);
                         else
-                            tabJLabel[x][y].setIcon(icoColonne3);
+                            if (((Colonne) jeu.getGrille()[x][y]).couleur == 0 ) // if couleur
+                                tabJLabel[x][y].setIcon(icoColonne3r);
+                            else                                                 // else couleur
+                                tabJLabel[x][y].setIcon(icoColonne3b);
                 }else if (jeu.getGrille()[x][y] instanceof Corde){
                     tabJLabel[x][y].setIcon(icoCorde);
                 } else {
