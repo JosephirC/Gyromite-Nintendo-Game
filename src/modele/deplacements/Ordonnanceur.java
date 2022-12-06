@@ -36,7 +36,7 @@ public class Ordonnanceur extends Observable implements Runnable {
             }
 
             Controle4Directions.getInstance().resetDirection();
-            InteractionRamassage.getInstance().resetRamassage();
+            //InteractionRamassage.getInstance().resetRamassage();
 
             if (update) {
                 setChanged();

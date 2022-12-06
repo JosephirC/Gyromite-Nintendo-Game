@@ -84,9 +84,9 @@ public class VueControleurGyromite extends JFrame implements Observer {
                     case KeyEvent.VK_D: ControleColonne.getInstance().setDirectionCourante(Direction.bas); break;
                     case KeyEvent.VK_C: ControleColonne.getInstance().setDirectionCourante(Direction.haut); break;
                     case KeyEvent.VK_X: ControleColonne.getInstance().setDirectionCourante(Direction.bas); break;
-                    case KeyEvent.VK_ESCAPE :
+                    /*case KeyEvent.VK_ESCAPE :
                         InteractionRamassage.getInstance().setRamassage(Ramassage.espace, Controle4Directions.getInstance().getDirection());
-                        break;
+                        break;*/
                 }
             }
         });

@@ -35,13 +35,14 @@ public class InteractionRamassage extends RealisateurDeDeplacement{
             }
         }*/
 
-        for (EntiteDynamique e : lstEntitesDynamiques) {
+        /*for (EntiteDynamique e : lstEntitesDynamiques) {
             if (ramassageObjet != null && ramassageObjet == Ramassage.espace){
 
-                if (e.ramasserDirectionChoisie(directionCourante, ramassageObjet) /*|| e.peutEtreRamasse()*/)
+                if (e.ramasserDirectionChoisie(directionCourante, ramassageObjet) ) //|| e.peutEtreRamasse()
                     ret = true;
             }
         }
+        */
         return ret;
     }
 

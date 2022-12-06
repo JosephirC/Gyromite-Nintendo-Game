@@ -84,6 +84,7 @@ public class Jeu {
             Gravite g = new Gravite();
             IA ia = new IA();
             File f = new File("src/levels/level_"+ lvl + ".txt");
+
             FileInputStream fIS = new FileInputStream(f);
             int r = 0;
             int x = 0;
@@ -270,13 +271,14 @@ public class Jeu {
                     }
                     break;
             }
-        } /*else if(objetALaPosition(pCible).peutEtreRamasse() && e.peutRamasser()){
+        }else if(objetALaPosition(pCible).peutEtreRamasse() && e.peutRamasser()){
             score = score + 100;
             System.out.println("bomb");
             Entite entiteBombe = objetALaPosition(pCible);
             supprimerEntite(entiteBombe, pCible.x, pCible.y);
             deplacerEntite(pCourant, pCible, e);
-        }*/
+        }
+
 
 /*
         else if (contenuDansGrille(pCible) && objetALaPosition(pCible).peutEtreTraverse()) {
@@ -316,7 +318,7 @@ public class Jeu {
 
     }
 
-    public boolean ramassageEntite(Entite e, Direction d, Ramassage r){
+    /*public boolean ramassageEntite(Entite e, Direction d, Ramassage r){
         boolean retour = false;
         Point pCourant = map.get(e);
         Point pCible = calculerPointCible(pCourant, d);
@@ -330,7 +332,7 @@ public class Jeu {
             }
         }
         return retour;
-    }
+    }*/
 
     // On verifie si la case cible est (null ou est traversable) et que la case courante est aussi traversable alors on affecte ce qui est traversable a la position courante
         // SINON on affecte null
