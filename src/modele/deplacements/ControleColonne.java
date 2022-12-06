@@ -13,17 +13,27 @@ public class ControleColonne extends RealisateurDeDeplacement {
 
     private Direction directionCourante;
 
-    private static ControleColonne c3d;
+    private static ControleColonne colonneR;
+
+    private static ControleColonne colonneB;
+
 
     public void resetDirection() {
         directionCourante = null;
     }
 
-    public static ControleColonne getInstance() {
-        if (c3d == null) {
-            c3d = new ControleColonne();
+    public static ControleColonne getInstanceRouge() {
+        if (colonneR == null) {
+            colonneR = new ControleColonne();
         }
-        return c3d;
+        return colonneR;
+    }
+
+    public static ControleColonne getInstanceBleu() {
+        if (colonneB == null) {
+            colonneB = new ControleColonne();
+        }
+        return colonneB;
     }
 
     public static ControleColonne reset() {
