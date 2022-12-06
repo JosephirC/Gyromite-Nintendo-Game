@@ -158,7 +158,8 @@ public class Jeu {
     public void lvlfini(){
         ordonnanceur.clear();
         map.clear();
-        ControleColonne.reset();
+        ControleColonne.resetb();
+        ControleColonne.resetr();
         Controle4Directions.reset();
         cmptDeplH.clear();
         cmptDeplV.clear();

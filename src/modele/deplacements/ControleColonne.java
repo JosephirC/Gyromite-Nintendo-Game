@@ -36,9 +36,13 @@ public class ControleColonne extends RealisateurDeDeplacement {
         return colonneB;
     }
 
-    public static ControleColonne reset() {
-        c3d = new ControleColonne();
-        return c3d;
+    public static ControleColonne resetb() {
+        colonneB = new ControleColonne();
+        return colonneB;
+    }
+    public static ControleColonne resetr() {
+        colonneR = new ControleColonne();
+        return colonneR;
     }
 
     public void setDirectionCourante(Direction _directionCourante) {
