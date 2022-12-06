@@ -17,6 +17,7 @@ public class ControleColonne extends RealisateurDeDeplacement {
 
     private static ControleColonne colonneB;
 
+    private boolean changeDir = false;
 
     public void resetDirection() {
         directionCourante = null;
@@ -37,7 +38,13 @@ public class ControleColonne extends RealisateurDeDeplacement {
     }
 
     public void setDirectionCourante(Direction _directionCourante) {
-        directionCourante = _directionCourante;
+
+        for (EntiteDynamique e : lstEntitesDynamiques) {
+            if (_directionCourante == Direction.haut)
+                directionCourante = _directionCourante;
+            else
+        }
+
     }
 
 
@@ -45,13 +52,23 @@ public class ControleColonne extends RealisateurDeDeplacement {
     public boolean realiserDeplacement() {
         boolean ret = false;
 
+        /*for (EntiteDynamique e : lstEntitesDynamiques){
+            if (directionCourante != null){
+                if(e.avancerDirectionChoisie(directionCourante)) {
+                    //System.out.println("Dir cour de la colonne " + e + directionCourante);
+                    ret = true; }
+            }
+        }*/
+
+
         for (EntiteDynamique e : lstEntitesDynamiques) {
             if (e.peutSeDeplacer())
-                if (directionCourante != null /*&& ((Colonne) e).get_move() != 0*/) {
+                if (directionCourante != null && ((Colonne) e).get_move() != 0) {
                     switch (directionCourante) {
                         case haut:
                             Entite ehaut = e.regarderDansLaDirection(Direction.haut);
                             if (ehaut == null) {
+                                changeDir = !changeDir;
                                 //System.out.println("je suis ehaut null ");
                                 if (e.avancerDirectionChoisie(Direction.haut))
                                     ret = true;
@@ -101,12 +118,12 @@ public class ControleColonne extends RealisateurDeDeplacement {
                             }
                             break;
                     }
-                    //((Colonne) e).move();
-                } //else
-                //if (((Colonne) e).get_move() ==0){
-                    //((Colonne) e).init_move();
-                    //this.resetDirection();
-                //}
+                    ((Colonne) e).move();
+                } else
+                if (((Colonne) e).get_move() ==0){
+                    ((Colonne) e).init_move();
+                    this.resetDirection();
+                }
         }
         return ret;
     }

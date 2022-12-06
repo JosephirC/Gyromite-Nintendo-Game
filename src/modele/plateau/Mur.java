@@ -9,8 +9,8 @@ public class Mur extends EntiteStatique {
     public boolean brique;
 
 
-    public boolean peutPermettreDeMonterDescendre() { return false; }
-    public boolean peutSeDeplacer() { return false; }
+    //public boolean peutPermettreDeMonterDescendre() { return false; }
+    //public boolean peutSeDeplacer() { return false; }
     public boolean peutEtreTraverse(){ return false; }
     public boolean peutEtreRamasse(){return false;}
 

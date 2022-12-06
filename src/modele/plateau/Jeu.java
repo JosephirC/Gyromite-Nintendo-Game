@@ -294,7 +294,6 @@ public class Jeu {
             deplacerEntite(pCourant, pCible, e);
         }
 
-
 /*
         else if (contenuDansGrille(pCible) && objetALaPosition(pCible).peutEtreTraverse()) {
             hector.estSur = objetALaPosition(pCible);
