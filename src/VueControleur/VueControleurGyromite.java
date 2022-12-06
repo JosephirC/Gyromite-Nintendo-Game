@@ -32,6 +32,7 @@ public class VueControleurGyromite extends JFrame implements Observer {
     private int sizeY;
 
     JMenuItem score;
+    JMenuItem max_score;
 
     // icones affichées dans la grille
     private ImageIcon icoHero;
@@ -131,6 +132,14 @@ public class VueControleurGyromite extends JFrame implements Observer {
         score.setForeground(Color.WHITE);
         score.setBackground(Color.BLACK);
         menuBar.add(score);
+
+        max_score = new JMenuItem("Max Score " + score);
+        max_score.setFont(font);
+        max_score.setForeground(Color.WHITE);
+        max_score.setBackground(Color.BLACK);
+        menuBar.add(max_score);
+
+
 
         setJMenuBar(menuBar);
 
