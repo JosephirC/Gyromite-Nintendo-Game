@@ -108,9 +108,9 @@ public class ControleColonne extends RealisateurDeDeplacement {
                                     if (ehaut.peutEtreEcrase()) {
                                         if (ehaut.peutMourir()) {
                                             Entite ehauthaut = ((EntiteDynamique) ehaut).regarderDansLaDirection(Direction.haut);
-                                            if (ehauthaut != null) {
+                                            if (ehauthaut != null)
                                                 ((EntiteVivante) ehaut).vivant = false;
-                                            } else {
+                                             else {
                                                 ((EntiteVivante) ehaut).avancerDirectionChoisie(Direction.haut);
                                                 if (e.avancerDirectionChoisie(Direction.haut))
                                                     ret = true;
@@ -123,9 +123,9 @@ public class ControleColonne extends RealisateurDeDeplacement {
                         case bas:
                             Entite ebas = e.regarderDansLaDirection(Direction.bas);
                                 if (ebas == null) {
-                                    if (e.avancerDirectionChoisie(Direction.bas)){
+                                    if (e.avancerDirectionChoisie(Direction.bas))
                                         ret = true;
-                                    }
+
                                 } else {
                                     if (ebas.peutEtreEcrase()) {
                                         if (ebas.peutMourir()) {
@@ -134,9 +134,9 @@ public class ControleColonne extends RealisateurDeDeplacement {
                                                 ((EntiteVivante) ebas).vivant = false;
                                             } else {
                                                 ((EntiteVivante) ebas).avancerDirectionChoisie(Direction.haut);
-                                                if (e.avancerDirectionChoisie(Direction.haut)){
+                                                if (e.avancerDirectionChoisie(Direction.haut))
                                                     ret = true;
-                                                }
+
                                             }
                                         }
                                     }
@@ -151,15 +151,14 @@ public class ControleColonne extends RealisateurDeDeplacement {
                     ((Colonne) e).init_move();
                     this.resetDirection();
                 }
-                ((Colonne) e).move();
-            } else
-            if (((Colonne) e).get_move() ==0){
-                ((Colonne) e).init_move();
-                this.resetDirection();
-            }
         }
         return ret;
     }
+
+
+
+
+
 
 }
 
