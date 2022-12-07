@@ -32,11 +32,13 @@ public class VueControleurGyromite extends JFrame implements Observer {
     private int sizeX; // taille de la grille affichée
     private int sizeY;
 
+    private int time = 200;
+
     private JMenuItem score;
     private JMenuItem max_score;
 
     private JMenuItem vie;
-
+    private JMenuItem timer;
     private ImageIcon gameOverScreen;
 
     private ImageIcon gameWinScreen;
@@ -97,6 +99,7 @@ public class VueControleurGyromite extends JFrame implements Observer {
                     case KeyEvent.VK_X: ControleColonne.getInstanceRouge().setDirectionCourante(Direction.haut); break;
                     case KeyEvent.VK_C: ControleColonne.getInstanceRouge().setDirectionCourante(Direction.bas); break;
                     case KeyEvent.VK_R: jeu.resetlvl(); break;
+
                     case KeyEvent.VK_SHIFT:
                         System.out.println('\n');
                     /*case KeyEvent.VK_ESCAPE :
@@ -155,6 +158,12 @@ public class VueControleurGyromite extends JFrame implements Observer {
         vie.setBackground(Color.BLACK);
         menuBar.add(vie);
 
+        timer = new JMenuItem("Temps : " + time);
+        timer.setFont(font);
+        timer.setForeground(Color.WHITE);
+        timer.setBackground(Color.BLACK);
+        menuBar.add(timer);
+
 
         max_score = new JMenuItem("Max Score: " + jeu.getMax_score());
         max_score.setFont(font);
@@ -190,7 +199,7 @@ public class VueControleurGyromite extends JFrame implements Observer {
      * Il y a une grille du côté du modèle ( jeu.getGrille() ) et une grille du côté de la vue (tabJLabel)
      */
     private void mettreAJourAffichage() {
-
+        updateTime();
         for (int x = 0; x < sizeX; x++) {
             for (int y = 0; y < sizeY; y++) {
                 if (jeu.getGrille()[x][y] instanceof Heros) { // si la grille du modèle contient un Pacman, on associe l'icône Pacman du côté de la vue
@@ -304,6 +313,12 @@ public class VueControleurGyromite extends JFrame implements Observer {
     }
 
     private void updatelvl(Jeu jeu) { jeu.getlvl();}
+
+    private void updateTime(){
+        time= time -1;
+        timer.setText("T: "+ time);
+
+    }
 
     public void setGameOverScreen() {
         getContentPane().removeAll();

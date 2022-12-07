@@ -176,6 +176,8 @@ public class Jeu {
         }
         return false;
     }
+
+
     public void reset(){
         ordonnanceur.clear();
         map.clear();
