@@ -32,8 +32,6 @@ public class VueControleurGyromite extends JFrame implements Observer {
     private int sizeX; // taille de la grille affichée
     private int sizeY;
 
-    private int time = 200;
-
     private JMenuItem score;
     private JMenuItem max_score;
 
@@ -158,7 +156,7 @@ public class VueControleurGyromite extends JFrame implements Observer {
         vie.setBackground(Color.BLACK);
         menuBar.add(vie);
 
-        timer = new JMenuItem("T: " + time);
+        timer = new JMenuItem("T: " + jeu.get_timer());
         timer.setFont(font);
         timer.setForeground(Color.WHITE);
         timer.setBackground(Color.BLACK);
@@ -318,8 +316,8 @@ public class VueControleurGyromite extends JFrame implements Observer {
     private void updatelvl(Jeu jeu) { jeu.getlvl();}
 
     private void updateTime(){
-        time= time -1;
-        timer.setText("T: "+ time);
+        jeu.set_timer(jeu.get_timer() -1);
+        timer.setText("T: "+ jeu.get_timer());
 
     }
 

@@ -21,6 +21,7 @@ public class Jeu {
     public static final int SIZE_Y = 10;
 
     public int lvl;
+    private int time = 200;
 
     public int nb_bombes;
     private  int max_score;
@@ -152,11 +153,19 @@ public class Jeu {
             ordonnanceur.add(g);
             ordonnanceur.add(ia);
             read_maxscore();
+            set_timer(200);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
+    public int set_timer(int timer){
+        time = timer;
+        return time;
+    }
 
+    public int get_timer(){
+        return time;
+    }
     public boolean est_fini_perd(){
         if (hector.vivant == false){
             vie = vie-1;
@@ -203,9 +212,10 @@ public class Jeu {
         reset();
         if (lvl < 3)
             lvl = lvl+1;
-        else
+        else{
             set_est_fini();
             System.out.println("Plus de niveau");
+        }
 
         initialisationDesEntites();
         start(300);
@@ -366,6 +376,7 @@ public class Jeu {
         return jeu_fini;
     }
     public void write_maxscore() {
+        score = score + time;
         if (score > max_score) {
             max_score = score;
             String smax_score = Integer.toString(max_score);
