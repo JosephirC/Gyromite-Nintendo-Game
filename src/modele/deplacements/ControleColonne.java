@@ -97,7 +97,7 @@ public class ControleColonne extends RealisateurDeDeplacement {
             for (int i = 0; i < lstEntitesDynamiques.size(); i++) {
                 EntiteDynamique e = lstEntitesDynamiques.get(i);
             //if (e.peutSeDeplacer())
-                if (directionCourante != null && ((Colonne) e).get_move() != 0 ) {
+                if (directionCourante != null) {
                     switch (directionCourante) {
                         case haut:
                                 Entite ehaut = e.regarderDansLaDirection(Direction.haut);
