@@ -40,6 +40,7 @@ public class Jeu {
     private Colonne colonne;
 
     private Bombe bombe;
+    public boolean jeu_fini;
 
     public boolean fini = false;
     private HashMap<Entite, Point> map = new  HashMap<Entite, Point>(); // permet de récupérer la position d'une entité à partir de sa référence
@@ -81,6 +82,7 @@ public class Jeu {
         return vie;
     }
 
+    private int Max_lvl;
     public int getMax_score(){
         return max_score;
     }
@@ -160,6 +162,7 @@ public class Jeu {
             hector.vivant = true;
             System.out.println(vie);
             if(vie == 0){
+                write_maxscore();
                 fini = true;
             }
         }
@@ -172,8 +175,7 @@ public class Jeu {
         }
         return false;
     }
-
-    public void lvlfini(){
+    public void reset(){
         ordonnanceur.clear();
         map.clear();
         ControleColonne.resetb();
@@ -186,7 +188,20 @@ public class Jeu {
                 grilleEntites[i][j] = null;
             }
         }
-        lvl = lvl+1;
+    }
+
+    public void resetlvl(){
+        reset();
+        initialisationDesEntites();
+        start(300);
+    }
+
+    public void lvlfini(){
+        reset();
+        if (lvl < 3)
+            lvl = lvl+1;
+        else
+            jeu_fini = true;
 
         initialisationDesEntites();
         start(300);
@@ -331,6 +346,14 @@ public class Jeu {
         return ordonnanceur;
     }
 
+
+    public int getmax_lvl(){
+        return Max_lvl;
+    }
+
+    public int getlvl(){
+        return lvl;
+    }
     public void write_maxscore() {
         if (score > max_score) {
             max_score = score;
@@ -339,9 +362,7 @@ public class Jeu {
                 FileWriter myWriter = new FileWriter("src/levels/max_score.txt");
                 myWriter.write(smax_score);
                 myWriter.close();
-                System.out.println("Successfully wrote to the file.");
             } catch (IOException e) {
-                System.out.println("An error occurred.");
                 e.printStackTrace();
             }
         }
@@ -356,6 +377,5 @@ public class Jeu {
             int In_Value = Integer.parseInt(Int_line);
             max_score = In_Value;// Print the Integer
         }
-        System.out.println("Max score : " + max_score);
     }
 }

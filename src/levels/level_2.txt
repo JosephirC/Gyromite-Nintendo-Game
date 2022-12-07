@@ -4,7 +4,7 @@ b____ccc_p__p___cmmb/
 bmmm_ccc_m__m___cmib/
 b__c_cc_m____mp_c__b/
 b_pc_cpm______mmc__b/
-b__c_c_mmmmmmmmmmmmb/
-b__c_m_____________b/
-b_ic_m__________p__b/
+b__c_ccmmmmmmmmmmmmb/
+b__c_mc____________b/
+b_ic_mc_________p__b/
 bbbbbbbbbbbbbbbbbbbb/

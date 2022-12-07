@@ -47,12 +47,7 @@ public class ControleColonne extends RealisateurDeDeplacement {
     }
 
     public void setDirectionCourante(Direction _directionCourante) {
-
-        for (EntiteDynamique e : lstEntitesDynamiques) {
-            if (_directionCourante == Direction.haut)
                 directionCourante = _directionCourante;
-
-        }
 
     }
 
@@ -69,70 +64,59 @@ public class ControleColonne extends RealisateurDeDeplacement {
             }
         }*/
 
-
-        for (EntiteDynamique e : lstEntitesDynamiques) {
-            if (e.peutSeDeplacer())
-                if (directionCourante != null && ((Colonne) e).get_move() != 0) {
-                    switch (directionCourante) {
-                        case haut:
-                            Entite ehaut = e.regarderDansLaDirection(Direction.haut);
-                            if (ehaut == null) {
-                                changeDir = !changeDir;
-                                //System.out.println("je suis ehaut null ");
-                                if (e.avancerDirectionChoisie(Direction.haut))
-                                    ret = true;
-                            } else {
-                                if (ehaut.peutEtreEcrase()) {
-                                    //System.out.println("je suis ehaut peutEtreEcrase ");
-                                    //System.out.println(ehaut.peutMourir());
-                                    if (ehaut.peutMourir()) {
-                                        Entite ehauthaut = ((EntiteDynamique) ehaut).regarderDansLaDirection(Direction.haut);
-                                        if (ehauthaut != null) {
-
-                                            ((EntiteVivante) ehaut).vivant = false;
-                                            //System.out.println("je suis " + ehaut + "et je suis " + ((EntiteVivante) ehaut).vivant);
-                                        } else {
-                                            ((EntiteVivante) ehaut).avancerDirectionChoisie(Direction.haut);
-                                            if (e.avancerDirectionChoisie(Direction.haut))
-                                                ret = true;
-                                        }
-                                    }
-
-                                }
-                            }
-                            break;
-                        case bas:
-                            Entite ebas = e.regarderDansLaDirection(Direction.bas);
-                            if (ebas == null) {
-                                //System.out.println("je suis null");
-                                if (e.avancerDirectionChoisie(Direction.bas))
-                                    ret = true;
-                            } else {
-                                if (ebas.peutEtreEcrase()) {
-                                    //System.out.println("je suis ehaut peutEtreEcrase ");
-                                    //System.out.println(ebas.peutMourir());
-                                    if (ebas.peutMourir()) {
-                                        Entite ehauthaut = ((EntiteDynamique) ebas).regarderDansLaDirection(Direction.haut);
-                                        if (ehauthaut != null) {
-
-                                            ((EntiteVivante) ebas).vivant = false;
-                                            //System.out.println("je suis " + ebas + "et je suis " + ((EntiteVivante) ebas).vivant);
-                                        } else {
-                                            ((EntiteVivante) ebas).avancerDirectionChoisie(Direction.haut);
-                                            if (e.avancerDirectionChoisie(Direction.haut))
-                                                ret = true;
-                                        }
+        for (int i = 0; i < lstEntitesDynamiques.size(); i++) {
+            EntiteDynamique e = lstEntitesDynamiques.get(i);
+            //if (e.peutSeDeplacer())
+            if (directionCourante != null && ((Colonne) e).get_move() != 0 ) {
+                switch (directionCourante) {
+                    case haut:
+                        Entite ehaut = e.regarderDansLaDirection(Direction.haut);
+                        if (ehaut == null) {
+                            if (e.avancerDirectionChoisie(Direction.haut))
+                                ret = true;
+                        } else {
+                            if (ehaut.peutEtreEcrase()) {
+                                if (ehaut.peutMourir()) {
+                                    Entite ehauthaut = ((EntiteDynamique) ehaut).regarderDansLaDirection(Direction.haut);
+                                    if (ehauthaut != null) {
+                                        ((EntiteVivante) ehaut).vivant = false;
+                                    } else {
+                                        ((EntiteVivante) ehaut).avancerDirectionChoisie(Direction.haut);
+                                        if (e.avancerDirectionChoisie(Direction.haut))
+                                            ret = true;
                                     }
                                 }
                             }
-                            break;
-                    }
-                    ((Colonne) e).move();
-                } else
-                if (((Colonne) e).get_move() ==0){
-                    ((Colonne) e).init_move();
-                    this.resetDirection();
+                        }
+                        break;
+
+                    case bas:
+                        Entite ebas = e.regarderDansLaDirection(Direction.bas);
+                        if (ebas == null) {
+                            if (e.avancerDirectionChoisie(Direction.bas))
+                                ret = true;
+                        } else {
+                            if (ebas.peutEtreEcrase()) {
+                                if (ebas.peutMourir()) {
+                                    Entite ehauthaut = ((EntiteDynamique) ebas).regarderDansLaDirection(Direction.haut);
+                                    if (ehauthaut != null) {
+                                        ((EntiteVivante) ebas).vivant = false;
+                                    } else {
+                                        ((EntiteVivante) ebas).avancerDirectionChoisie(Direction.haut);
+                                        if (e.avancerDirectionChoisie(Direction.haut))
+                                            ret = true;
+                                    }
+                                }
+                            }
+                        }
+                        break;
                 }
+                ((Colonne) e).move();
+            } else
+            if (((Colonne) e).get_move() ==0){
+                ((Colonne) e).init_move();
+                this.resetDirection();
+            }
         }
         return ret;
     }

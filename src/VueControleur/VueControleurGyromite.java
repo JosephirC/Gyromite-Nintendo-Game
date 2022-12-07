@@ -36,6 +36,10 @@ public class VueControleurGyromite extends JFrame implements Observer {
 
     JMenuItem vie;
 
+    private ImageIcon gameOverScreen;
+
+    private ImageIcon gameWinScreen;
+
     // icones affichées dans la grille
     private ImageIcon icoHero;
     private ImageIcon icoBot;
@@ -87,11 +91,14 @@ public class VueControleurGyromite extends JFrame implements Observer {
                     case KeyEvent.VK_D: ControleColonne.getInstanceBleu().setDirectionCourante(Direction.bas); break;
                     case KeyEvent.VK_X: ControleColonne.getInstanceRouge().setDirectionCourante(Direction.haut); break;
                     case KeyEvent.VK_C: ControleColonne.getInstanceRouge().setDirectionCourante(Direction.bas); break;
+                    case KeyEvent.VK_R: jeu.resetlvl(); break;
                     case KeyEvent.VK_SHIFT:
                         System.out.println('\n');
                     /*case KeyEvent.VK_ESCAPE :
                         InteractionRamassage.getInstance().setRamassage(Ramassage.espace, Controle4Directions.getInstance().getDirection());
                         break;*/
+                        gameOverScreen = chargerIcone("Images/game-over.png");
+                        gameWinScreen = chargerIcone("Images/game-win.png");
                 }
             }
         });
@@ -124,6 +131,7 @@ public class VueControleurGyromite extends JFrame implements Observer {
         icoCorde = chargerIcone("Images/tileset.png", 16, 0, 16, 16);
 
         icoBombe = chargerIcone("Images/sprites.png", 0, 250, 25, 25);
+
     }
 
     private void placerLesComposantsGraphiques() {
@@ -136,11 +144,17 @@ public class VueControleurGyromite extends JFrame implements Observer {
         menuBar.add(score);
 
         vie = new JMenuItem("Vie: " + jeu.getVie());
+        if (jeu.getVie() == 0){
+            setGameOverScreen();
+        }
         vie.setFont(font);
         vie.setForeground(Color.WHITE);
         vie.setBackground(Color.BLACK);
         menuBar.add(vie);
 
+        if (jeu.jeu_fini){
+            setGameWinScreen();
+        }
 
         max_score = new JMenuItem("Max Score: " + jeu.getMax_score());
         max_score.setFont(font);
@@ -250,6 +264,7 @@ public class VueControleurGyromite extends JFrame implements Observer {
                 updateScore(jeu);
                 updateMaxScore(jeu);
                 updateVie(jeu);
+                updatelvl(jeu);
             }
         }
     }
@@ -278,6 +293,24 @@ public class VueControleurGyromite extends JFrame implements Observer {
     private void updateVie(Jeu jeu){
         vie.setText("Vie: "+ jeu.getVie());
         jeu.est_fini_perd();
+    }
+
+    private void updatelvl(Jeu jeu) { jeu.getlvl();}
+
+    public void setGameOverScreen() {
+        getContentPane().removeAll();
+        getContentPane().setBackground(Color.black);
+        JLabel gameOverLabel = new JLabel(gameOverScreen);
+        add(gameOverLabel);
+
+    }
+
+    public void setGameWinScreen() {
+        getContentPane().removeAll();
+        getContentPane().setBackground(Color.black);
+        JLabel gameWinLabel = new JLabel(gameWinScreen);
+        add(gameWinLabel);
+
     }
 
     // chargement de l'image entière comme icone
