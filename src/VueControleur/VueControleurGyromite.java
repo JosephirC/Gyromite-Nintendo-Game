@@ -145,7 +145,7 @@ public class VueControleurGyromite extends JFrame implements Observer {
 
     private void placerLesComposantsGraphiques() {
         JMenuBar menuBar = new JMenuBar();
-        Font font = new Font("Monospaced", Font.BOLD, 14);
+        Font font = new Font("Monospaced", Font.BOLD, 10);
         score = new JMenuItem("Score: "+ jeu.getScore());
         score.setFont(font);
         score.setForeground(Color.WHITE);
@@ -158,14 +158,14 @@ public class VueControleurGyromite extends JFrame implements Observer {
         vie.setBackground(Color.BLACK);
         menuBar.add(vie);
 
-        timer = new JMenuItem("Temps : " + time);
+        timer = new JMenuItem("T: " + time);
         timer.setFont(font);
         timer.setForeground(Color.WHITE);
         timer.setBackground(Color.BLACK);
         menuBar.add(timer);
 
 
-        max_score = new JMenuItem("Max Score: " + jeu.getMax_score());
+        max_score = new JMenuItem("M_Score: " + jeu.getMax_score());
         max_score.setFont(font);
         max_score.setForeground(Color.WHITE);
         max_score.setBackground(Color.BLACK);
@@ -302,7 +302,7 @@ public class VueControleurGyromite extends JFrame implements Observer {
     }
 
     private void updateMaxScore(Jeu jeu){
-        max_score.setText("Max Score: "+ jeu.getMax_score());
+        max_score.setText("M_Score: "+ jeu.getMax_score());
     }
     private void updateVie(Jeu jeu){
         vie.setText("Vie: "+ jeu.getVie());

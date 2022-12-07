@@ -161,7 +161,6 @@ public class Jeu {
         if (hector.vivant == false){
             vie = vie-1;
             hector.vivant = true;
-            System.out.println(vie);
             if(vie == 0){
                 write_maxscore();
                 fini = true;
@@ -179,6 +178,7 @@ public class Jeu {
 
 
     public void reset(){
+        write_maxscore();
         ordonnanceur.clear();
         map.clear();
         ControleColonne.resetb();
@@ -352,10 +352,6 @@ public class Jeu {
         return ordonnanceur;
     }
 
-
-    public int getmax_lvl(){
-        return Max_lvl;
-    }
 
     public int getlvl(){
         return lvl;
