@@ -14,4 +14,9 @@ public class Mur extends EntiteStatique {
     public boolean peutEtreTraverse(){ return false; }
     public boolean peutEtreRamasse(){return false;}
 
+    @Override
+    public boolean peutDistraire() {
+        return false;
+    }
+
 }

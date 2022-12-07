@@ -106,6 +106,10 @@ public class Jeu {
                         nb_bombes++;
                         x++;
                         break;
+                    case 'r' :
+                        addEntite(new Radis(this), x, y);
+                        x++;
+                        break;
                     case 'b':
                         addEntite(new Mur(this, true), x, y);
                         x++;
@@ -305,13 +309,15 @@ public class Jeu {
                     }
                     break;
             }
-        }else if(objetALaPosition(pCible).peutEtreRamasse() && e.peutRamasser()){
+        }else if(objetALaPosition(pCible).peutEtreRamasse() && e.peutRamasser() && !objetALaPosition(pCible).peutDistraire() ){
             score = score + 100;
             nb_bombes--;
             est_fini_gagne();
             Entite entiteBombe = objetALaPosition(pCible);
             supprimerEntite(entiteBombe, pCible.x, pCible.y);
             deplacerEntite(pCourant, pCible, e);
+        } else if(objetALaPosition(pCible).peutEtreRamasse() && !e.peutRamasser()){
+            System.out.println("RADISS");
         }
         if (retour) {
             deplacerEntite(pCourant, pCible, e);

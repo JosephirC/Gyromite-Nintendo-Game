@@ -68,6 +68,8 @@ public class VueControleurGyromite extends JFrame implements Observer {
     private ImageIcon icoCorde;
 
     private ImageIcon icoBombe;
+    private ImageIcon icoRadis;
+
 
     private JLabel[][] tabJLabel; // cases graphique (au moment du rafraichissement, chaque case va être associée à une icône, suivant ce qui est présent dans le modèle)
 
@@ -138,6 +140,7 @@ public class VueControleurGyromite extends JFrame implements Observer {
         icoCorde = chargerIcone("Images/tileset.png", 16, 0, 16, 16);
 
         icoBombe = chargerIcone("Images/sprites.png", 0, 250, 25, 25);
+        icoRadis = chargerIcone("Images/sprites.png", 73, 250, 15, 20 );
 
         gameWinScreen = chargerIcone("Images/game-win.png");
         gameOverScreen= chargerIcone("Images/game-over.png");
@@ -246,7 +249,10 @@ public class VueControleurGyromite extends JFrame implements Observer {
                 } else if(jeu.getGrille()[x][y] instanceof Bombe){
                     tabJLabel[x][y].setIcon(icoBombe);
 
-                } else if (jeu.getGrille()[x][y] instanceof Colonne) {
+                } else if(jeu.getGrille()[x][y] instanceof Radis){
+                    tabJLabel[x][y].setIcon(icoRadis);
+
+                }else if (jeu.getGrille()[x][y] instanceof Colonne) {
                     if (((Colonne) jeu.getGrille()[x][y]).pos == 1)
                         if ((((Colonne) jeu.getGrille()[x][y]).posM == y))
                             if (((Colonne) jeu.getGrille()[x][y]).couleur == 0 ) // if couleur

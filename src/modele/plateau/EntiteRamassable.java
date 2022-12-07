@@ -11,4 +11,5 @@ public abstract class EntiteRamassable extends EntiteDynamique{
    public boolean peutEtreTraverse(){ return true; }
 
 
+
 }

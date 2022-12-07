@@ -24,4 +24,9 @@ public class Bot extends EntiteEnnemi {
     public boolean peutEtreTraverse(){ return false; }
     public boolean peutEtreRamasse(){return false;}
 
+    @Override
+    public boolean peutDistraire() {
+        return false;
+    }
+
 }
