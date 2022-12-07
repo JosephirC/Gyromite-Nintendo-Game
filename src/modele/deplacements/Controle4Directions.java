@@ -38,21 +38,24 @@ public class Controle4Directions extends RealisateurDeDeplacement {
                             Entite eGauche = e.regarderDansLaDirection(Direction.gauche);
                             if ((eGauche == null) || (eGauche.peutEtreTraverse()) || (eGauche.peutEtreRamasse())) {
                                 if (e.avancerDirectionChoisie(Direction.gauche))
-                                    ret = true;
+                                    if (e instanceof Bot) ((EntiteVivante) e).vivant = false;
+                                        ret = true;
                             }
                             break;
                         case droite:
                             Entite eDroite = e.regarderDansLaDirection(Direction.droite);
                             if ((eDroite == null) || (eDroite.peutEtreTraverse()) || (eDroite.peutEtreRamasse())) {
                                 if (e.avancerDirectionChoisie(Direction.droite))
-                                    ret = true;
+                                    if (e instanceof Bot) ((EntiteVivante) e).vivant = false;
+                                        ret = true;
                             }
                             break;
                         case bas:
                             Entite eBas = e.regarderDansLaDirection(Direction.bas);
                             if (eBas != null && (eBas.peutServirDeSupport() || eBas.peutEtreTraverse())) {
                                 if (e.avancerDirectionChoisie(Direction.bas))
-                                    ret = true;
+                                    if (e instanceof Bot) ((EntiteVivante) e).vivant = false;
+                                        ret = true;
                             }
                             break;
 
@@ -62,7 +65,8 @@ public class Controle4Directions extends RealisateurDeDeplacement {
                             Entite eHaut = e.regarderDansLaDirection(Direction.bas);
                             if (eHaut != null && eHaut.peutServirDeSupport() || eHaut != null && eHaut.peutEtreTraverse()) {
                                 if (e.avancerDirectionChoisie(Direction.haut))
-                                    ret = true;
+                                    if (e instanceof Bot) ((EntiteVivante) e).vivant = false;
+                                        ret = true;
                             }
                             break;
                     }

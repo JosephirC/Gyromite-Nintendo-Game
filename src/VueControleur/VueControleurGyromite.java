@@ -98,8 +98,8 @@ public class VueControleurGyromite extends JFrame implements Observer {
     }
 
     private void chargerLesIcones() {
-        icoHero = chargerIcone("Images/player_ca.png", 0, 0, 32, 44);
-        icoBot = chargerIcone("Images/smick_ca.png", 0, 0, 35, 40);//chargerIcone("Images/Pacman.png");
+        icoHero = chargerIcone("Images/sprites.png", 0, 0, 25, 25);
+        icoBot = chargerIcone("Images/sprites.png", 0, 140, 25, 25);//chargerIcone("Images/Pacman.png");
 
         icoVide = chargerIcone("Images/bg.png");
 
@@ -123,7 +123,7 @@ public class VueControleurGyromite extends JFrame implements Observer {
         icoBrique = chargerIcone("Images/tileset.png", 32,0,16,16);
         icoCorde = chargerIcone("Images/tileset.png", 16, 0, 16, 16);
 
-        icoBombe = chargerIcone("Images/bomb_ca.png", 64, 0, 64, 64);
+        icoBombe = chargerIcone("Images/sprites.png", 0, 250, 25, 25);
     }
 
     private void placerLesComposantsGraphiques() {
