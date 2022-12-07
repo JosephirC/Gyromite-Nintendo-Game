@@ -17,12 +17,12 @@ public class Colonne extends EntiteDynamique {
         nbmove--;
     }
     public void init_move(){
-        nbmove = 6;
+        nbmove = 1;
     }
     public boolean peutEtreEcrase() { return false; }
     public boolean peutServirDeSupport() { return true; }
     public boolean peutPermettreDeMonterDescendre() { return false; };
     public boolean peutSeDeplacer() { return true; }
-    public boolean peutEtreTraverse(){ return false; }
+    public boolean peutEtreTraverse(){ return true; }
     public boolean peutEtreRamasse(){return false;}
 }

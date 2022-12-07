@@ -17,7 +17,7 @@ public class ControleColonne extends RealisateurDeDeplacement {
 
     private static ControleColonne colonneB;
 
-    private boolean changeDir = false;
+    //private boolean regardeHaut = true;
 
     public void resetDirection() {
         directionCourante = null;
@@ -46,14 +46,23 @@ public class ControleColonne extends RealisateurDeDeplacement {
         return colonneR;
     }
 
-    public void setDirectionCourante(Direction _directionCourante) {
+    /*public void setDirectionCourante(Direction _directionCourante) {
 
         for (EntiteDynamique e : lstEntitesDynamiques) {
-            if (_directionCourante == Direction.haut)
-                directionCourante = _directionCourante;
-
+            if (changeDir == false)
+                directionCourante = Direction.haut;
+            else directionCourante =Direction.bas;
         }
 
+    }*/
+
+
+    public void setDirectionCouranteb(Direction _dir) {
+        directionCourante = _dir;
+    }
+
+    public void setDirectionCouranter(Direction _dir) {
+        directionCourante = _dir;
     }
 
 
@@ -69,43 +78,46 @@ public class ControleColonne extends RealisateurDeDeplacement {
             }
         }*/
 
-
         for (EntiteDynamique e : lstEntitesDynamiques) {
-            if (e.peutSeDeplacer())
-                if (directionCourante != null && ((Colonne) e).get_move() != 0) {
+            //if (e.peutSeDeplacer())
+                if (directionCourante != null && ((Colonne) e).get_move() != 0 ) {
+                    //System.out.println("Je suis la col " + e);
                     switch (directionCourante) {
                         case haut:
-                            Entite ehaut = e.regarderDansLaDirection(Direction.haut);
-                            if (ehaut == null) {
-                                changeDir = !changeDir;
-                                //System.out.println("je suis ehaut null ");
-                                if (e.avancerDirectionChoisie(Direction.haut))
-                                    ret = true;
-                            } else {
-                                if (ehaut.peutEtreEcrase()) {
-                                    //System.out.println("je suis ehaut peutEtreEcrase ");
-                                    //System.out.println(ehaut.peutMourir());
-                                    if (ehaut.peutMourir()) {
-                                        Entite ehauthaut = ((EntiteDynamique) ehaut).regarderDansLaDirection(Direction.haut);
-                                        if (ehauthaut != null) {
 
-                                            ((EntiteVivante) ehaut).vivant = false;
-                                            //System.out.println("je suis " + ehaut + "et je suis " + ((EntiteVivante) ehaut).vivant);
-                                        } else {
-                                            ((EntiteVivante) ehaut).avancerDirectionChoisie(Direction.haut);
-                                            if (e.avancerDirectionChoisie(Direction.haut))
-                                                ret = true;
+                                Entite ehaut = e.regarderDansLaDirection(Direction.haut);
+                                if (ehaut == null /*&& regardeHaut == true*/) {
+                                    //System.out.println("je suis ehaut null ");
+                                    if (e.avancerDirectionChoisie(Direction.haut))
+                                        //regardeHaut = false;
+                                        ret = true;
+                                } else {
+                                    if (ehaut.peutEtreEcrase()) {
+                                        //System.out.println("je suis ehaut peutEtreEcrase ");
+                                        //System.out.println(ehaut.peutMourir());
+                                        if (ehaut.peutMourir()) {
+                                            Entite ehauthaut = ((EntiteDynamique) ehaut).regarderDansLaDirection(Direction.haut);
+                                            if (ehauthaut != null) {
+
+                                                ((EntiteVivante) ehaut).vivant = false;
+                                                //System.out.println("je suis " + ehaut + "et je suis " + ((EntiteVivante) ehaut).vivant);
+                                            } else {
+                                                ((EntiteVivante) ehaut).avancerDirectionChoisie(Direction.haut);
+                                                if (e.avancerDirectionChoisie(Direction.haut))
+                                                    //regardeHaut = false;
+                                                    ret = true;
+                                            }
                                         }
                                     }
-
                                 }
-                            }
-                            break;
+                                break;
+
                         case bas:
                             Entite ebas = e.regarderDansLaDirection(Direction.bas);
-                            if (ebas == null) {
+                            if (ebas == null /*&& regardeHaut == false*/) {
                                 //System.out.println("je suis null");
                                 if (e.avancerDirectionChoisie(Direction.bas))
+                                    //regardeHaut = true;
                                     ret = true;
                             } else {
                                 if (ebas.peutEtreEcrase()) {
@@ -120,6 +132,7 @@ public class ControleColonne extends RealisateurDeDeplacement {
                                         } else {
                                             ((EntiteVivante) ebas).avancerDirectionChoisie(Direction.haut);
                                             if (e.avancerDirectionChoisie(Direction.haut))
+                                                //regardeHaut = true;
                                                 ret = true;
                                         }
                                     }
