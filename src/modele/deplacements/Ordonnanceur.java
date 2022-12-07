@@ -55,7 +55,7 @@ public class Ordonnanceur extends Observable implements Runnable {
             if (jeu.est_fini_gagne()){
                 break;
             }
-            if (jeu.fini){
+            if (jeu.get_est_fini()){
                 break;
             }
         }

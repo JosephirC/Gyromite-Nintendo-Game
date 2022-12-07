@@ -40,7 +40,8 @@ public class Jeu {
     private Colonne colonne;
 
     private Bombe bombe;
-    public boolean jeu_fini;
+    private boolean jeu_fini;
+
 
     public boolean fini = false;
     private HashMap<Entite, Point> map = new  HashMap<Entite, Point>(); // permet de récupérer la position d'une entité à partir de sa référence
@@ -201,7 +202,8 @@ public class Jeu {
         if (lvl < 3)
             lvl = lvl+1;
         else
-            jeu_fini = true;
+            set_est_fini();
+            System.out.println("Plus de niveau");
 
         initialisationDesEntites();
         start(300);
@@ -355,6 +357,15 @@ public class Jeu {
 
     public int getlvl(){
         return lvl;
+    }
+
+    public boolean get_est_fini(){
+        return  jeu_fini;
+    }
+
+    public boolean set_est_fini(){
+        jeu_fini = true;
+        return jeu_fini;
     }
     public void write_maxscore() {
         if (score > max_score) {

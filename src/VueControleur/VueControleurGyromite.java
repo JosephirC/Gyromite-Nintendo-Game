@@ -97,8 +97,6 @@ public class VueControleurGyromite extends JFrame implements Observer {
                     /*case KeyEvent.VK_ESCAPE :
                         InteractionRamassage.getInstance().setRamassage(Ramassage.espace, Controle4Directions.getInstance().getDirection());
                         break;*/
-                        gameOverScreen = chargerIcone("Images/game-over.png", 0, 0, 512,301);
-                        gameWinScreen = chargerIcone("Images/game-win.png");
                 }
             }
         });
@@ -131,6 +129,9 @@ public class VueControleurGyromite extends JFrame implements Observer {
         icoCorde = chargerIcone("Images/tileset.png", 16, 0, 16, 16);
 
         icoBombe = chargerIcone("Images/sprites.png", 0, 250, 25, 25);
+
+        gameWinScreen = chargerIcone("Images/game-win.png");
+        gameOverScreen= chargerIcone("Images/game-over.png");
 
     }
 
@@ -188,7 +189,15 @@ public class VueControleurGyromite extends JFrame implements Observer {
         for (int x = 0; x < sizeX; x++) {
             for (int y = 0; y < sizeY; y++) {
                 if (jeu.getGrille()[x][y] instanceof Heros) { // si la grille du modèle contient un Pacman, on associe l'icône Pacman du côté de la vue
-                    tabJLabel[x][y].setIcon(icoHero);
+                    if (jeu.getVie() == 0){
+                        setGameOverScreen();
+                        jeu.set_est_fini();
+                    } else if (jeu.get_est_fini()){
+                        setGameWinScreen();
+                        jeu.set_est_fini();
+
+                    } else
+                        tabJLabel[x][y].setIcon(icoHero);
 
                     // si transparence : images avec canal alpha + dessins manuels (voir ci-dessous + créer composant qui redéfinie paint(Graphics g)), se documenter
                     //BufferedImage bi = getImage("Images/smick.png", 0, 0, 20, 20);
@@ -259,12 +268,6 @@ public class VueControleurGyromite extends JFrame implements Observer {
                 updateMaxScore(jeu);
                 updateVie(jeu);
                 updatelvl(jeu);
-                if (jeu.getVie() == 0){
-                    setGameOverScreen();
-                }
-                if (jeu.jeu_fini){
-                    setGameWinScreen();
-                }
             }
         }
     }
