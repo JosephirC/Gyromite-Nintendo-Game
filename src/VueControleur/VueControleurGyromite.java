@@ -38,6 +38,8 @@ public class VueControleurGyromite extends JFrame implements Observer {
     private JMenuItem vie;
     private JMenuItem timer;
     private JMenuItem affichage;
+
+    private JMenuItem scoretemps;
     private ImageIcon gameOverScreen;
 
     private ImageIcon gameWinScreen;
@@ -175,11 +177,11 @@ public class VueControleurGyromite extends JFrame implements Observer {
         affichage.setBackground(Color.BLACK);
         menuBar.add(affichage);
 
-        timer = new JMenuItem(" T: " + jeu.get_timer());
-        timer.setFont(font);
-        timer.setForeground(Color.WHITE);
-        timer.setBackground(Color.BLACK);
-        menuBar.add(timer);
+        scoretemps = new JMenuItem("T: "+ jeu.get_timer() + "   M_Score: " + jeu.getMax_score());
+        scoretemps.setFont(font);
+        scoretemps.setForeground(Color.WHITE);
+        scoretemps.setBackground(Color.BLACK);
+        menuBar.add(scoretemps);
 
         setJMenuBar(menuBar);
 
@@ -208,7 +210,7 @@ public class VueControleurGyromite extends JFrame implements Observer {
      * Il y a une grille du côté du modèle ( jeu.getGrille() ) et une grille du côté de la vue (tabJLabel)
      */
     private void mettreAJourAffichage() {
-        updateTime();
+        updateScoreTemps();
         for (int x = 0; x < sizeX; x++) {
             for (int y = 0; y < sizeY; y++) {
                 if (jeu.getGrille()[x][y] instanceof Heros) { // si la grille du modèle contient un Pacman, on associe l'icône Pacman du côté de la vue
@@ -287,7 +289,7 @@ public class VueControleurGyromite extends JFrame implements Observer {
                 /*updateScore(jeu);
                 updateMaxScore(jeu);
                 updateVie(jeu);*/
-                updatelvl();
+                //updatelvl();
                 updateAffichage();
             }
         }
@@ -325,13 +327,17 @@ public class VueControleurGyromite extends JFrame implements Observer {
 
     }
     private void updateAffichage(){
-        affichage.setText("Score: "+ jeu.getScore() + "   Vie: " + jeu.getVie() + "   M_Score: " + jeu.getMax_score());
+        affichage.setText("Score: "+ jeu.getScore() + "   Vie: " + jeu.getVie());
         jeu.est_fini_perd();
         if(jeu.getVie() == 0){
             setGameOverScreen();
             clip.stop();
             jeu.set_est_fini();
         }
+    }
+    private  void updateScoreTemps(){
+        jeu.set_timer(jeu.get_timer() -1);
+        scoretemps.setText("T: "+ jeu.get_timer() + "   M_Score: " + jeu.getMax_score());
     }
 
     private void updatelvl() { jeu.getlvl();}
