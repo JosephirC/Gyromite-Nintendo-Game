@@ -337,6 +337,12 @@ public class VueControleurGyromite extends JFrame implements Observer {
     }
     private  void updateScoreTemps(){
         jeu.set_timer(jeu.get_timer() -1);
+        if(jeu.get_timer() <= 0){
+            jeu.setVie(0);
+            setGameOverScreen();
+            clip.stop();
+            jeu.set_est_fini();
+        }
         scoretemps.setText("T: "+ jeu.get_timer() + "   M_Score: " + jeu.getMax_score());
     }
 
