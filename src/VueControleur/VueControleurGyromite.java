@@ -97,7 +97,7 @@ public class VueControleurGyromite extends JFrame implements Observer {
                     /*case KeyEvent.VK_ESCAPE :
                         InteractionRamassage.getInstance().setRamassage(Ramassage.espace, Controle4Directions.getInstance().getDirection());
                         break;*/
-                        gameOverScreen = chargerIcone("Images/game-over.png");
+                        gameOverScreen = chargerIcone("Images/game-over.png", 0, 0, 512,301);
                         gameWinScreen = chargerIcone("Images/game-win.png");
                 }
             }
@@ -144,17 +144,11 @@ public class VueControleurGyromite extends JFrame implements Observer {
         menuBar.add(score);
 
         vie = new JMenuItem("Vie: " + jeu.getVie());
-        if (jeu.getVie() == 0){
-            setGameOverScreen();
-        }
         vie.setFont(font);
         vie.setForeground(Color.WHITE);
         vie.setBackground(Color.BLACK);
         menuBar.add(vie);
 
-        if (jeu.jeu_fini){
-            setGameWinScreen();
-        }
 
         max_score = new JMenuItem("Max Score: " + jeu.getMax_score());
         max_score.setFont(font);
@@ -265,6 +259,12 @@ public class VueControleurGyromite extends JFrame implements Observer {
                 updateMaxScore(jeu);
                 updateVie(jeu);
                 updatelvl(jeu);
+                if (jeu.getVie() == 0){
+                    setGameOverScreen();
+                }
+                if (jeu.jeu_fini){
+                    setGameWinScreen();
+                }
             }
         }
     }
