@@ -37,6 +37,7 @@ public class VueControleurGyromite extends JFrame implements Observer {
 
     private JMenuItem vie;
     private JMenuItem timer;
+    private JMenuItem affichage;
     private ImageIcon gameOverScreen;
 
     private ImageIcon gameWinScreen;
@@ -145,7 +146,7 @@ public class VueControleurGyromite extends JFrame implements Observer {
         JMenuBar menuBar = new JMenuBar();
         Font font = new Font("Monospaced", Font.BOLD, 11);
 
-        score = new JMenuItem("Score: "+ jeu.getScore());
+        /*score = new JMenuItem("Score: "+ jeu.getScore());
         score.setFont(font);
         score.setForeground(Color.WHITE);
         score.setBackground(Color.BLACK);
@@ -157,19 +158,28 @@ public class VueControleurGyromite extends JFrame implements Observer {
         vie.setBackground(Color.BLACK);
         menuBar.add(vie);
 
-        timer = new JMenuItem("T: " + jeu.get_timer());
-        timer.setFont(font);
-        timer.setForeground(Color.WHITE);
-        timer.setBackground(Color.BLACK);
-        menuBar.add(timer);
+
 
 
         max_score = new JMenuItem("M_Score: " + jeu.getMax_score());
         max_score.setFont(font);
         max_score.setForeground(Color.WHITE);
         max_score.setBackground(Color.BLACK);
-        menuBar.add(max_score);
+        menuBar.add(max_score);*/
 
+
+
+        affichage = new JMenuItem("Score: "+ jeu.getScore() + "Vie: " + jeu.getVie() +  "M_Score: " + jeu.getMax_score());
+        affichage.setFont(font);
+        affichage.setForeground(Color.WHITE);
+        affichage.setBackground(Color.BLACK);
+        menuBar.add(affichage);
+
+        timer = new JMenuItem(" T: " + jeu.get_timer());
+        timer.setFont(font);
+        timer.setForeground(Color.WHITE);
+        timer.setBackground(Color.BLACK);
+        menuBar.add(timer);
 
         setJMenuBar(menuBar);
 
@@ -274,10 +284,11 @@ public class VueControleurGyromite extends JFrame implements Observer {
                     tabJLabel[x][y].setIcon(icoVide);
                 }
 
-                updateScore(jeu);
+                /*updateScore(jeu);
                 updateMaxScore(jeu);
-                updateVie(jeu);
-                updatelvl(jeu);
+                updateVie(jeu);*/
+                updatelvl();
+                updateAffichage();
             }
         }
     }
@@ -296,14 +307,14 @@ public class VueControleurGyromite extends JFrame implements Observer {
 
     }
 
-    private void updateScore(Jeu jeu){
+    private void updateScore(){
         score.setText("Score: "+ jeu.getScore());
     }
 
-    private void updateMaxScore(Jeu jeu){
+    private void updateMaxScore(){
         max_score.setText("M_Score: "+ jeu.getMax_score());
     }
-    private void updateVie(Jeu jeu){
+    private void updateVie(){
         vie.setText("Vie: "+ jeu.getVie());
         jeu.est_fini_perd();
         if(jeu.getVie() == 0){
@@ -313,8 +324,17 @@ public class VueControleurGyromite extends JFrame implements Observer {
         }
 
     }
+    private void updateAffichage(){
+        affichage.setText("Score: "+ jeu.getScore() + "   Vie: " + jeu.getVie() + "   M_Score: " + jeu.getMax_score());
+        jeu.est_fini_perd();
+        if(jeu.getVie() == 0){
+            setGameOverScreen();
+            clip.stop();
+            jeu.set_est_fini();
+        }
+    }
 
-    private void updatelvl(Jeu jeu) { jeu.getlvl();}
+    private void updatelvl() { jeu.getlvl();}
 
     private void updateTime(){
         jeu.set_timer(jeu.get_timer() -1);
