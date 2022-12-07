@@ -187,7 +187,6 @@ public class Jeu {
 
 
     public void reset(){
-        write_maxscore();
         ordonnanceur.clear();
         map.clear();
         ControleColonne.resetb();
@@ -362,7 +361,10 @@ public class Jeu {
         return ordonnanceur;
     }
 
-
+    public int setVie(int a){
+        vie = a;
+        return vie;
+    }
     public int getlvl(){
         return lvl;
     }
