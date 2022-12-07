@@ -52,7 +52,6 @@ public class ControleColonne extends RealisateurDeDeplacement {
         return colonneR;
     }
 
-<<<<<<< HEAD
 
     /*public void setDirectionCourante(Direction _directionCourante) {
 
@@ -75,11 +74,6 @@ public class ControleColonne extends RealisateurDeDeplacement {
 
     public void setDirectionCourante(Direction _dir) {
         directionCourante = _dir;
-=======
-    public void setDirectionCourante(Direction _directionCourante) {
-                directionCourante = _directionCourante;
-
->>>>>>> 18ee38c795a2b810283a1d21edd5e5ddbda6f5c7
     }
 
 
