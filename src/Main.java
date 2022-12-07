@@ -12,7 +12,7 @@ import modele.plateau.Jeu;
 public class
 Main {
     public static void main(String[] args) {
-        Jeu jeu = new Jeu(3);
+        Jeu jeu = new Jeu(1);
         
         VueControleurGyromite vc = new VueControleurGyromite(jeu);
 
