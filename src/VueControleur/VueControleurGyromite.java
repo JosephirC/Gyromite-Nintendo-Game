@@ -70,6 +70,7 @@ public class VueControleurGyromite extends JFrame implements Observer {
 
     private AudioInputStream audioInputStream;
     private Clip clip;
+    private FloatControl gainControl;
 
     public VueControleurGyromite(Jeu _jeu) {
         sizeX = jeu.SIZE_X;
@@ -323,6 +324,8 @@ public class VueControleurGyromite extends JFrame implements Observer {
             audioInputStream = AudioSystem.getAudioInputStream(new File("Musique/gyromite-music.wav").getAbsoluteFile());
             clip = AudioSystem.getClip();
             clip.open(audioInputStream);
+            gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+            gainControl.setValue(-30.0f); // Reduit le volume de 30 decibels.
             clip.loop(Clip.LOOP_CONTINUOUSLY);
 
         } catch(IOException e){
@@ -351,8 +354,10 @@ public class VueControleurGyromite extends JFrame implements Observer {
 
     // chargement d'une sous partie de l'image
     private ImageIcon chargerIcone(String urlIcone, int x, int y, int w, int h) {
+
         // charger une sous partie de l'image à partir de ses coordonnées dans urlIcone
         BufferedImage bi = getSubImage(urlIcone, x, y, w, h);
+
         // adapter la taille de l'image a la taille du composant (ici : 20x20)
         return new ImageIcon(bi.getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH));
     }
