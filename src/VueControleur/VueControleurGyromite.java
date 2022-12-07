@@ -34,6 +34,8 @@ public class VueControleurGyromite extends JFrame implements Observer {
     JMenuItem score;
     JMenuItem max_score;
 
+    JMenuItem vie;
+
     // icones affichées dans la grille
     private ImageIcon icoHero;
     private ImageIcon icoBot;
@@ -126,19 +128,25 @@ public class VueControleurGyromite extends JFrame implements Observer {
 
     private void placerLesComposantsGraphiques() {
         JMenuBar menuBar = new JMenuBar();
-        Font font = new Font("Monospaced", Font.BOLD, 15);
-        score = new JMenuItem("Score : "+ jeu.getScore());
+        Font font = new Font("Monospaced", Font.BOLD, 14);
+        score = new JMenuItem("Score: "+ jeu.getScore());
         score.setFont(font);
         score.setForeground(Color.WHITE);
         score.setBackground(Color.BLACK);
         menuBar.add(score);
 
-        max_score = new JMenuItem("Max Score " + score);
+        vie = new JMenuItem("Vie: " + jeu.getVie());
+        vie.setFont(font);
+        vie.setForeground(Color.WHITE);
+        vie.setBackground(Color.BLACK);
+        menuBar.add(vie);
+
+
+        max_score = new JMenuItem("Max Score: " + jeu.getMax_score());
         max_score.setFont(font);
         max_score.setForeground(Color.WHITE);
         max_score.setBackground(Color.BLACK);
         menuBar.add(max_score);
-
 
 
         setJMenuBar(menuBar);
@@ -240,6 +248,8 @@ public class VueControleurGyromite extends JFrame implements Observer {
                 }
 
                 updateScore(jeu);
+                updateMaxScore(jeu);
+                updateVie(jeu);
             }
         }
     }
@@ -259,7 +269,15 @@ public class VueControleurGyromite extends JFrame implements Observer {
     }
 
     private void updateScore(Jeu jeu){
-        score.setText("Score : "+ jeu.getScore());
+        score.setText("Score: "+ jeu.getScore());
+    }
+
+    private void updateMaxScore(Jeu jeu){
+        max_score.setText("Max Score: "+ jeu.getMax_score());
+    }
+    private void updateVie(Jeu jeu){
+        vie.setText("Vie: "+ jeu.getVie());
+        jeu.est_fini_perd();
     }
 
     // chargement de l'image entière comme icone

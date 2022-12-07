@@ -12,6 +12,7 @@ public class IA extends RealisateurDeDeplacement {
             Entite edirection = e.regarderDansLaDirection(directionCourante);
             //System.out.println(directionCourante);
             if (e.estSur != null) {
+                //System.out.println("jsuislaaaaaaaaaaaaaaaaaaa");
                 if (e.estSur.peutPermettreDeMonterDescendre() && Math.random() >= 0.20) {
                     if (Math.random() < 0.5){
                         directionCourante = Direction.haut;
@@ -28,11 +29,13 @@ public class IA extends RealisateurDeDeplacement {
             }
 
             if (edirection == null || edirection.peutEtreTraverse() || edirection.peutMourir()) {
+                //System.out.println("jsuisici");
                 //System.out.println(edirection);
                 if (edirection instanceof Heros) ((EntiteVivante) edirection).vivant = false;
                 if (e.avancerDirectionChoisie(directionCourante))
                     ret = true;
             } else {
+                //System.out.println("jsuisla");
                 if (directionCourante == Direction.droite)
                     directionCourante = Direction.gauche;
                 else if (directionCourante == Direction.gauche)

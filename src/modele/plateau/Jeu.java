@@ -41,6 +41,7 @@ public class Jeu {
 
     private Bombe bombe;
 
+    public boolean fini = false;
     private HashMap<Entite, Point> map = new  HashMap<Entite, Point>(); // permet de récupérer la position d'une entité à partir de sa référence
     private Entite[][] grilleEntites = new Entite[SIZE_X][SIZE_Y]; // permet de récupérer une entité à partir de ses coordonnées
 
@@ -76,9 +77,15 @@ public class Jeu {
         return score;
     }
 
-    private void initialisationDesEntites() {
-        //addEntite(bombe, 5, 4);
+    public int getVie(){
+        return vie;
+    }
 
+    public int getMax_score(){
+        return max_score;
+    }
+
+    private void initialisationDesEntites() {
         try{
             Gravite g = new Gravite();
             IA ia = new IA();
@@ -147,7 +154,18 @@ public class Jeu {
         }
     }
 
-    public boolean fini(){
+    public boolean est_fini_perd(){
+        if (hector.vivant == false){
+            vie = vie-1;
+            hector.vivant = true;
+            System.out.println(vie);
+            if(vie == 0){
+                fini = true;
+            }
+        }
+        return true;
+    }
+    public boolean est_fini_gagne(){
         if(nb_bombes == 0){
             write_maxscore();
             return true;
@@ -172,45 +190,6 @@ public class Jeu {
 
         initialisationDesEntites();
         start(300);
-    }
-    /*
-    public void LevelFinished() {
-        if (niveau_courant <= NOMBRE_NIVEAU) {
-            nb_carotte = 3;
-            ordonnanceur.clear();
-            map.clear();
-            Controle4Directions.reset();
-            ControleColonne.reset();
-            ControleInteraction.reset();
-            initialisationDesEntites();
-        }
-    }*/
-    public void write_maxscore() {
-        if (score > max_score) {
-            max_score = score;
-            String smax_score = Integer.toString(max_score);
-            try {
-                FileWriter myWriter = new FileWriter("src/levels/max_score.txt");
-                myWriter.write(smax_score);
-                myWriter.close();
-                System.out.println("Successfully wrote to the file.");
-            } catch (IOException e) {
-                System.out.println("An error occurred.");
-                e.printStackTrace();
-            }
-        }
-    }
-
-    public void read_maxscore() throws IOException {
-        BufferedReader reader =new BufferedReader(new FileReader("src/levels/max_score.txt"));
-
-        String Int_line;
-
-        while ((Int_line = reader.readLine()) != null) {
-            int In_Value = Integer.parseInt(Int_line);
-            max_score = In_Value;// Print the Integer
-        }
-        System.out.println("Max score : " + max_score);
     }
 
     private void initialisationdunecolone(int x,int y, int col){
@@ -314,24 +293,14 @@ public class Jeu {
         }else if(objetALaPosition(pCible).peutEtreRamasse() && e.peutRamasser()){
             score = score + 100;
             nb_bombes--;
-            fini();
+            est_fini_gagne();
             Entite entiteBombe = objetALaPosition(pCible);
             supprimerEntite(entiteBombe, pCible.x, pCible.y);
             deplacerEntite(pCourant, pCible, e);
         }
-
-/*
-        else if (contenuDansGrille(pCible) && objetALaPosition(pCible).peutEtreTraverse()) {
-            hector.estSur = objetALaPosition(pCible);
-            hector.alapos = pCible;
-            hector.jeu.deplacerEntite(pCourant, pCible, hector);
-            addEntite(hector.estSur, hector.alapos.x, hector.alapos.y);
-        }
-*/
         if (retour) {
             deplacerEntite(pCourant, pCible, e);
         }
-
         return retour;
     }
 
@@ -355,36 +324,7 @@ public class Jeu {
         e.estSur = grilleEntites[pCible.x][pCible.y];
         grilleEntites[pCible.x][pCible.y] = e;
         map.put(e, pCible);
-
     }
-
-    /*public boolean ramassageEntite(Entite e, Direction d, Ramassage r){
-        boolean retour = false;
-        Point pCourant = map.get(e);
-        Point pCible = calculerPointCible(pCourant, d);
-        System.out.println("in");
-        if (contenuDansGrille(pCible)&& ( objetALaPosition(pCible) == null) || (objetALaPosition(pCible).peutEtreTraverse()
-                && (!objetALaPosition(pCible).peutEtreRamasse() || !e.peutRamasser()))) {
-            System.out.println("rammassage if 1");
-        }else if( contenuDansGrille(pCourant) && r == Ramassage.espace){
-            if( objetALaPosition(pCible).peutEtreRamasse() && e.peutRamasser() ){
-                System.out.println("je peux commencer le ramassage");
-            }
-        }
-        return retour;
-    }*/
-
-    // On verifie si la case cible est (null ou est traversable) et que la case courante est aussi traversable alors on affecte ce qui est traversable a la position courante
-        // SINON on affecte null
-        /*if(((contenuDansGrille(pCible) && objetALaPosition(pCible) == null) || contenuDansGrille(pCible) && objetALaPosition(pCible).peutEtreTraverse() ) && contenuDansGrille(pCourant) && objetALaPosition(pCourant).peutEtreTraverse()){
-            grilleEntites[pCourant.x][pCourant.y] = e.estSur;
-            System.out.println("aaa   "+e.estSur);
-        } else {
-            grilleEntites[pCourant.x][pCourant.y] = null;
-        }
-        grilleEntites[pCible.x][pCible.y] = e;
-        map.put(e, pCible);
-    }*/
     
     /** Indique si p est contenu dans la grille
      */
@@ -404,5 +344,33 @@ public class Jeu {
 
     public Ordonnanceur getOrdonnanceur() {
         return ordonnanceur;
+    }
+
+    public void write_maxscore() {
+        if (score > max_score) {
+            max_score = score;
+            String smax_score = Integer.toString(max_score);
+            try {
+                FileWriter myWriter = new FileWriter("src/levels/max_score.txt");
+                myWriter.write(smax_score);
+                myWriter.close();
+                System.out.println("Successfully wrote to the file.");
+            } catch (IOException e) {
+                System.out.println("An error occurred.");
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void read_maxscore() throws IOException {
+        BufferedReader reader =new BufferedReader(new FileReader("src/levels/max_score.txt"));
+
+        String Int_line;
+
+        while ((Int_line = reader.readLine()) != null) {
+            int In_Value = Integer.parseInt(Int_line);
+            max_score = In_Value;// Print the Integer
+        }
+        System.out.println("Max score : " + max_score);
     }
 }
