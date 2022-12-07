@@ -11,6 +11,7 @@ import java.util.Observer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import javax.sound.sampled.*;
 import javax.swing.*;
 
 import modele.deplacements.*;
@@ -31,10 +32,10 @@ public class VueControleurGyromite extends JFrame implements Observer {
     private int sizeX; // taille de la grille affichée
     private int sizeY;
 
-    JMenuItem score;
-    JMenuItem max_score;
+    private JMenuItem score;
+    private JMenuItem max_score;
 
-    JMenuItem vie;
+    private JMenuItem vie;
 
     private ImageIcon gameOverScreen;
 
@@ -67,6 +68,8 @@ public class VueControleurGyromite extends JFrame implements Observer {
 
     private JLabel[][] tabJLabel; // cases graphique (au moment du rafraichissement, chaque case va être associée à une icône, suivant ce qui est présent dans le modèle)
 
+    private AudioInputStream audioInputStream;
+    private Clip clip;
 
     public VueControleurGyromite(Jeu _jeu) {
         sizeX = jeu.SIZE_X;
@@ -75,6 +78,7 @@ public class VueControleurGyromite extends JFrame implements Observer {
 
         chargerLesIcones();
         placerLesComposantsGraphiques();
+        lireMusique();
         ajouterEcouteurClavier();
     }
 
@@ -311,6 +315,23 @@ public class VueControleurGyromite extends JFrame implements Observer {
         JLabel gameWinLabel = new JLabel(gameWinScreen);
         add(gameWinLabel);
 
+    }
+
+    private void lireMusique() {
+        try{
+
+            audioInputStream = AudioSystem.getAudioInputStream(new File("Musique/gyromite-music.wav").getAbsoluteFile());
+            clip = AudioSystem.getClip();
+            clip.open(audioInputStream);
+            clip.loop(Clip.LOOP_CONTINUOUSLY);
+
+        } catch(IOException e){
+            e.printStackTrace();
+        } catch(LineUnavailableException e){
+            e.printStackTrace();
+        } catch(UnsupportedAudioFileException e){
+            e.printStackTrace();
+        }
     }
 
     // chargement de l'image entière comme icone
