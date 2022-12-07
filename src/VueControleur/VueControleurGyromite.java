@@ -203,10 +203,7 @@ public class VueControleurGyromite extends JFrame implements Observer {
         for (int x = 0; x < sizeX; x++) {
             for (int y = 0; y < sizeY; y++) {
                 if (jeu.getGrille()[x][y] instanceof Heros) { // si la grille du modèle contient un Pacman, on associe l'icône Pacman du côté de la vue
-                    if (jeu.getVie() == 0){
-                        setGameOverScreen();
-                        jeu.set_est_fini();
-                    } else if (jeu.get_est_fini()){
+                    if (jeu.get_est_fini()){
                         setGameWinScreen();
                         jeu.set_est_fini();
 
@@ -310,8 +307,12 @@ public class VueControleurGyromite extends JFrame implements Observer {
     private void updateVie(Jeu jeu){
         vie.setText("Vie: "+ jeu.getVie());
         jeu.est_fini_perd();
-        if(jeu.getVie() == 0)
+        if(jeu.getVie() == 0){
+            setGameOverScreen();
             clip.stop();
+            jeu.set_est_fini();
+        }
+
     }
 
     private void updatelvl(Jeu jeu) { jeu.getlvl();}
