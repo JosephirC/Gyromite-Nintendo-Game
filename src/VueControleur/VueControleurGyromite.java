@@ -145,7 +145,8 @@ public class VueControleurGyromite extends JFrame implements Observer {
 
     private void placerLesComposantsGraphiques() {
         JMenuBar menuBar = new JMenuBar();
-        Font font = new Font("Monospaced", Font.BOLD, 10);
+        Font font = new Font("Monospaced", Font.BOLD, 11);
+
         score = new JMenuItem("Score: "+ jeu.getScore());
         score.setFont(font);
         score.setForeground(Color.WHITE);
@@ -176,7 +177,7 @@ public class VueControleurGyromite extends JFrame implements Observer {
 
         setTitle("Gyromite");
         //setSize(sizeX*titlesize, sizeY*titlesize);
-        setSize(380, 230);
+        setSize(379, 230);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // permet de terminer l'application à la fermeture de la fenêtre
 
         JComponent grilleJLabels = new JPanel(new GridLayout(sizeY, sizeX)); // grilleJLabels va contenir les cases graphiques et les positionner sous la forme d'une grille
