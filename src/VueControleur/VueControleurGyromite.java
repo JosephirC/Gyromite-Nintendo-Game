@@ -102,7 +102,7 @@ public class VueControleurGyromite extends JFrame implements Observer {
                     case KeyEvent.VK_X: ControleColonne.getInstanceRouge().setDirectionCourante(Direction.haut); break;
                     case KeyEvent.VK_C: ControleColonne.getInstanceRouge().setDirectionCourante(Direction.bas); break;
                     case KeyEvent.VK_R: jeu.resetlvl(); break;
-
+                    case KeyEvent.VK_ENTER:
                     case KeyEvent.VK_SHIFT:
                         System.out.println('\n');
                     /*case KeyEvent.VK_ESCAPE :

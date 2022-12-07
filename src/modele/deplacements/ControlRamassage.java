@@ -2,16 +2,16 @@ package modele.deplacements;
 
 import modele.plateau.EntiteDynamique;
 
-public class InteractionRamassage extends RealisateurDeDeplacement{
+public class ControlRamassage extends RealisateurDeDeplacement{
 
     private Direction directionCourante;
     Ramassage ramassageObjet;
 
-    private static InteractionRamassage ir;
+    private static ControlRamassage ir;
 
-    public static InteractionRamassage getInstance(){
+    public static ControlRamassage getInstance(){
         if(ir == null){
-            ir = new InteractionRamassage();
+            ir = new ControlRamassage();
         }
         return ir;
     }
@@ -43,6 +43,22 @@ public class InteractionRamassage extends RealisateurDeDeplacement{
             }
         }
         */
+
+        /*
+         for (EntiteDynamique e : lstEntitesDynamiques){
+            if (directionCourante != null){
+                if(e.avancerDirectionChoisie(directionCourante)) {
+                    //System.out.println("Dir cour de la colonne " + e + directionCourante);
+                    e.ramasserDirectionChoisie(directionCourante, r);
+                    ret = true;
+                }
+            }*/
+
+
+
+
+
+
         return ret;
     }
 

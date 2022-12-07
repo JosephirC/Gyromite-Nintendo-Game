@@ -28,6 +28,8 @@ public class Jeu {
     private int score = 0;
     private int vie = 3;
 
+    private int nb_radis =0;
+
     // compteur de déplacements horizontal et vertical (1 max par défaut, à chaque pas de temps)
     private HashMap<Entite, Integer> cmptDeplH = new HashMap<Entite, Integer>();
     private HashMap<Entite, Integer> cmptDeplV = new HashMap<Entite, Integer>();
@@ -189,6 +191,14 @@ public class Jeu {
         return false;
     }
 
+    public boolean peut_mettre_radis(){
+        if(nb_radis == 1   ){
+
+
+        }
+        return true;
+    }
+
 
     public void reset(){
         ordonnanceur.clear();
@@ -316,8 +326,13 @@ public class Jeu {
             Entite entiteBombe = objetALaPosition(pCible);
             supprimerEntite(entiteBombe, pCible.x, pCible.y);
             deplacerEntite(pCourant, pCible, e);
-        } else if(objetALaPosition(pCible).peutEtreRamasse() && !e.peutRamasser()){
+        } else if(objetALaPosition(pCible).peutEtreRamasse() &&  objetALaPosition(pCible).peutDistraire()){
             System.out.println("RADISS");
+            nb_radis++;
+            Entite eRadis = objetALaPosition(pCible);
+            supprimerEntite(eRadis, pCible.x, pCible.y);
+            deplacerEntite(pCourant, pCible, e);
+
         }
         if (retour) {
             deplacerEntite(pCourant, pCible, e);
@@ -408,4 +423,10 @@ public class Jeu {
             max_score = In_Value;// Print the Integer
         }
     }
+
+
+    /*public boolean ramassageEntite(EntiteDynamique ed, Direction d, Ramassage r){
+        System.out.println("radi?");
+        return true;
+    }*/
 }
