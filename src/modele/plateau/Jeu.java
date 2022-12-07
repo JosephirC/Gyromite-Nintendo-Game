@@ -200,6 +200,7 @@ public class Jeu {
     }
 
 
+
     public void reset(){
         ordonnanceur.clear();
         map.clear();

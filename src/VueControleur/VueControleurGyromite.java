@@ -368,10 +368,6 @@ public class VueControleurGyromite extends JFrame implements Observer {
         setSize(379, 230);
         repaint();
         setVisible(true);
-
-
-
-
     }
 
     public void setGameWinScreen() {
@@ -382,7 +378,6 @@ public class VueControleurGyromite extends JFrame implements Observer {
         setSize(379, 230);
         repaint();
         setVisible(true);
-
     }
 
     private void lireMusique() {
