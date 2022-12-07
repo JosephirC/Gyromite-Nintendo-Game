@@ -36,6 +36,10 @@ public class VueControleurGyromite extends JFrame implements Observer {
 
     JMenuItem vie;
 
+    private ImageIcon gameOverScreen;
+
+    private ImageIcon gameWinScreen;
+
     // icones affichées dans la grille
     private ImageIcon icoHero;
     private ImageIcon icoBot;
@@ -87,19 +91,22 @@ public class VueControleurGyromite extends JFrame implements Observer {
                     case KeyEvent.VK_D: ControleColonne.getInstanceBleu().setDirectionCourante(Direction.bas); break;
                     case KeyEvent.VK_X: ControleColonne.getInstanceRouge().setDirectionCourante(Direction.haut); break;
                     case KeyEvent.VK_C: ControleColonne.getInstanceRouge().setDirectionCourante(Direction.bas); break;
+                    case KeyEvent.VK_R: jeu.resetlvl(); break;
                     case KeyEvent.VK_SHIFT:
                         System.out.println('\n');
                     /*case KeyEvent.VK_ESCAPE :
                         InteractionRamassage.getInstance().setRamassage(Ramassage.espace, Controle4Directions.getInstance().getDirection());
                         break;*/
+                        gameOverScreen = chargerIcone("Images/game-over.png", 0, 0, 512,301);
+                        gameWinScreen = chargerIcone("Images/game-win.png");
                 }
             }
         });
     }
 
     private void chargerLesIcones() {
-        icoHero = chargerIcone("Images/player_ca.png", 0, 0, 32, 44);
-        icoBot = chargerIcone("Images/smick_ca.png", 0, 0, 35, 40);//chargerIcone("Images/Pacman.png");
+        icoHero = chargerIcone("Images/sprites.png", 0, 0, 25, 25);
+        icoBot = chargerIcone("Images/sprites.png", 0, 140, 25, 25);//chargerIcone("Images/Pacman.png");
 
         icoVide = chargerIcone("Images/bg.png");
 
@@ -123,7 +130,8 @@ public class VueControleurGyromite extends JFrame implements Observer {
         icoBrique = chargerIcone("Images/tileset.png", 32,0,16,16);
         icoCorde = chargerIcone("Images/tileset.png", 16, 0, 16, 16);
 
-        icoBombe = chargerIcone("Images/bomb_ca.png", 64, 0, 64, 64);
+        icoBombe = chargerIcone("Images/sprites.png", 0, 250, 25, 25);
+
     }
 
     private void placerLesComposantsGraphiques() {
@@ -250,6 +258,13 @@ public class VueControleurGyromite extends JFrame implements Observer {
                 updateScore(jeu);
                 updateMaxScore(jeu);
                 updateVie(jeu);
+                updatelvl(jeu);
+                if (jeu.getVie() == 0){
+                    setGameOverScreen();
+                }
+                if (jeu.jeu_fini){
+                    setGameWinScreen();
+                }
             }
         }
     }
@@ -278,6 +293,24 @@ public class VueControleurGyromite extends JFrame implements Observer {
     private void updateVie(Jeu jeu){
         vie.setText("Vie: "+ jeu.getVie());
         jeu.est_fini_perd();
+    }
+
+    private void updatelvl(Jeu jeu) { jeu.getlvl();}
+
+    public void setGameOverScreen() {
+        getContentPane().removeAll();
+        getContentPane().setBackground(Color.black);
+        JLabel gameOverLabel = new JLabel(gameOverScreen);
+        add(gameOverLabel);
+
+    }
+
+    public void setGameWinScreen() {
+        getContentPane().removeAll();
+        getContentPane().setBackground(Color.black);
+        JLabel gameWinLabel = new JLabel(gameWinScreen);
+        add(gameWinLabel);
+
     }
 
     // chargement de l'image entière comme icone

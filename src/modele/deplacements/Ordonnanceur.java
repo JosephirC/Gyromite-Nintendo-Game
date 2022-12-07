@@ -32,7 +32,7 @@ public class Ordonnanceur extends Observable implements Runnable {
     public void run() {
         boolean update = false;
 
-        while(!jeu.fini) {
+        while(true) {
             jeu.resetCmptDepl();
             for (RealisateurDeDeplacement d : lstDeplacements) {
                 if (d.realiserDeplacement())
@@ -53,13 +53,14 @@ public class Ordonnanceur extends Observable implements Runnable {
                 e.printStackTrace();
             }
             if (jeu.est_fini_gagne()){
-                System.out.println(jeu.lvl);
+                break;
+            }
+            if (jeu.fini){
                 break;
             }
         }
 
         if (jeu.est_fini_gagne()){
-            System.out.println("t'as win");
             jeu.lvlfini();
         }
     }
