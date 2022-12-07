@@ -1,8 +1,8 @@
 bbbbbbbbbbbbbbbbbbbb/
 bccccc____________hb/
-bcc_cc___l__pccccmmb/
-bc___c_____c____cmib/
-bcp___L_____cmp_c__b/
+bcc_cc___l__p___mmmb/
+bc___c__________cpib/
+bcp__cL_____cmp_c__b/
 bcmm_c______c_m_c__b/
 bpmmcc_mmmmmmmmmmmmb/
 b_mmc______________b/
