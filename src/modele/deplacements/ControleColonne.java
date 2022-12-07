@@ -107,7 +107,7 @@ public class ControleColonne extends RealisateurDeDeplacement {
                                             if (ehaut.peutMourir()) {
                                                 Entite ehauthaut = ((EntiteDynamique) ehaut).regarderDansLaDirection(Direction.haut);
                                                 if (ehauthaut != null)
-                                                    ((EntiteVivante) ehaut).vivant = false;
+                                                    ((EntiteVivante) ehaut).setVivant(false);
                                                 else {
                                                     ((EntiteVivante) ehaut).avancerDirectionChoisie(Direction.haut);
                                                     if (e.avancerDirectionChoisie(Direction.haut))
@@ -135,7 +135,7 @@ public class ControleColonne extends RealisateurDeDeplacement {
                                         if (ebas.peutMourir()) {
                                             Entite ehauthaut = ((EntiteDynamique) ebas).regarderDansLaDirection(Direction.haut);
                                             if (ehauthaut != null) {
-                                                ((EntiteVivante) ebas).vivant = false;
+                                                ((EntiteVivante) ebas).setVivant(false);
                                             } else {
                                                 ((EntiteVivante) ebas).avancerDirectionChoisie(Direction.haut);
                                                 if (e.avancerDirectionChoisie(Direction.haut))
