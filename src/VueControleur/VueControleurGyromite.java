@@ -379,6 +379,9 @@ public class VueControleurGyromite extends JFrame implements Observer {
         getContentPane().setBackground(Color.black);
         JLabel gameWinLabel = new JLabel(gameWinScreen);
         add(gameWinLabel);
+        setSize(379, 230);
+        repaint();
+        setVisible(true);
 
     }
 

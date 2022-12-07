@@ -5,4 +5,5 @@ public abstract class EntiteEnnemi extends EntiteVivante{
         super(_jeu);
     }
     /* pour ajout de plusieurs ennemi possible dans le futur*/
+
 }

@@ -171,9 +171,9 @@ public class Jeu {
         return time;
     }
     public boolean est_fini_perd(){
-        if (hector.vivant == false){
+        if (hector.getVivant() == false){
             vie = vie-1;
-            hector.vivant = true;
+            hector.setVivant(true);
             if(vie == 0){
                 write_maxscore();
                 fini = true;
