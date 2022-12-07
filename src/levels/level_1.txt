@@ -2,9 +2,9 @@ bbbbbbbbbbbbbbbbbbbb/
 bhL_c__L_c________cb/
 b__pc____c____l___cb/
 bm_mpmm_mc_mmm_cmmcb/
-b__mmmm_mpm____c__cb/
-b_____c_mmmp___c__cb/
-b_____cmmmmmmmmmmmcb/
+bm_mmmm_mpm____c__cb/
+bm____c_mmmp___c__cb/
+bmmmmmcmmmmmmmmmmmcb/
 b_____c___________cb/
 bp__p_c__________icb/
 bbbbbbbbbbbbbbbbbbbb/
