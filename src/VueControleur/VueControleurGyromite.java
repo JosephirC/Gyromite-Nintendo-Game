@@ -248,6 +248,8 @@ public class VueControleurGyromite extends JFrame implements Observer {
                 }
 
                 updateScore(jeu);
+                updateMaxScore(jeu);
+                updateVie(jeu);
             }
         }
     }
@@ -267,7 +269,15 @@ public class VueControleurGyromite extends JFrame implements Observer {
     }
 
     private void updateScore(Jeu jeu){
-        score.setText("Score : "+ jeu.getScore());
+        score.setText("Score: "+ jeu.getScore());
+    }
+
+    private void updateMaxScore(Jeu jeu){
+        max_score.setText("Max Score: "+ jeu.getMax_score());
+    }
+    private void updateVie(Jeu jeu){
+        vie.setText("Vie: "+ jeu.getVie());
+        jeu.est_fini_perd();
     }
 
     // chargement de l'image entière comme icone

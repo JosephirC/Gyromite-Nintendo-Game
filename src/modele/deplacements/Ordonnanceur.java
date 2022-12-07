@@ -57,8 +57,7 @@ public class Ordonnanceur extends Observable implements Runnable {
                 break;
             }
         }
-        if (!jeu.getHector().vivant)
-        System.out.println("t'es mort");
+
         if (jeu.est_fini_gagne()){
             System.out.println("t'as win");
             jeu.lvlfini();
