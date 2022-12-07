@@ -310,6 +310,8 @@ public class VueControleurGyromite extends JFrame implements Observer {
     private void updateVie(Jeu jeu){
         vie.setText("Vie: "+ jeu.getVie());
         jeu.est_fini_perd();
+        if(jeu.getVie() == 0)
+            clip.stop();
     }
 
     private void updatelvl(Jeu jeu) { jeu.getlvl();}
