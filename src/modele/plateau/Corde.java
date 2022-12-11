@@ -13,7 +13,12 @@ public class Corde extends EntiteStatique {
     public boolean peutEtreRamasse() { return false; }
 
     @Override
-    public boolean peutDistraire() {
+    public boolean peutRamasser() {
         return false;
     }
+
+    /*@Override
+    public boolean peutDistraire() {
+        return false;
+    }*/
 }

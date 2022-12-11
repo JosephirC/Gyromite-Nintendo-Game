@@ -27,11 +27,11 @@ public class Heros extends EntiteVivante {
 
     public  boolean peutRamasser(){ return true; }
 
-    @Override
+    /*@Override
     public boolean peutDistraire() {
         return false;
     }
-
+*/
    /* public void est_face_a(modele.plateau.Bot bot){
         System.out.println("Mort");
     }
