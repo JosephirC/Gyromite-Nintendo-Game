@@ -88,6 +88,10 @@ public class VueControleurGyromite extends JFrame implements Observer {
         ajouterEcouteurClavier();
     }
 
+    /**
+     * @fn void ajouterEcouteurClavier()
+     * @brief permet interaction au clavier
+     */
     private void ajouterEcouteurClavier() {
         addKeyListener(new KeyAdapter() { // new KeyAdapter() { ... } est une instance de classe anonyme, il s'agit d'un objet qui correspond au controleur dans MVC
             @Override
@@ -113,6 +117,10 @@ public class VueControleurGyromite extends JFrame implements Observer {
         });
     }
 
+    /**
+     * @fn void chargerLesIcones()
+     * @brief permet de charger Les Icones
+     */
     private void chargerLesIcones() {
         icoHero = chargerIcone("Images/sprites.png", 0, 0, 25, 25);
         icoBot = chargerIcone("Images/sprites.png", 0, 140, 25, 25);//chargerIcone("Images/Pacman.png");
@@ -147,6 +155,10 @@ public class VueControleurGyromite extends JFrame implements Observer {
 
     }
 
+    /**
+     * @fn void placerLesComposantsGraphiques()
+     * @brief permet de placer Les Composants Graphiques
+     */
     private void placerLesComposantsGraphiques() {
         JMenuBar menuBar = new JMenuBar();
         Font font = new Font("Monospaced", Font.BOLD, 11);
@@ -364,7 +376,10 @@ public class VueControleurGyromite extends JFrame implements Observer {
         timer.setText("T: "+ jeu.get_timer());
 
     }
-
+    /**
+     * @fn void setGameOverScreen()
+     * @brief affiche l'ecran de defaite
+     */
     public void setGameOverScreen() {
         getContentPane().removeAll();
         getContentPane().setBackground(Color.black);
@@ -374,7 +389,10 @@ public class VueControleurGyromite extends JFrame implements Observer {
         repaint();
         setVisible(true);
     }
-
+    /**
+     * @fn void setGameWinScreen()
+     * @brief affiche l'ecran de victoire
+     */
     public void setGameWinScreen() {
         getContentPane().removeAll();
         getContentPane().setBackground(Color.black);
@@ -384,7 +402,10 @@ public class VueControleurGyromite extends JFrame implements Observer {
         repaint();
         setVisible(true);
     }
-
+    /**
+     * @fn void lireMusique()
+     * @brief permet de lire la musique
+     */
     private void lireMusique() {
         try{
 
