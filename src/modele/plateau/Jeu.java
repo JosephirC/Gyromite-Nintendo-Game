@@ -77,20 +77,34 @@ public class Jeu {
     public Bot getSmick() {
         return smick;
     }
-
+    /**
+     * @fn int getScore()
+     * @brief getter getScore
+     * @return score
+     */
     public int getScore(){
         return score;
     }
-
+    /**
+     * @fn int getVie()
+     * @brief getter getVie
+     * @return vie
+     */
     public int getVie(){
         return vie;
     }
-
-    private int Max_lvl;
+    /**
+     * @fn int getMax_score()
+     * @brief getter max_score
+     * @return max_score
+     */
     public int getMax_score(){
         return max_score;
     }
-
+  /**
+  * @fn initialisationDesEntites()
+  * @brief Fonction qui lit un fichier texte, puis en fonction des caractères lu sur celui si, places les entités sur le terrain
+  */
     private void initialisationDesEntites() {
         try{
             Gravite g = new Gravite();
@@ -164,14 +178,28 @@ public class Jeu {
             throw new RuntimeException(e);
         }
     }
+    /**
+     * @fn int set_timer(int timer)
+     * @brief setter du timer
+     * @param timer : int
+     * @return time : int
+     */
     public int set_timer(int timer){
         time = timer;
         return time;
     }
-
+    /**
+     * @fn int get_timer()
+     * @brief getter du timer
+     * @return time
+     */
     public int get_timer(){
         return time;
     }
+    /**
+     * @fn boolean est_fini_perd()
+     * @brief si hector n'a plus de vie alors il perd
+     */
     public boolean est_fini_perd(){
         if (hector.getVivant() == false){
             vie = vie-1;
@@ -183,6 +211,10 @@ public class Jeu {
         }
         return true;
     }
+    /**
+     * @fn boolean est_fini_gagne()
+     * @brief si il ne reste plus de bombe alors hector gagne, et on ecrit le score avec write_maxscore();
+     */
     public boolean est_fini_gagne(){
         if(nb_bombes == 0){
             write_maxscore();
@@ -200,7 +232,10 @@ public class Jeu {
     }
 
 
-
+    /**
+     * @fn void reset()
+     * @brief fonction qui réinitialise les entités
+     */
     public void reset(){
         ordonnanceur.clear();
         map.clear();
@@ -215,13 +250,19 @@ public class Jeu {
             }
         }
     }
-
+    /**
+     * @fn void resetlvl()
+     * @brief fonction qui réinitialise le niveau
+     */
     public void resetlvl(){
         reset();
         initialisationDesEntites();
-        start(300);
     }
-
+    /**
+     * @fn void lvlfini()
+     * @brief fonction qui réinitialise le niveau quand il est fini et qui incrémente le niveau actuelle à jouer,
+     * si il n'y a plus de niveau alors il affiche l'écran de victoire, et affiche dans la console qu'il n'y a plus de lvl.
+     */
     public void lvlfini(){
         reset();
         if (lvl < 3)
@@ -392,23 +433,45 @@ public class Jeu {
     public Ordonnanceur getOrdonnanceur() {
         return ordonnanceur;
     }
-
+    /**
+     * @fn int setVie(int a)
+     * @brief setter vie
+     * @param a : int
+     * @return vie
+     */
     public int setVie(int a){
         vie = a;
         return vie;
     }
+    /**
+     * @fn int getlvl()
+     * @brief getter getlvl
+     * @return lvl
+     */
     public int getlvl(){
         return lvl;
     }
-
+    /**
+     * @fn get_est_fini()
+     * @brief getter jeu_fini
+     * @return jeu_fini
+     */
     public boolean get_est_fini(){
         return  jeu_fini;
     }
-
+    /**
+     * @fn set_est_fini()
+     * @brief setter jeu_fini
+     * @return jeu_fini
+     */
     public boolean set_est_fini(){
         jeu_fini = true;
         return jeu_fini;
     }
+    /**
+     * @fn void write_maxscore()
+     * @brief écrit les entier du fichier maxscore.txt
+     */
     public void write_maxscore() {
         score = score + time;
         if (score > max_score) {
@@ -423,7 +486,10 @@ public class Jeu {
             }
         }
     }
-
+    /**
+     * @fn void read_maxscore()
+     * @brief lis les entier du fichier maxscore.txt
+     */
     public void read_maxscore() throws IOException {
         BufferedReader reader =new BufferedReader(new FileReader("src/levels/max_score.txt"));
 
