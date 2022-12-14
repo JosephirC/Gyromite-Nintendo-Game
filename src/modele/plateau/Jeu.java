@@ -486,7 +486,7 @@ public class Jeu {
      * @return vie 0
      */
     public int resetVie(){
-        vie = 0;
+        vie = 3;
         return vie;
     }
     public boolean get_est_fini(){
