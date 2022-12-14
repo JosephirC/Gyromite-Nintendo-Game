@@ -345,11 +345,6 @@ public class Jeu {
         
         Point pCible = calculerPointCible(pCourant, d);
 
-        if(e instanceof Heros){
-            System.out.println("a pCourant je suis " + objetALaPosition(pCourant) + " et a pCible je suis " + objetALaPosition(pCible));
-
-        }
-
     /*
     Si (je suis null) ou si (je peux etre traverser ET (si je ne peux pas etre ramasser ou si je ne peux pas ramasser ))
      */
@@ -375,7 +370,6 @@ public class Jeu {
                     break;
             }
         }else if(objetALaPosition(pCible).peutEtreRamasse() && e.peutRamasser() && !objetALaPosition(pCible).peutDistraire()){
-            System.out.println("je suis une bombe ?");
             score = score + 100;
             nb_bombes--;
             est_fini_gagne();
@@ -383,7 +377,6 @@ public class Jeu {
             supprimerEntite(entiteBombe, pCible.x, pCible.y);
             deplacerEntite(pCourant, pCible, e);
             } else if(objetALaPosition(pCible).peutEtreRamasse() &&  objetALaPosition(pCible).peutDistraire()){
-                System.out.println("RADISS");
                 nb_radis++;
                 Entite eRadis = objetALaPosition(pCible);
                 supprimerEntite(eRadis, pCible.x, pCible.y);
@@ -540,10 +533,4 @@ public class Jeu {
             max_score = In_Value;// Print the Integer
         }
     }
-
-
-    /*public boolean ramassageEntite(EntiteDynamique ed, Direction d, Ramassage r){
-        System.out.println("radi?");
-        return true;
-    }*/
 }
