@@ -33,6 +33,7 @@ public abstract class Entite {
      */
     public abstract boolean peutPermettreDeMonterDescendre(); // si utilisation de corde (attention, l'environnement ne peut pour l'instant sotker qu'une entité par case (si corde : 2 nécessaires), améliorations à prévoir)
     //public abstract boolean peutSeDeplacer(); // permet de deplacer une colonne
+
     /**
      * @fn peutMourir()
      * @return false
@@ -46,6 +47,7 @@ public abstract class Entite {
      * @fn peutRamasser()
      */
     public abstract boolean peutRamasser();
-    //public abstract boolean peutDistraire();
+
+    public abstract boolean peutDistraire();
 
 }

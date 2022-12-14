@@ -5,11 +5,9 @@ public class Mur extends EntiteStatique {
         super(_jeu);
         brique = b;
     }
-
     public boolean brique;
 
-
-    //public boolean peutPermettreDeMonterDescendre() { return false; }
+    public boolean peutPermettreDeMonterDescendre() { return false; }
     //public boolean peutSeDeplacer() { return false; }
     public boolean peutEtreTraverse(){ return false; }
     public boolean peutEtreRamasse(){return false;}
@@ -19,9 +17,8 @@ public class Mur extends EntiteStatique {
         return false;
     }
 
-    /*@Override
-    public boolean peutDistraire() {
-        return false;
-    }
-*/
+
+    @Override
+    public boolean peutDistraire() { return false; }
+
 }

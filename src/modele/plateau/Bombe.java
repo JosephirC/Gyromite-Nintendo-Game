@@ -5,9 +5,13 @@ public class Bombe extends EntiteRamassable{
         super(_jeu);
     }
 
-    @Override
-    public boolean peutRamasser() {
-        return false;
-    }
-    //public boolean peutDistraire () { return false;}
+    public boolean peutDistraire () { return false;}
+
+
+
+
+
+
+
+
 }

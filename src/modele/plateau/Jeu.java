@@ -161,11 +161,11 @@ public class Jeu {
                         x++;
                         break;
                     case 'l':
-                        initialisationdunecolone(x, y, 0, Direction.bas);
+                        initialisationdunecolone(x, y, 0);
                         x++;
                         break;
                     case 'L':
-                        initialisationdunecolone(x, y, 1, Direction.bas);
+                        initialisationdunecolone(x, y, 1);
                         x++;
                         break;
                 }
@@ -231,7 +231,6 @@ public class Jeu {
         return true;
     }
 
-
     /**
      * @fn void reset()
      * @brief fonction qui réinitialise les entités
@@ -239,8 +238,8 @@ public class Jeu {
     public void reset(){
         ordonnanceur.clear();
         map.clear();
-        ControleColonne.reset();
-        //ControleColonne.resetr();
+        ControleColonne.resetColBleu();
+        ControleColonne.resetColRouge();
         Controle4Directions.reset();
         cmptDeplH.clear();
         cmptDeplV.clear();
@@ -276,46 +275,41 @@ public class Jeu {
         start(300);
     }
 
-    private void initialisationdunecolone(int x,int y,int n,Direction dir){
-
+    private void initialisationdunecolone(int x,int y,int n){
 
         if (n == 0 ) {
             y=y-1;
-            Colonne col1 = new Colonne(this, y + 1, 1, dir, n);
-            Colonne col2 = new Colonne(this, y + 1, 2, dir, n);
-            Colonne col3 = new Colonne(this, y + 1, 3, dir, n);
+            Colonne col1 = new Colonne(this, y + 1, 1, n);
+            Colonne col2 = new Colonne(this, y + 1, 2, n);
+            Colonne col3 = new Colonne(this, y + 1, 3, n);
 
             addEntite(col1, x, y + 1);
             addEntite(col2, x, y + 2);
             addEntite(col3, x, y + 3);
 
-            ControleColonne.getInstanceB().addEntiteDynamique(col1);
-            ControleColonne.getInstanceB().addEntiteDynamique(col2);
-            ControleColonne.getInstanceB().addEntiteDynamique(col3);
-            ordonnanceur.add(ControleColonne.getInstanceB());
+            ControleColonne.getInstanceBleu().addEntiteDynamique(col1);
+            ControleColonne.getInstanceBleu().addEntiteDynamique(col2);
+            ControleColonne.getInstanceBleu().addEntiteDynamique(col3);
+            ordonnanceur.add(ControleColonne.getInstanceBleu());
 
         }
 
         if (n == 1 ) {
             y=y-1;
-            Colonne col1 = new Colonne(this, y + 1, 1, dir, n);
-            Colonne col2 = new Colonne(this, y + 1, 2, dir, n);
-            Colonne col3 = new Colonne(this, y + 1, 3, dir, n);
+            Colonne col1 = new Colonne(this, y + 1, 1,n);
+            Colonne col2 = new Colonne(this, y + 1, 2, n);
+            Colonne col3 = new Colonne(this, y + 1, 3, n);
 
             addEntite(col1, x, y + 1);
             addEntite(col2, x, y + 2);
             addEntite(col3, x, y + 3);
 
-            ControleColonne.getInstanceR().addEntiteDynamique(col1);
-            ControleColonne.getInstanceR().addEntiteDynamique(col2);
-            ControleColonne.getInstanceR().addEntiteDynamique(col3);
-            ordonnanceur.add(ControleColonne.getInstanceR());
+            ControleColonne.getInstanceRouge().addEntiteDynamique(col1);
+            ControleColonne.getInstanceRouge().addEntiteDynamique(col2);
+            ControleColonne.getInstanceRouge().addEntiteDynamique(col3);
+            ordonnanceur.add(ControleColonne.getInstanceRouge());
 
         }
-
-
-
-
     }
 
     private void addEntite(Entite e, int x, int y) {
@@ -347,10 +341,15 @@ public class Jeu {
         
         Point pCible = calculerPointCible(pCourant, d);
 
+        if(e instanceof Heros){
+            System.out.println("a pCourant je suis " + objetALaPosition(pCourant) + " et a pCible je suis " + objetALaPosition(pCible));
+
+        }
+
     /*
     Si (je suis null) ou si (je peux etre traverser ET (si je ne peux pas etre ramasser ou si je ne peux pas ramasser ))
      */
-        if ( (/*contenuDansGrille(pCible)&& */( objetALaPosition(pCible) == null) )|| (objetALaPosition(pCible).peutEtreTraverse() /*&& (!objetALaPosition(pCible).peutEtreRamasse() || !e.peutRamasser())*/)) {
+        if ( (contenuDansGrille(pCible)&& ( objetALaPosition(pCible) == null) )|| (objetALaPosition(pCible).peutEtreTraverse() && (!objetALaPosition(pCible).peutEtreRamasse() || !e.peutRamasser()))) {
 
             // a adapter (collisions murs, etc.)
             // compter le déplacement : 1 deplacement horizontal et vertical max par pas de temps par entité
@@ -371,21 +370,25 @@ public class Jeu {
                     }
                     break;
             }
-        }else if(objetALaPosition(pCible).peutEtreRamasse() && e.peutRamasser() /*&& !objetALaPosition(pCible).peutDistraire()*/ ){
+        }else if(objetALaPosition(pCible).peutEtreRamasse() && e.peutRamasser() && !objetALaPosition(pCible).peutDistraire()){
+            System.out.println("je suis une bombe ?");
             score = score + 100;
             nb_bombes--;
             est_fini_gagne();
             Entite entiteBombe = objetALaPosition(pCible);
             supprimerEntite(entiteBombe, pCible.x, pCible.y);
             deplacerEntite(pCourant, pCible, e);
-        } /*else if(objetALaPosition(pCible).peutEtreRamasse() &&  objetALaPosition(pCible).peutDistraire()){
-            System.out.println("RADISS");
-            nb_radis++;
-            Entite eRadis = objetALaPosition(pCible);
-            supprimerEntite(eRadis, pCible.x, pCible.y);
-            deplacerEntite(pCourant, pCible, e);
+            } /*else if(objetALaPosition(pCible).peutEtreRamasse() &&  objetALaPosition(pCible).peutDistraire()){
+                System.out.println("RADISS");
+                nb_radis++;
+                Entite eRadis = objetALaPosition(pCible);
+                supprimerEntite(eRadis, pCible.x, pCible.y);
+                deplacerEntite(pCourant, pCible, e);
 
-        }*/
+            }*/
+            else if(objetALaPosition(pCible) instanceof  Bombe){
+            System.out.println("bomba");
+        }
         if (retour) {
             deplacerEntite(pCourant, pCible, e);
         }

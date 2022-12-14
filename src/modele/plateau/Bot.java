@@ -16,17 +16,19 @@ public class Bot extends EntiteEnnemi {
     public Bot(Jeu _jeu) {
         super(_jeu);
     }
-    public boolean peutSeDeplacer() { return false; }
     public boolean peutEtreRamasse(){return false;}
-
     @Override
     public boolean peutRamasser() {
         return false;
     }
+    public boolean peutServirDeSupport() { return true; }
+    public boolean peutPermettreDeMonterDescendre() { return false; }
+    public boolean peutEtreTraverse(){ return false; }
 
-    /*@Override
-    public boolean peutDistraire() {
-        return false;
-    }*/
+
+
+
+    @Override
+    public boolean peutDistraire() { return false; }
 
 }
