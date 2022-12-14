@@ -1,20 +1,11 @@
 bbbbbbbbbbbbbbbbbbbb/
 b___c____c_______hcb/
 b___c_r__c________cb/
-<<<<<<< HEAD
 b___pmmmmc_mmlLcmmcb/
 b_L_mmm_mpm____c__cb/
 b_____c_mmmp___c__cb/
 b___mmcmmmmmm__mmmcb/
 b_____c___________cb/
 bp__p___________pi_b/
-=======
-bmlmpmmcmc__mmLcmmcb/
-bc_mmmmcmpm____c__cb/
-bc___ccmmmp_c_c__cb/
-bc_mmmcmmmmmmc_mmmcb/
-bc____c______c____cb/
-bcp_p________c__picb/
->>>>>>> 3a8589a5c7f2f035d250074a0c85969fdc008b82
 bbbbbbbbbbbbbbbbbbbb/
 
