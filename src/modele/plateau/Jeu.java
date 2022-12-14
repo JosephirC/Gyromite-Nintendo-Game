@@ -257,6 +257,7 @@ public class Jeu {
         reset();
         resetScore();
         resetBombe();
+        resetVie();
         initialisationDesEntites();
     }
     /**
@@ -480,6 +481,15 @@ public class Jeu {
     public int resetBombe(){
         nb_bombes = 0;
         return nb_bombes;
+    }
+    /**
+     * @fn int resetVie()
+     * @brief reset Vie
+     * @return vie 0
+     */
+    public int resetVie(){
+        vie = 0;
+        return vie;
     }
     public boolean get_est_fini(){
         return  jeu_fini;
