@@ -10,9 +10,9 @@ public abstract class EntiteDynamique extends Entite {
 
     public EntiteDynamique(Jeu _jeu) { super(_jeu); }
 
-    public Direction pousse_dir;
+    private Direction colonneDir;
+    private Direction colonneDirTempo;
 
-    public Direction pousse_dir_tamp;
     public boolean avancerDirectionChoisie(Direction d) {
         return jeu.deplacerEntite(this, d);
     }
@@ -23,8 +23,9 @@ public abstract class EntiteDynamique extends Entite {
 
     public Entite regarderDansLaDirection(Direction d) {return jeu.regarderDansLaDirection(this, d);}
 
+    public Direction setColonneDir(Direction dir) { return colonneDir = dir; }
+    public Direction getColonneDir() { return colonneDir; }
+    public Direction setColonneDirTempo(Direction dir) { return colonneDirTempo = dir; }
+    public Direction getColonneDirTempo() { return colonneDirTempo; }
 
-    
-    //public abstract void collisionAvec(Entite e);
-    //public abstract void est_face_a(Entite e);
 }

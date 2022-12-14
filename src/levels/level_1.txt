@@ -1,10 +1,10 @@
 bbbbbbbbbbbbbbbbbbbb/
-bhL_c__L_c________cb/
-b__pc_r__c____l___cb/
-bm_mpmm_mc_mmm_cmmcb/
-bm_mmmm_mpm____c__cb/
+bh__c____c________cb/
+b__pc_r__c________cb/
+bmmmpmmmmc_mm__cmmcb/
+bm_mmmm_mpm__lLc__cb/
 bm____c_mmmp___c__cb/
-bmmmmmcmmmmmmmmmmmcb/
+bmmmmmcmmmmmm__mmmcb/
 b_____c___________cb/
-bp__p_c__________icb/
+bp__p___________pi_b/
 bbbbbbbbbbbbbbbbbbbb/
