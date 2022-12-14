@@ -349,7 +349,7 @@ public class Jeu {
     /*
     Si (je suis null) ou si (je peux etre traverser ET (si je ne peux pas etre ramasser ou si je ne peux pas ramasser ))
      */
-        if ( (contenuDansGrille(pCible)&& ( objetALaPosition(pCible) == null) )|| (objetALaPosition(pCible).peutEtreTraverse() /*&& (!objetALaPosition(pCible).peutEtreRamasse() || !e.peutRamasser())*/)) {
+        if ( (contenuDansGrille(pCible)&& ( objetALaPosition(pCible) == null) )|| (objetALaPosition(pCible).peutEtreTraverse() && (!objetALaPosition(pCible).peutEtreRamasse() || !e.peutRamasser()))) {
 
             // a adapter (collisions murs, etc.)
             // compter le déplacement : 1 deplacement horizontal et vertical max par pas de temps par entité
@@ -370,7 +370,7 @@ public class Jeu {
                     }
                     break;
             }
-        }else if(objetALaPosition(pCible).peutEtreRamasse() && e.peutRamasser() && objetALaPosition(pCible).peutDistraire() == false){
+        }else if(objetALaPosition(pCible).peutEtreRamasse() && e.peutRamasser() && !objetALaPosition(pCible).peutDistraire()){
             System.out.println("je suis une bombe ?");
             score = score + 100;
             nb_bombes--;

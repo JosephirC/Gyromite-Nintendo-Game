@@ -7,7 +7,7 @@ public abstract class EntiteRamassable extends EntiteDynamique{
     public boolean peutEtreRamasse(){return true;}
     public boolean peutEtreEcrase() { return false; }
     public boolean peutPermettreDeMonterDescendre() { return false; }
-    public boolean peutEtreTraverse(){ return false; }
+    public boolean peutEtreTraverse(){ return true; }
     public boolean peutRamasser() { return false; }
 
 
