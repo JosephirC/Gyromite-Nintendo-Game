@@ -256,6 +256,7 @@ public class Jeu {
     public void resetlvl(){
         reset();
         initialisationDesEntites();
+
     }
     /**
      * @fn void lvlfini()
