@@ -1,10 +1,10 @@
 bbbbbbbbbbbbbbbbbbbb/
-b_________________hb/
-b_______________mmmb/
-bc___c_______p__c__b/
+b__________________b/
+b_h_____________mmmb/
+bcmlmc_______p__c__b/
 bc___c______cm__c__b/
-bcmm_cl__L__c_m_c_pb/
-b_mmcc_____________b/
-bimmc______________b/
-bpmm_______p_______b/
+bcm__cmmmL__c_m_c_pb/
+b_m_cc_____________b/
+bim_c______________b/
+bpm________p_______b/
 bbbbbbbbbbbbbbbbbbbb/
