@@ -379,17 +379,14 @@ public class Jeu {
             Entite entiteBombe = objetALaPosition(pCible);
             supprimerEntite(entiteBombe, pCible.x, pCible.y);
             deplacerEntite(pCourant, pCible, e);
-            } /*else if(objetALaPosition(pCible).peutEtreRamasse() &&  objetALaPosition(pCible).peutDistraire()){
+            } else if(objetALaPosition(pCible).peutEtreRamasse() &&  objetALaPosition(pCible).peutDistraire()){
                 System.out.println("RADISS");
                 nb_radis++;
                 Entite eRadis = objetALaPosition(pCible);
                 supprimerEntite(eRadis, pCible.x, pCible.y);
                 deplacerEntite(pCourant, pCible, e);
 
-            }*/
-            else if(objetALaPosition(pCible) instanceof  Bombe){
-            System.out.println("bomba");
-        }
+            }
         if (retour) {
             deplacerEntite(pCourant, pCible, e);
         }
