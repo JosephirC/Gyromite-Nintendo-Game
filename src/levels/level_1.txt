@@ -1,11 +1,11 @@
 bbbbbbbbbbbbbbbbbbbb/
-b___c____c_______hcb/
-b___c_r__c________cb/
-b___pmmmmc_mmlLcmmcb/
-b_L_mmm_mpm____c__cb/
-b_____c_mmmp___c__cb/
-b___mmcmmmmmm__mmmcb/
-b_____c___________cb/
-bp__p___________pi_b/
+bh________________cb/
+b__________r____p_cb/
+bmmmlmmmmcmmmmLmmmcb/
+b________c________cb/
+bp___i___c________cb/
+bmmmmmmmmmmmmmmmmmcb/
+b_________________cb/
+b________________pcb/
 bbbbbbbbbbbbbbbbbbbb/
 
