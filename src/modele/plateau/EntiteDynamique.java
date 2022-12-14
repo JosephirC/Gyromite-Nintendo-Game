@@ -1,7 +1,6 @@
 package modele.plateau;
 
 import modele.deplacements.Direction;
-import modele.deplacements.Ramassage;
 
 /**
  * Entités amenées à bouger (colonnes, ennemis)
