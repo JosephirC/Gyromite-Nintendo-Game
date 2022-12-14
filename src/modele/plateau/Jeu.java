@@ -255,6 +255,9 @@ public class Jeu {
      */
     public void resetlvl(){
         reset();
+        resetScore();
+        resetBombe();
+        resetVie();
         initialisationDesEntites();
 
     }
@@ -457,6 +460,35 @@ public class Jeu {
      * @brief getter jeu_fini
      * @return jeu_fini
      */
+
+    /**
+     * @fn int resetTimer()
+     * @brief reset score
+     * @return score 0
+     */
+    public int resetScore(){
+        score = 0;
+        return score;
+    }
+
+    /**
+     * @fn int resetBombe()
+     * @brief reset Bombe
+     * @return Bombe 0
+     */
+    public int resetBombe(){
+        nb_bombes = 0;
+        return nb_bombes;
+    }
+    /**
+     * @fn int resetVie()
+     * @brief reset Vie
+     * @return vie 0
+     */
+    public int resetVie(){
+        vie = 0;
+        return vie;
+    }
     public boolean get_est_fini(){
         return  jeu_fini;
     }
