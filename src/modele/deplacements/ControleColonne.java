@@ -66,6 +66,7 @@ public class ControleColonne extends RealisateurDeDeplacement {
         }
     }
 
+
     public boolean realiserDeplacement() {
         boolean ret = false;
         EntiteDynamique[] gHaut = new EntiteDynamique[lstEntitesDynamiques.size()];
@@ -73,7 +74,7 @@ public class ControleColonne extends RealisateurDeDeplacement {
 
         for (int i =0; i<gHaut.length; i++) {
             EntiteDynamique e = gHaut[i];
-            if (e instanceof Colonne)
+            //if (e instanceof Colonne)
                 if (e.getColonneDir() != null && ((Colonne) e).getNbrDeplacement() != 0) {
                     switch (e.getColonneDir()) {
                         case haut:
@@ -86,7 +87,7 @@ public class ControleColonne extends RealisateurDeDeplacement {
                                 }
                             } else {
                                 if (ehaut.peutEtreEcrase()) {
-                                    if (ehaut instanceof EntiteVivante) {
+                                    if (ehaut.peutMourir()) {
                                         Entite ehauthaut = ((EntiteDynamique) ehaut).regarderDansLaDirection(Direction.haut);
                                         if (ehauthaut != null) {
                                             ((EntiteVivante) ehaut).setVivant(false);
@@ -129,7 +130,7 @@ public class ControleColonne extends RealisateurDeDeplacement {
                                     }
                                 } else {
                                     if (ebas.peutEtreEcrase()) {
-                                        if (ebas instanceof EntiteVivante) {
+                                        if (ebas.peutMourir()) {
                                             Entite ebasbas = ((EntiteDynamique) ebas).regarderDansLaDirection(Direction.bas);
                                             if (ebasbas != null)
                                                 ((EntiteVivante) ebas).setVivant(false);

@@ -5,18 +5,16 @@ import modele.deplacements.Direction;
 import java.util.ArrayList;
 
 public class Colonne extends EntiteDynamique {
-    public Colonne(Jeu _jeu, int hm, Direction dir) {
+    public Colonne(Jeu _jeu, int _colonneMilieu, Direction dir) {
         super(_jeu);
-        posM = hm;
+        colonneMilieu = _colonneMilieu;
         nbrDeplacementInit();
         setColonneDir(dir);
     }
 
     public Colonne(Jeu _jeu,int _colonneMilieu,int _composanteColonne,int _couleur) {
         super(_jeu);
-        posM = _colonneMilieu;
         colonneMilieu = _colonneMilieu;
-        pos = _composanteColonne;
         composanteColonne = _composanteColonne;
         nbrDeplacementInit();
         setColonneDir(null);
@@ -25,9 +23,7 @@ public class Colonne extends EntiteDynamique {
     }
 
     private int colonneMilieu;
-    public int pos;
     private int composanteColonne;
-    public int posM;
     private int couleur;
     private int nbrDeplacement;
 
@@ -61,8 +57,6 @@ public class Colonne extends EntiteDynamique {
     public boolean peutRamasser() {
         return false;
     }
-    public boolean peutetreramasser() { return false; };
-
     @Override
     public boolean peutDistraire() { return false; }
 }

@@ -265,40 +265,40 @@ public class VueControleurGyromite extends JFrame implements Observer {
                     tabJLabel[x][y].setIcon(icoRadis);
 
                 }else if (jeu.getGrille()[x][y] instanceof Colonne) {
-                    if (((Colonne) jeu.getGrille()[x][y]).pos == 1 && ((Colonne) jeu.getGrille()[x][y]).getCouleur() == 0)
-                        if ((((Colonne) jeu.getGrille()[x][y]).posM == y))
+                    if (((Colonne) jeu.getGrille()[x][y]).getComposanteColonne() == 1 && ((Colonne) jeu.getGrille()[x][y]).getCouleur() == 0)
+                        if ((((Colonne) jeu.getGrille()[x][y]).getColonneMilieu() == y))
                             //if (((Colonne) jeu.getGrille()[x][y]).couleur == 0 ) // if couleur
                                 tabJLabel[x][y].setIcon(icoColonne1Mb);
                             else                                                 // else couleur
                                 tabJLabel[x][y].setIcon(icoColonne1b);
 
-                    if (((Colonne) jeu.getGrille()[x][y]).pos == 2 && ((Colonne) jeu.getGrille()[x][y]).getCouleur() ==0)
-                        if (((Colonne) jeu.getGrille()[x][y]).posM == y)
+                    if (((Colonne) jeu.getGrille()[x][y]).getComposanteColonne() == 2 && ((Colonne) jeu.getGrille()[x][y]).getCouleur() ==0)
+                        if (((Colonne) jeu.getGrille()[x][y]).getColonneMilieu() == y)
                             //if (((Colonne) jeu.getGrille()[x][y]).couleur == 0 ) // if couleur
                                 tabJLabel[x][y].setIcon(icoColonne2Mb);
                             else                                                 // else couleur
                                 tabJLabel[x][y].setIcon(icoColonne2b);
 
-                    if ((((Colonne) jeu.getGrille()[x][y]).pos == 1) && ((Colonne) jeu.getGrille()[x][y]).getCouleur() ==1)
-                        if (((Colonne) jeu.getGrille()[x][y]).posM == y)
+                    if ((((Colonne) jeu.getGrille()[x][y]).getComposanteColonne() == 1) && ((Colonne) jeu.getGrille()[x][y]).getCouleur() ==1)
+                        if (((Colonne) jeu.getGrille()[x][y]).getColonneMilieu() == y)
                             //if (((Colonne) jeu.getGrille()[x][y]).couleur == 0 ) // if couleur
                                 tabJLabel[x][y].setIcon(icoColonne1Mr);
                             else                                                 // else couleur
                                 tabJLabel[x][y].setIcon(icoColonne1r);
-                    if (((Colonne) jeu.getGrille()[x][y]).pos == 2 && ((Colonne) jeu.getGrille()[x][y]).getCouleur() ==1)
-                        if (((Colonne) jeu.getGrille()[x][y]).posM == y)
+                    if (((Colonne) jeu.getGrille()[x][y]).getComposanteColonne() == 2 && ((Colonne) jeu.getGrille()[x][y]).getCouleur() ==1)
+                        if (((Colonne) jeu.getGrille()[x][y]).getColonneMilieu() == y)
                             tabJLabel[x][y].setIcon(icoColonne2Mr);
                         else
                             tabJLabel[x][y].setIcon(icoColonne2r);
 
-                    if (((Colonne) jeu.getGrille()[x][y]).pos == 3 && ((Colonne) jeu.getGrille()[x][y]).getCouleur() ==0)
-                        if (((Colonne) jeu.getGrille()[x][y]).posM == y)
+                    if (((Colonne) jeu.getGrille()[x][y]).getComposanteColonne() == 3 && ((Colonne) jeu.getGrille()[x][y]).getCouleur() ==0)
+                        if (((Colonne) jeu.getGrille()[x][y]).getColonneMilieu() == y)
                             tabJLabel[x][y].setIcon(icoColonne3Mb);
                         else
                             tabJLabel[x][y].setIcon(icoColonne3b);
 
-                    if (((Colonne) jeu.getGrille()[x][y]).pos == 3 &&  ((Colonne) jeu.getGrille()[x][y]).getCouleur() ==1)
-                        if (((Colonne) jeu.getGrille()[x][y]).posM == y)
+                    if (((Colonne) jeu.getGrille()[x][y]).getComposanteColonne() == 3 &&  ((Colonne) jeu.getGrille()[x][y]).getCouleur() ==1)
+                        if (((Colonne) jeu.getGrille()[x][y]).getColonneMilieu() == y)
                             tabJLabel[x][y].setIcon(icoColonne3Mr);
                         else
                             tabJLabel[x][y].setIcon(icoColonne3r);
