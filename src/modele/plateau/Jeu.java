@@ -279,13 +279,13 @@ public class Jeu {
         start(300);
     }
 
-    private void initialisationdunecolone(int x,int y,int n){
+    private void initialisationdunecolone(int x,int y,int couleur){
 
-        if (n == 0 ) {
+        if (couleur == 0 ) {
             y=y-1;
-            Colonne col1 = new Colonne(this, y + 1, 1, n);
-            Colonne col2 = new Colonne(this, y + 1, 2, n);
-            Colonne col3 = new Colonne(this, y + 1, 3, n);
+            Colonne col1 = new Colonne(this, y + 1, 1, couleur);
+            Colonne col2 = new Colonne(this, y + 1, 2, couleur);
+            Colonne col3 = new Colonne(this, y + 1, 3, couleur);
 
             addEntite(col1, x, y + 1);
             addEntite(col2, x, y + 2);
@@ -298,11 +298,11 @@ public class Jeu {
 
         }
 
-        if (n == 1 ) {
+        if (couleur == 1 ) {
             y=y-1;
-            Colonne col1 = new Colonne(this, y + 1, 1,n);
-            Colonne col2 = new Colonne(this, y + 1, 2, n);
-            Colonne col3 = new Colonne(this, y + 1, 3, n);
+            Colonne col1 = new Colonne(this, y + 1, 1, couleur);
+            Colonne col2 = new Colonne(this, y + 1, 2, couleur);
+            Colonne col3 = new Colonne(this, y + 1, 3, couleur);
 
             addEntite(col1, x, y + 1);
             addEntite(col2, x, y + 2);
@@ -390,11 +390,18 @@ public class Jeu {
                 deplacerEntite(pCourant, pCible, e);
 
             }
+
+
         if (retour) {
             deplacerEntite(pCourant, pCible, e);
         }
         return retour;
     }
+
+    public void supprimeSmick(Entite e){
+
+    }
+
 
     private Point calculerPointCible(Point pCourant, Direction d) {
         Point pCible = null;

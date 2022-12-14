@@ -5,6 +5,10 @@ import modele.deplacements.Direction;
 import java.util.ArrayList;
 
 public class Colonne extends EntiteDynamique {
+    private int colonneMilieu;
+    private int composanteColonne;
+    private int couleur;
+    private int nbrDeplacement;
     public Colonne(Jeu _jeu, int _colonneMilieu, Direction dir) {
         super(_jeu);
         colonneMilieu = _colonneMilieu;
@@ -22,10 +26,7 @@ public class Colonne extends EntiteDynamique {
         couleur = _couleur;
     }
 
-    private int colonneMilieu;
-    private int composanteColonne;
-    private int couleur;
-    private int nbrDeplacement;
+
 
     public int setColonneMilieu(int colM) { return  colonneMilieu = colM; }
     public int getColonneMilieu() { return  colonneMilieu; }

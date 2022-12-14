@@ -122,6 +122,7 @@ public class ControleColonne extends RealisateurDeDeplacement {
 
                             if (e.getColonneDir() != null && ((Colonne) e).getNbrDeplacement() != 0) {
                                 Entite ebas = e.regarderDansLaDirection(Direction.bas);
+                                System.out.println("ebas is " + ebas);
                                 //System.out.println("je suis " + e);
                                 if (ebas == null || ebas.peutEtreEcrase()) {
                                     if (e.avancerDirectionChoisie(Direction.bas)) {
@@ -132,8 +133,12 @@ public class ControleColonne extends RealisateurDeDeplacement {
                                     if (ebas.peutEtreEcrase()) {
                                         if (ebas.peutMourir()) {
                                             Entite ebasbas = ((EntiteDynamique) ebas).regarderDansLaDirection(Direction.bas);
-                                            if (ebasbas != null)
+                                            if (ebasbas != null){
                                                 ((EntiteVivante) ebas).setVivant(false);
+                                                System.out.println("ebas is " + ebasbas);
+                                            }
+
+
                                         }
                                     }
                                 }

@@ -11,11 +11,13 @@ import java.util.Random;
  * Ennemis (Smicks)
  */
 public class Bot extends EntiteEnnemi {
+
     private Random r = new Random();
 
     public Bot(Jeu _jeu) {
         super(_jeu);
     }
+
     public boolean peutEtreRamasse(){return false;}
     @Override
     public boolean peutRamasser() {
@@ -24,10 +26,6 @@ public class Bot extends EntiteEnnemi {
     public boolean peutServirDeSupport() { return true; }
     public boolean peutPermettreDeMonterDescendre() { return false; }
     public boolean peutEtreTraverse(){ return false; }
-
-
-
-
     @Override
     public boolean peutDistraire() { return false; }
 
